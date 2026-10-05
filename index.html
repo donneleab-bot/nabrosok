@@ -3,114 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0817">
+<meta name="theme-color" content="#06050d">
+<meta name="description" content="ArtHaven — премиальный рынок артов. Аукционы, адопты, коммишки. Escrow, защита от AI.">
 <title>ArtHaven — премиальный рынок артов</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   ПАЛИТРА
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   ARTHAVEN — DESIGN SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
 :root {
-  --bg-void:     #06050d;
-  --bg-deep:     #0a0817;
-  --bg-main:     #0f0b1b;
+  /* Фоны — 6 уровней глубины */
+  --bg-void:     #050409;
+  --bg-abyss:    #08060f;
+  --bg-deep:     #0c0918;
+  --bg-main:     #100c1f;
   --bg-card:     #16112a;
-  --bg-hover:    #1e1836;
+  --bg-elev:     #1c1634;
+  --bg-float:    #241c42;
 
-  --gold:        #c9a961;
-  --gold-soft:   #ddc088;
+  /* Золото — 7 оттенков */
+  --gold-white:  #fbf0c9;
   --gold-glow:   #f4e0a8;
+  --gold-soft:   #ddc088;
+  --gold:        #c9a961;
   --gold-deep:   #8f7440;
+  --gold-dark:   #5a472a;
+  --gold-shadow: #2e2414;
 
-  --violet:      #4a2a6a;
-  --violet-lite: #6d3d9b;
-  --violet-deep: #2a1840;
+  /* Фиолет — 4 оттенка */
+  --violet-glow: #8a5ec9;
+  --violet:      #5a3384;
+  --violet-deep: #2e1c44;
+  --violet-void: #1a0f2a;
 
-  --crimson:     #7a1f3a;
-  --crimson-lite:#a82e50;
+  /* Багровый */
+  --crimson-glow: #d94870;
+  --crimson:      #7a1f3a;
+  --crimson-deep: #3d0f1e;
 
-  --ink:         #ece4d4;
-  --ink-soft:    #b5a892;
+  /* Текст */
+  --ink:         #f0e9d8;
+  --ink-soft:    #b8ab90;
   --ink-mute:    #7a7082;
-  --ink-faint:   #453f52;
+  --ink-faint:   #4a4354;
+  --ink-ghost:   #2e2a38;
 
-  --danger:      #c76a6a;
+  /* Семантика */
   --success:     #7ba87b;
+  --success-glow:#a8d8a8;
+  --danger:      #c76a6a;
   --nsfw:        #9c4a6a;
 
-  --border:      rgba(201,169,97,.14);
-  --border-soft: rgba(236,228,212,.07);
-  --border-hover: rgba(201,169,97,.50);
+  /* Границы */
+  --b-soft:      rgba(236,228,212,.06);
+  --b-mid:       rgba(201,169,97,.14);
+  --b-gold:      rgba(201,169,97,.35);
+  --b-gold-loud: rgba(201,169,97,.6);
 
-  --shadow-sm:   0 2px 8px rgba(0,0,0,.35);
-  --shadow-md:   0 12px 32px rgba(0,0,0,.5);
-  --shadow-lg:   0 20px 50px rgba(0,0,0,.6);
-  --shadow-glow: 0 0 40px rgba(201,169,97,.15);
+  /* Тени — каскад */
+  --sh-xs:       0 1px 3px rgba(0,0,0,.4);
+  --sh-sm:       0 4px 12px rgba(0,0,0,.45);
+  --sh-md:       0 12px 32px rgba(0,0,0,.55);
+  --sh-lg:       0 24px 60px rgba(0,0,0,.65);
+  --sh-xl:       0 40px 100px rgba(0,0,0,.75);
+  --sh-glow-sm:  0 0 24px rgba(201,169,97,.20);
+  --sh-glow-md:  0 0 50px rgba(201,169,97,.30);
+  --sh-glow-lg:  0 0 100px rgba(201,169,97,.40);
+
+  /* Скругления */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-2xl: 28px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
 
-/* Плавный рендер без тормозов */
-html, body { -webkit-tap-highlight-color: transparent; }
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg-main);
   color: var(--ink);
+  font-size: 15px;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'ss02', 'cv11';
 }
 
-/* Фон — статичный, без анимации. Только градиенты + звёзды точками */
+/* ═══════════════════════════════════════════════════════════
+   ФОН — статичный, многослойный, но не тормозит
+   ═══════════════════════════════════════════════════════════ */
 body::before {
   content: '';
-  position: fixed; inset: 0; z-index: -1;
+  position: fixed; inset: 0;
+  z-index: -2;
+  pointer-events: none;
   background:
-    /* Звёзды — маленькие точки через radial-gradient */
-    radial-gradient(1px 1px at 8% 15%, rgba(244,224,168,.55), transparent),
-    radial-gradient(1px 1px at 22% 42%, rgba(244,224,168,.4), transparent),
-    radial-gradient(1px 1px at 38% 8%, rgba(244,224,168,.6), transparent),
-    radial-gradient(1px 1px at 55% 34%, rgba(244,224,168,.35), transparent),
-    radial-gradient(1px 1px at 72% 18%, rgba(244,224,168,.55), transparent),
-    radial-gradient(1px 1px at 88% 44%, rgba(244,224,168,.4), transparent),
-    radial-gradient(1px 1px at 12% 68%, rgba(244,224,168,.55), transparent),
-    radial-gradient(1px 1px at 30% 82%, rgba(244,224,168,.35), transparent),
-    radial-gradient(1px 1px at 48% 72%, rgba(244,224,168,.45), transparent),
-    radial-gradient(1px 1px at 65% 88%, rgba(244,224,168,.35), transparent),
-    radial-gradient(1px 1px at 82% 78%, rgba(244,224,168,.5), transparent),
-    radial-gradient(1px 1px at 95% 62%, rgba(244,224,168,.4), transparent),
-    /* Свечения */
-    radial-gradient(ellipse 60% 40% at 15% 5%, rgba(201,169,97,.08), transparent 60%),
-    radial-gradient(ellipse 55% 40% at 90% 15%, rgba(109,61,155,.16), transparent 60%),
-    radial-gradient(ellipse 60% 45% at 50% 100%, rgba(122,31,58,.12), transparent 60%),
+    /* Звёзды — 18 точек */
+    radial-gradient(1px 1px at  6% 12%, rgba(251,240,201,.7), transparent),
+    radial-gradient(1px 1px at 14% 32%, rgba(251,240,201,.4), transparent),
+    radial-gradient(1.5px 1.5px at 22%  7%, rgba(251,240,201,.85), transparent),
+    radial-gradient(1px 1px at 31% 45%, rgba(251,240,201,.45), transparent),
+    radial-gradient(1px 1px at 39% 22%, rgba(251,240,201,.55), transparent),
+    radial-gradient(1.5px 1.5px at 47% 68%, rgba(251,240,201,.75), transparent),
+    radial-gradient(1px 1px at 55% 15%, rgba(251,240,201,.5), transparent),
+    radial-gradient(1px 1px at 63% 42%, rgba(251,240,201,.4), transparent),
+    radial-gradient(1.5px 1.5px at 71% 82%, rgba(251,240,201,.8), transparent),
+    radial-gradient(1px 1px at 79% 28%, rgba(251,240,201,.5), transparent),
+    radial-gradient(1px 1px at 86% 62%, rgba(251,240,201,.45), transparent),
+    radial-gradient(1.5px 1.5px at 94% 18%, rgba(251,240,201,.7), transparent),
+    radial-gradient(1px 1px at 11% 78%, rgba(251,240,201,.55), transparent),
+    radial-gradient(1px 1px at 26% 88%, rgba(251,240,201,.4), transparent),
+    radial-gradient(1px 1px at 41% 92%, rgba(251,240,201,.5), transparent),
+    radial-gradient(1.5px 1.5px at 59% 95%, rgba(251,240,201,.7), transparent),
+    radial-gradient(1px 1px at 76% 91%, rgba(251,240,201,.45), transparent),
+    radial-gradient(1px 1px at 91% 84%, rgba(251,240,201,.55), transparent),
+    /* Туманности */
+    radial-gradient(ellipse 70% 50% at 12% -5%, rgba(201,169,97,.10), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 92% 8%, rgba(109,61,155,.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(122,31,58,.14), transparent 60%),
     linear-gradient(180deg, var(--bg-main) 0%, var(--bg-void) 100%);
   background-attachment: fixed;
-  pointer-events: none;
 }
 
-::-webkit-scrollbar { width: 10px; }
+/* Второй слой — тонкая вуаль с зерном (имитация премиума) */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .35;
+  background-image:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(201,169,97,.06), transparent 60%);
+}
+
+::selection { background: rgba(201,169,97,.35); color: var(--ink); }
+
+/* Скроллбар */
+::-webkit-scrollbar { width: 12px; height: 12px; }
 ::-webkit-scrollbar-track { background: var(--bg-void); }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--violet), var(--gold-deep));
-  border-radius: 10px;
-  border: 2px solid var(--bg-void);
+  border-radius: 12px;
+  border: 3px solid var(--bg-void);
 }
-
-::selection { background: rgba(201,169,97,.30); color: var(--ink); }
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--violet-glow), var(--gold));
+}
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-img { display: block; max-width: 100%; }
+img, svg { display: block; max-width: 100%; }
 
-/* Общая утилита иконок */
+/* Утилита: иконка */
 .ic {
   width: 18px; height: 18px;
   stroke: currentColor;
@@ -120,98 +180,133 @@ img { display: block; max-width: 100%; }
   stroke-linejoin: round;
   flex-shrink: 0;
 }
+.ic-sm { width: 14px; height: 14px; }
+.ic-lg { width: 22px; height: 22px; }
+.ic-xl { width: 26px; height: 26px; }
 
-/* ============================================================
-   ХЕДЕР — без backdrop-filter
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   ХЕДЕР
+   ═══════════════════════════════════════════════════════════ */
 .topbar {
   position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; gap: 32px;
-  padding: 16px 40px;
-  background: #06050d;
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 28px;
+  padding: 14px 40px;
+  background: rgba(5,4,9,.92);
+  border-bottom: 1px solid var(--b-mid);
+  box-shadow: 0 1px 0 rgba(201,169,97,.08) inset, 0 4px 24px rgba(0,0,0,.4);
+}
+
+/* Тонкая золотая нить под хедером */
+.topbar::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.5), transparent);
+  pointer-events: none;
 }
 
 .logo {
   display: flex; align-items: center; gap: 12px;
   font-family: 'Manrope', sans-serif;
-  font-size: 21px; font-weight: 800; letter-spacing: -.3px;
+  font-size: 20px; font-weight: 800;
+  letter-spacing: -.4px;
   flex-shrink: 0;
 }
+
 .logo-mark {
   width: 38px; height: 50px;
   display: grid; place-items: center;
   border-radius: 6px;
-  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  background:
+    radial-gradient(circle at 50% 30%, rgba(201,169,97,.25), transparent 60%),
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
   border: 1px solid rgba(201,169,97,.55);
   box-shadow:
-    inset 0 0 0 1px rgba(201,169,97,.25),
-    inset 0 0 0 4px rgba(6,5,13,.8),
-    inset 0 0 0 5px rgba(201,169,97,.30);
+    inset 0 0 0 1px rgba(201,169,97,.30),
+    inset 0 0 0 4px rgba(5,4,9,.85),
+    inset 0 0 0 5px rgba(201,169,97,.32),
+    0 4px 14px rgba(0,0,0,.5);
   position: relative;
 }
 .logo-mark::before {
   content: 'XXI';
   position: absolute;
-  top: 4px; left: 0; right: 0;
+  top: 3px; left: 0; right: 0;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 7px; font-weight: 700;
+  font-size: 7px; font-weight: 800;
   text-align: center;
   color: var(--gold);
-  letter-spacing: 1.2px;
+  letter-spacing: 1.4px;
 }
 .logo-mark svg {
-  width: 18px; height: 18px;
+  width: 17px; height: 17px;
   stroke: var(--gold-glow);
   fill: none;
-  stroke-width: 1.6;
+  stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(244,224,168,.6));
 }
 
 .logo-text-accent {
-  background: linear-gradient(180deg, #f4e0a8, #c9a961 60%, #8f7440);
+  background: linear-gradient(180deg, var(--gold-white) 0%, var(--gold) 55%, var(--gold-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .main-nav {
-  display: flex; gap: 4px;
+  display: flex; gap: 2px;
   padding: 4px;
   background: rgba(255,255,255,.02);
   border-radius: 11px;
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--b-soft);
 }
 .main-nav a {
   padding: 8px 16px;
   color: var(--ink-mute);
-  font-size: 14px; font-weight: 500;
+  font-size: 13.5px; font-weight: 500;
   border-radius: 8px;
   transition: color .2s, background .2s;
+  position: relative;
 }
 .main-nav a:hover { color: var(--gold-soft); background: rgba(201,169,97,.06); }
 .main-nav a.active {
-  color: var(--ink);
-  background: linear-gradient(135deg, rgba(201,169,97,.20), rgba(109,61,155,.20));
+  color: var(--gold-white);
+  background: linear-gradient(135deg, rgba(201,169,97,.18), rgba(109,61,155,.16));
+  box-shadow: inset 0 1px 0 rgba(244,224,168,.15);
+}
+.main-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 50%; transform: translateX(-50%);
+  width: 20px; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(201,169,97,.8);
 }
 
-.topbar-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.topbar-actions {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
 
 .icon-btn {
   position: relative;
   height: 40px; min-width: 40px; padding: 0 12px;
   display: flex; align-items: center; justify-content: center; gap: 6px;
   background: rgba(255,255,255,.03);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--b-soft);
   border-radius: 10px;
-  font-size: 13.5px;
+  font-size: 13.5px; font-weight: 500;
   color: var(--ink-soft);
   transition: background .2s, border-color .2s, color .2s;
 }
 .icon-btn:hover {
   background: rgba(201,169,97,.08);
-  border-color: var(--border-hover);
+  border-color: var(--b-gold);
   color: var(--gold-soft);
 }
 .icon-btn.wallet {
@@ -221,60 +316,101 @@ img { display: block; max-width: 100%; }
   border-color: rgba(201,169,97,.28);
   font-family: 'Manrope', sans-serif;
 }
+.icon-btn.wallet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 12px rgba(201,169,97,.15);
+  pointer-events: none;
+}
 
 .badge {
   position: absolute; top: -4px; right: -4px;
-  background: linear-gradient(135deg, var(--crimson-lite), var(--crimson));
+  background: linear-gradient(135deg, var(--crimson-glow), var(--crimson));
   color: #fff;
-  font-size: 10px; font-weight: 700;
+  font-size: 10px; font-weight: 800;
   padding: 2px 5px; border-radius: 20px;
   border: 2px solid var(--bg-void);
   min-width: 18px; text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 0 10px rgba(217,72,112,.6);
 }
 
 .avatar {
   width: 40px; height: 50px;
   border-radius: 6px;
-  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  background:
+    radial-gradient(circle at 50% 30%, rgba(201,169,97,.25), transparent 60%),
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
   border: 1px solid rgba(201,169,97,.5);
   cursor: pointer;
   display: grid; place-items: center;
   box-shadow:
-    inset 0 0 0 2px rgba(6,5,13,.75),
-    inset 0 0 0 3px rgba(201,169,97,.25);
+    inset 0 0 0 2px rgba(5,4,9,.8),
+    inset 0 0 0 3px rgba(201,169,97,.22);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px; font-weight: 800;
   color: var(--gold-glow);
-  transition: transform .2s, border-color .2s;
+  letter-spacing: .5px;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
 }
-.avatar:hover { transform: scale(1.05); border-color: var(--gold); }
+.avatar:hover {
+  transform: translateY(-1px);
+  border-color: var(--gold);
+  box-shadow:
+    inset 0 0 0 2px rgba(5,4,9,.8),
+    inset 0 0 0 3px rgba(201,169,97,.45),
+    0 0 20px rgba(201,169,97,.35);
+}
 
-/* ============================================================
-   КНОПКИ — упрощённые, но красивые
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   КНОПКИ
+   ═══════════════════════════════════════════════════════════ */
+
+/* Базовая кнопка — золото */
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 22px;
-  background: linear-gradient(160deg, #ddc088 0%, #c9a961 40%, #8f7440 100%);
+  padding: 12px 24px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.15), transparent 40%),
+    linear-gradient(160deg, var(--gold-soft) 0%, var(--gold) 45%, var(--gold-deep) 100%);
   color: #1a1206;
   font-weight: 700; font-size: 14px;
+  letter-spacing: .1px;
   border-radius: 11px;
+  border: 1px solid rgba(255,255,255,.25);
   box-shadow:
-    0 4px 14px rgba(201,169,97,.28),
-    inset 0 1px 0 rgba(255,255,255,.35);
-  transition: transform .2s, box-shadow .2s, background .2s;
+    0 4px 14px rgba(201,169,97,.30),
+    inset 0 1px 0 rgba(255,255,255,.4),
+    inset 0 -1px 0 rgba(0,0,0,.15);
+  transition: transform .18s, box-shadow .18s, filter .18s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,.25), transparent);
+  pointer-events: none;
+  border-radius: 11px 11px 0 0;
 }
 .btn-primary:hover {
   transform: translateY(-1px);
+  filter: brightness(1.06);
   box-shadow:
-    0 8px 24px rgba(201,169,97,.45),
-    inset 0 1px 0 rgba(255,255,255,.45);
+    0 8px 24px rgba(201,169,97,.5),
+    inset 0 1px 0 rgba(255,255,255,.5),
+    inset 0 -1px 0 rgba(0,0,0,.15);
 }
-.btn-primary:active { transform: translateY(0); }
+.btn-primary:active { transform: translateY(0); filter: brightness(.98); }
 .btn-primary.sm { padding: 9px 16px; font-size: 13px; border-radius: 9px; }
 .btn-primary.full { width: 100%; padding: 14px; }
+.btn-primary svg { width: 16px; height: 16px; stroke-width: 2; }
 
+/* Ghost */
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 20px;
@@ -287,28 +423,32 @@ img { display: block; max-width: 100%; }
 }
 .btn-ghost:hover {
   background: rgba(201,169,97,.10);
-  border-color: rgba(201,169,97,.55);
-  color: var(--gold-glow);
+  border-color: var(--b-gold-loud);
+  color: var(--gold-white);
 }
-.btn-ghost .ic { transition: transform .2s; }
-.btn-ghost:hover .ic { transform: translateX(3px); }
+.btn-ghost svg { transition: transform .2s; }
+.btn-ghost:hover svg { transform: translateX(3px); }
 
-/* ============================================================
+/* ═══════════════════════════════════════════════════════════
    СЕКЦИИ
-   ============================================================ */
-.full-section { position: relative; padding: 40px 0; }
+   ═══════════════════════════════════════════════════════════ */
+.full-section {
+  position: relative;
+  padding: 44px 0;
+}
 
 .layout {
-  max-width: 1760px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 48px;
 }
 
+/* Разделитель с орнаментом */
 .divider {
-  max-width: 1760px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 40px;
-  height: 1px;
+  padding: 0 48px;
+  height: 24px;
   position: relative;
   display: flex;
   align-items: center;
@@ -317,85 +457,126 @@ img { display: block; max-width: 100%; }
 .divider::before {
   content: '';
   position: absolute;
-  left: 40px; right: 40px;
+  left: 48px; right: 48px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,169,97,.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.32), transparent);
 }
 .divider::after {
-  content: '✦';
-  position: relative;
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 12px;
   background: var(--bg-main);
-  padding: 0 14px;
-  color: rgba(201,169,97,.55);
-  font-size: 10px;
+}
+.divider span {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-main);
+  padding: 0 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: rgba(201,169,97,.7);
+  letter-spacing: 4px;
+}
+.divider span::before,
+.divider span::after {
+  content: '✦';
+  font-size: 9px;
+  margin: 0 6px;
+  vertical-align: middle;
 }
 
+/* Заголовок секции */
 .section-head {
   display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   gap: 24px; flex-wrap: wrap;
 }
-.section-head .title-wrap { display: flex; flex-direction: column; gap: 4px; }
+.section-head .title-wrap { display: flex; flex-direction: column; gap: 6px; }
 .section-head h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 42px; font-weight: 700;
+  font-size: 44px; font-weight: 700;
   letter-spacing: -.5px;
   display: flex; align-items: center; gap: 16px;
-  background: linear-gradient(180deg, #f4e0a8 0%, #c9a961 55%, #8f7440 100%);
+  line-height: 1.02;
+  background: linear-gradient(180deg, var(--gold-white) 0%, var(--gold) 55%, var(--gold-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.05;
 }
 .section-head h2 .live-pulse {
   width: 10px; height: 10px; border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-  animation: pulse 1.6s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(201,169,97,.7);
+  animation: pulse 1.8s ease-in-out infinite;
   -webkit-text-fill-color: initial;
   flex-shrink: 0;
 }
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .4; transform: scale(.85); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,97,.7); opacity: 1; }
+  50%      { box-shadow: 0 0 0 10px rgba(201,169,97,0); opacity: .6; }
 }
 .section-head p {
   color: var(--ink-mute);
   font-size: 15px;
   font-style: italic;
   font-family: 'Cormorant Garamond', serif;
+  letter-spacing: .3px;
 }
 
-/* ============================================================
+/* ═══════════════════════════════════════════════════════════
    LIVE-АУКЦИОНЫ
-   ============================================================ */
+   ═══════════════════════════════════════════════════════════ */
 .live-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   gap: 22px;
 }
 
+/* Главный лот */
 .live-main {
   position: relative;
-  background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
-  border: 1px solid rgba(201,169,97,.30);
-  border-radius: 22px;
-  padding: 24px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(109,61,155,.14), transparent 55%),
+    linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  border: 1px solid var(--b-gold);
+  border-radius: var(--r-2xl);
+  padding: 26px;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 26px;
-  box-shadow: var(--shadow-md);
+  gap: 28px;
+  box-shadow:
+    var(--sh-md),
+    inset 0 1px 0 rgba(244,224,168,.10),
+    inset 0 0 0 1px rgba(201,169,97,.06);
   overflow: hidden;
+}
+.live-main::before {
+  content: '';
+  position: absolute; inset: 12px;
+  border-radius: var(--r-xl);
+  background:
+    linear-gradient(90deg, rgba(201,169,97,.45) 0 18px, transparent 18px) top left / 18px 1.5px no-repeat,
+    linear-gradient(180deg, rgba(201,169,97,.45) 0 18px, transparent 18px) top left / 1.5px 18px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 18px), rgba(201,169,97,.45) 0) top right / 18px 1.5px no-repeat,
+    linear-gradient(180deg, rgba(201,169,97,.45) 0 18px, transparent 18px) top right / 1.5px 18px no-repeat,
+    linear-gradient(90deg, rgba(201,169,97,.45) 0 18px, transparent 18px) bottom left / 18px 1.5px no-repeat,
+    linear-gradient(180deg, transparent calc(100% - 18px), rgba(201,169,97,.45) 0) bottom left / 1.5px 18px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 18px), rgba(201,169,97,.45) 0) bottom right / 18px 1.5px no-repeat,
+    linear-gradient(180deg, transparent calc(100% - 18px), rgba(201,169,97,.45) 0) bottom right / 1.5px 18px no-repeat;
+  pointer-events: none;
 }
 
 .live-badge {
-  position: absolute; top: 36px; left: 36px; z-index: 3;
+  position: absolute; top: 40px; left: 40px; z-index: 3;
   display: flex; align-items: center; gap: 6px;
-  background: linear-gradient(135deg, var(--crimson-lite), var(--crimson));
+  background: linear-gradient(135deg, var(--crimson-glow), var(--crimson));
   color: #fff;
   padding: 6px 12px; border-radius: 20px;
   font-size: 10px; font-weight: 800;
   letter-spacing: 1.6px;
+  box-shadow: 0 4px 18px rgba(217,72,112,.5);
 }
 .live-badge::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
@@ -404,61 +585,61 @@ img { display: block; max-width: 100%; }
 }
 
 .live-art {
-  height: 360px;
-  border-radius: 16px;
+  height: 380px;
+  border-radius: var(--r-lg);
   background:
-    radial-gradient(circle at 50% 45%, rgba(201,169,97,.20), transparent 55%),
-    radial-gradient(circle at 50% 45%, rgba(109,61,155,.28), transparent 70%),
+    radial-gradient(circle at 50% 45%, rgba(201,169,97,.16), transparent 55%),
+    radial-gradient(circle at 50% 45%, rgba(109,61,155,.24), transparent 70%),
     linear-gradient(160deg, var(--violet-deep) 0%, var(--bg-void) 100%);
   display: grid; place-items: center;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(201,169,97,.18);
+  border: 1px solid rgba(201,169,97,.16);
+  box-shadow: inset 0 0 60px rgba(0,0,0,.5);
 }
 
-/* Карта Таро */
 .tarot {
-  width: 180px; height: 270px;
+  width: 190px; height: 285px;
   position: relative;
   border-radius: 10px;
   background:
     radial-gradient(circle at 50% 40%, rgba(109,61,155,.42), transparent 65%),
     linear-gradient(160deg, var(--violet-deep), var(--bg-void));
-  border: 1px solid rgba(201,169,97,.65);
+  border: 1px solid rgba(201,169,97,.7);
   box-shadow:
     inset 0 0 0 1px rgba(201,169,97,.25),
-    inset 0 0 0 7px rgba(6,5,13,.78),
-    inset 0 0 0 8px rgba(201,169,97,.35),
-    0 12px 40px rgba(0,0,0,.7);
+    inset 0 0 0 8px rgba(5,4,9,.82),
+    inset 0 0 0 9px rgba(201,169,97,.4),
+    0 20px 50px rgba(0,0,0,.75);
   display: grid; place-items: center;
 }
 
 .tarot::before {
   content: attr(data-num);
   position: absolute;
-  top: 14px; left: 0; right: 0;
+  top: 15px; left: 0; right: 0;
   font-family: 'Cormorant Garamond', serif;
   font-size: 12px; font-weight: 700;
   text-align: center;
   color: var(--gold-glow);
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
 }
 .tarot::after {
   content: attr(data-label);
   position: absolute;
-  bottom: 14px; left: 0; right: 0;
+  bottom: 15px; left: 0; right: 0;
   font-family: 'Cormorant Garamond', serif;
   font-size: 11px; font-weight: 700;
   text-align: center;
   color: var(--gold-glow);
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
 }
 
 .tarot-symbol {
-  width: 88px; height: 88px;
+  width: 92px; height: 92px;
   stroke: var(--gold-glow);
-  stroke-width: 1.4;
+  stroke-width: 1.35;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -467,32 +648,47 @@ img { display: block; max-width: 100%; }
 .live-info { display: flex; flex-direction: column; justify-content: center; }
 .live-info h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px; font-weight: 700;
+  font-size: 34px; font-weight: 700;
   margin-bottom: 6px;
-  line-height: 1.15;
-  background: linear-gradient(180deg, #f4e0a8, #c9a961 60%, #8f7440);
+  line-height: 1.14;
+  background: linear-gradient(180deg, var(--gold-white), var(--gold) 60%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -.2px;
 }
-.live-info .author { color: var(--ink-mute); font-size: 14px; margin-bottom: 20px; }
+.live-info .author {
+  color: var(--ink-mute); font-size: 14px; margin-bottom: 22px;
+  display: flex; align-items: center; gap: 8px;
+}
 .live-info .author b { color: var(--gold-soft); font-weight: 600; }
+.live-info .author::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(201,169,97,.7);
+}
 
 .bid-row {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 0;
-  border-top: 1px solid var(--border-soft);
-  border-bottom: 1px solid var(--border-soft);
-  margin-bottom: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--b-soft);
+  border-bottom: 1px solid var(--b-soft);
+  margin-bottom: 16px;
 }
-.bid-row span { color: var(--ink-mute); font-size: 13px; }
+.bid-row span {
+  color: var(--ink-mute); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 1.4px;
+}
 .bid-row strong {
   font-family: 'Manrope', sans-serif;
-  font-size: 26px; font-weight: 800;
-  background: linear-gradient(180deg, #f4e0a8, #c9a961 60%, #8f7440);
+  font-size: 28px; font-weight: 800;
+  background: linear-gradient(180deg, var(--gold-white), var(--gold) 60%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -.5px;
 }
 
 .timer {
@@ -502,28 +698,54 @@ img { display: block; max-width: 100%; }
   color: var(--gold-soft);
   padding: 12px;
   background: rgba(201,169,97,.05);
-  border: 1px solid rgba(201,169,97,.20);
+  border: 1px solid rgba(201,169,97,.22);
   border-radius: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   letter-spacing: 4px;
   font-variant-numeric: tabular-nums;
+  position: relative;
+}
+.timer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 20px rgba(201,169,97,.08);
+  pointer-events: none;
 }
 
+/* Сайдбар аукционов */
 .live-side { display: flex; flex-direction: column; gap: 12px; }
+
 .mini-auction {
   flex: 1;
   display: flex; gap: 14px;
   background: linear-gradient(165deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid var(--border-soft);
-  border-radius: 16px;
+  border: 1px solid var(--b-soft);
+  border-radius: var(--r-lg);
   padding: 14px;
-  transition: border-color .2s, transform .2s;
+  transition: border-color .22s, transform .22s, box-shadow .22s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.mini-auction::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--violet-lite));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .28s;
 }
 .mini-auction:hover {
-  border-color: var(--border-hover);
-  transform: translateX(-3px);
+  border-color: var(--b-gold);
+  transform: translateX(-4px);
+  box-shadow: var(--sh-md);
 }
+.mini-auction:hover::before { transform: scaleY(1); }
+
 .mini-thumb {
   width: 58px; height: 86px;
   border-radius: 6px;
@@ -532,18 +754,19 @@ img { display: block; max-width: 100%; }
   display: grid; place-items: center;
   border: 1px solid rgba(201,169,97,.5);
   box-shadow:
-    inset 0 0 0 2px rgba(6,5,13,.75),
+    inset 0 0 0 2px rgba(5,4,9,.8),
     inset 0 0 0 3px rgba(201,169,97,.25);
 }
-.mini-thumb .tarot-symbol { width: 32px; height: 32px; stroke-width: 1.8; }
+.mini-thumb .tarot-symbol { width: 32px; height: 32px; stroke-width: 1.6; }
 .mini-thumb.violet { background: linear-gradient(160deg, var(--violet), var(--violet-deep)); }
-.mini-thumb.crimson { background: linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
+.mini-thumb.crimson { background: linear-gradient(160deg, var(--crimson), var(--crimson-deep)); }
 
 .mini-info { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
 .mini-info h4 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 19px; font-weight: 700;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  letter-spacing: -.2px;
 }
 .mini-info .mini-price {
   color: var(--gold-soft); font-weight: 700;
@@ -557,46 +780,51 @@ img { display: block; max-width: 100%; }
   font-variant-numeric: tabular-nums;
 }
 
-/* ============================================================
-   ГОРЯЧИЕ ЛОТЫ — КАРТЫ ТАРО
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   КАРТОЧКИ-КАРТЫ ТАРО — "горячие" лоты
+   ═══════════════════════════════════════════════════════════ */
 .hot-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 26px;
 }
 
 .card-tarot {
   position: relative;
-  border-radius: 14px;
+  border-radius: var(--r-lg);
   padding: 20px 20px 16px;
-  background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(109,61,155,.10), transparent 55%),
+    linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
   border: 1px solid rgba(201,169,97,.55);
   box-shadow:
     inset 0 0 0 1px rgba(201,169,97,.15),
-    inset 0 0 0 7px rgba(6,5,13,.7),
+    inset 0 0 0 7px rgba(5,4,9,.72),
     inset 0 0 0 8px rgba(201,169,97,.28),
-    var(--shadow-sm);
+    var(--sh-sm);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   cursor: pointer;
   overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1),
+              box-shadow .35s ease,
+              border-color .35s ease;
   will-change: transform;
 }
 
 .card-tarot:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: rgba(201,169,97,.95);
   box-shadow:
-    inset 0 0 0 1px rgba(201,169,97,.35),
-    inset 0 0 0 7px rgba(6,5,13,.75),
-    inset 0 0 0 8px rgba(201,169,97,.55),
-    var(--shadow-md);
+    inset 0 0 0 1px rgba(201,169,97,.4),
+    inset 0 0 0 7px rgba(5,4,9,.78),
+    inset 0 0 0 8px rgba(201,169,97,.6),
+    var(--sh-lg),
+    var(--sh-glow-sm);
 }
 
-/* Уголки-скобки: одна SVG-рамка на карте */
+/* Уголки-скобки */
 .card-tarot .corners {
   position: absolute;
   inset: 14px;
@@ -604,16 +832,16 @@ img { display: block; max-width: 100%; }
   z-index: 2;
   border-radius: 6px;
   background:
-    linear-gradient(90deg, rgba(201,169,97,.8) 0 12px, transparent 12px) top left / 12px 1px no-repeat,
-    linear-gradient(180deg, rgba(201,169,97,.8) 0 12px, transparent 12px) top left / 1px 12px no-repeat,
-    linear-gradient(90deg, transparent calc(100% - 12px), rgba(201,169,97,.8) 0) top right / 12px 1px no-repeat,
-    linear-gradient(180deg, rgba(201,169,97,.8) 0 12px, transparent 12px) top right / 1px 12px no-repeat,
-    linear-gradient(90deg, rgba(201,169,97,.8) 0 12px, transparent 12px) bottom left / 12px 1px no-repeat,
-    linear-gradient(180deg, transparent calc(100% - 12px), rgba(201,169,97,.8) 0) bottom left / 1px 12px no-repeat,
-    linear-gradient(90deg, transparent calc(100% - 12px), rgba(201,169,97,.8) 0) bottom right / 12px 1px no-repeat,
-    linear-gradient(180deg, transparent calc(100% - 12px), rgba(201,169,97,.8) 0) bottom right / 1px 12px no-repeat;
+    linear-gradient(90deg, rgba(201,169,97,.85) 0 12px, transparent 12px) top left / 12px 1px no-repeat,
+    linear-gradient(180deg, rgba(201,169,97,.85) 0 12px, transparent 12px) top left / 1px 12px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 12px), rgba(201,169,97,.85) 0) top right / 12px 1px no-repeat,
+    linear-gradient(180deg, rgba(201,169,97,.85) 0 12px, transparent 12px) top right / 1px 12px no-repeat,
+    linear-gradient(90deg, rgba(201,169,97,.85) 0 12px, transparent 12px) bottom left / 12px 1px no-repeat,
+    linear-gradient(180deg, transparent calc(100% - 12px), rgba(201,169,97,.85) 0) bottom left / 1px 12px no-repeat,
+    linear-gradient(90deg, transparent calc(100% - 12px), rgba(201,169,97,.85) 0) bottom right / 12px 1px no-repeat,
+    linear-gradient(180deg, transparent calc(100% - 12px), rgba(201,169,97,.85) 0) bottom right / 1px 12px no-repeat;
   opacity: 0;
-  transition: opacity .3s ease;
+  transition: opacity .35s ease;
 }
 .card-tarot:hover .corners { opacity: 1; }
 
@@ -628,7 +856,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,169,97,.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.5), transparent);
 }
 
 .card-num {
@@ -641,7 +869,7 @@ img { display: block; max-width: 100%; }
 .card-num::before {
   content: '✦';
   font-size: 9px;
-  color: rgba(201,169,97,.6);
+  color: rgba(201,169,97,.65);
 }
 
 .card-tag {
@@ -651,21 +879,24 @@ img { display: block; max-width: 100%; }
   letter-spacing: 1.1px;
   text-transform: uppercase;
   border: 1px solid rgba(201,169,97,.4);
+  white-space: nowrap;
 }
 .card-tag.gold {
   background: linear-gradient(160deg, var(--gold-glow), var(--gold));
   color: #1a1206;
-  border-color: rgba(244,224,168,.8);
+  border-color: rgba(244,224,168,.85);
+  box-shadow: 0 2px 10px rgba(201,169,97,.4);
 }
 .card-tag.nsfw {
-  background: linear-gradient(160deg, var(--crimson-lite), var(--crimson));
+  background: linear-gradient(160deg, var(--crimson-glow), var(--crimson));
   color: #fff;
-  border-color: rgba(168,46,80,.8);
+  border-color: rgba(217,72,112,.85);
+  box-shadow: 0 2px 10px rgba(217,72,112,.4);
 }
 .card-tag.violet {
-  background: rgba(74,42,106,.95);
+  background: linear-gradient(160deg, rgba(90,51,132,.95), rgba(46,28,68,.95));
   color: var(--gold-soft);
-  border-color: rgba(201,169,97,.55);
+  border-color: rgba(201,169,97,.5);
 }
 
 .card-image {
@@ -682,10 +913,18 @@ img { display: block; max-width: 100%; }
   box-shadow: inset 0 0 0 1px rgba(201,169,97,.08);
   z-index: 2;
 }
-
+.card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 40%, rgba(0,0,0,.4) 100%);
+  pointer-events: none;
+}
 .card-image .art-placeholder {
-  width: 70%; height: 70%;
+  width: 72%; height: 72%;
   display: grid; place-items: center;
+  position: relative;
+  z-index: 1;
 }
 .card-image .tarot-symbol {
   width: 100%; height: 100%;
@@ -695,12 +934,12 @@ img { display: block; max-width: 100%; }
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform .3s ease;
+  transition: transform .35s ease;
 }
-.card-tarot:hover .card-image .tarot-symbol { transform: scale(1.08); }
+.card-tarot:hover .card-image .tarot-symbol { transform: scale(1.06); }
 
 .card-tarot.v-violet .card-image { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.6), transparent 65%), linear-gradient(160deg, var(--violet), var(--violet-deep)); }
-.card-tarot.v-crimson .card-image { background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.55), transparent 65%), linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
+.card-tarot.v-crimson .card-image { background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.55), transparent 65%), linear-gradient(160deg, var(--crimson), var(--crimson-deep)); }
 .card-tarot.v-gold .card-image { background: radial-gradient(circle at 50% 45%, rgba(201,169,97,.5), transparent 65%), linear-gradient(160deg, var(--gold-deep), var(--violet-deep)); }
 .card-tarot.v-deep .card-image { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.35), transparent 65%), linear-gradient(160deg, var(--violet-deep), var(--bg-void)); }
 
@@ -738,7 +977,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,169,97,.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.5), transparent);
 }
 .card-footer .price { display: flex; flex-direction: column; gap: 2px; }
 .card-footer .price span {
@@ -747,45 +986,61 @@ img { display: block; max-width: 100%; }
 }
 .card-footer .price strong {
   font-family: 'Manrope', sans-serif;
-  background: linear-gradient(180deg, #f4e0a8, #c9a961 60%, #8f7440);
+  background: linear-gradient(180deg, var(--gold-white), var(--gold) 60%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 18px; font-weight: 800;
 }
 
-/* Размеры карт */
+/* Модификаторы размера карт */
 .card-tarot.size-tall .card-image { aspect-ratio: 3 / 5; }
 .card-tarot.size-wide .card-image { aspect-ratio: 5 / 4; }
 .card-tarot.size-mini .card-image { aspect-ratio: 1 / 1; }
 .card-tarot.size-hero .card-image { aspect-ratio: 2 / 3; }
 
-/* ============================================================
-   СЛОТЫ
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   СЛОТЫ КОММИШЕК
+   ═══════════════════════════════════════════════════════════ */
 .slots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 22px;
 }
+
 .slot {
   position: relative;
-  background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
+  background:
+    radial-gradient(circle at 80% 0%, rgba(109,61,155,.10), transparent 50%),
+    linear-gradient(170deg, var(--bg-card), var(--bg-deep));
   border: 1px solid rgba(201,169,97,.20);
-  border-radius: 16px;
+  border-radius: var(--r-lg);
   padding: 26px;
-  transition: border-color .25s, transform .25s;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  overflow: hidden;
+}
+.slot::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--violet-lite), var(--gold), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .5s ease;
 }
 .slot.open:hover {
-  border-color: var(--border-hover);
+  border-color: var(--b-gold);
   transform: translateY(-4px);
+  box-shadow: var(--sh-lg), var(--sh-glow-sm);
 }
+.slot.open:hover::before { transform: scaleX(1); }
 .slot.closed { opacity: .45; }
 
 .slot-num {
   display: inline-flex; align-items: center; gap: 6px;
   background: rgba(123,168,123,.14);
-  color: var(--success);
+  color: var(--success-glow);
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px; font-weight: 600;
@@ -794,12 +1049,15 @@ img { display: block; max-width: 100%; }
 }
 .slot-num::before {
   content: ''; width: 6px; height: 6px;
-  background: var(--success); border-radius: 50%;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
 }
 .slot h4 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 24px; font-weight: 700;
   margin-bottom: 16px;
+  letter-spacing: -.2px;
 }
 .slot ul { list-style: none; margin-bottom: 20px; }
 .slot ul li {
@@ -811,59 +1069,82 @@ img { display: block; max-width: 100%; }
 .slot ul li:last-child { border-bottom: none; }
 .slot ul b { color: var(--gold-soft); font-weight: 700; }
 
-/* ============================================================
+/* ═══════════════════════════════════════════════════════════
    ДОВЕРИЕ
-   ============================================================ */
+   ═══════════════════════════════════════════════════════════ */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 18px;
 }
+
 .feature {
+  position: relative;
   background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid var(--border-soft);
-  border-radius: 16px;
+  border: 1px solid var(--b-soft);
+  border-radius: var(--r-lg);
   padding: 26px;
-  transition: border-color .25s, transform .25s;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  overflow: hidden;
+}
+.feature::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .3s;
 }
 .feature:hover {
-  border-color: var(--border-hover);
+  border-color: var(--b-gold);
   transform: translateY(-4px);
+  box-shadow: var(--sh-md), var(--sh-glow-sm);
 }
+.feature:hover::before { opacity: 1; }
+
 .feature-icon {
   width: 50px; height: 50px;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, rgba(201,169,97,.16), rgba(74,42,106,.28));
-  border: 1px solid rgba(201,169,97,.35);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(201,169,97,.25), transparent 60%),
+    linear-gradient(135deg, rgba(201,169,97,.16), rgba(74,42,106,.28));
+  border: 1px solid rgba(201,169,97,.38);
   border-radius: 13px;
   margin-bottom: 16px;
   color: var(--gold-soft);
+  box-shadow: inset 0 1px 0 rgba(244,224,168,.15);
 }
 .feature-icon .ic { width: 22px; height: 22px; }
+
 .feature h4 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 21px; font-weight: 700;
   color: var(--gold-soft);
   margin-bottom: 6px;
+  letter-spacing: -.2px;
 }
-.feature p { color: var(--ink-mute); font-size: 13.5px; line-height: 1.6; }
+.feature p {
+  color: var(--ink-mute); font-size: 13.5px; line-height: 1.6;
+}
 
-/* ============================================================
+/* ═══════════════════════════════════════════════════════════
    ГАЛЕРЕЯ
-   ============================================================ */
+   ═══════════════════════════════════════════════════════════ */
 .gallery-head {
   display: flex; align-items: flex-end; justify-content: space-between;
   margin-bottom: 26px; gap: 20px; flex-wrap: wrap;
 }
 .gallery-head h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 48px; font-weight: 700;
+  font-size: 50px; font-weight: 700;
   letter-spacing: -.6px;
-  background: linear-gradient(180deg, #f4e0a8 0%, #c9a961 55%, #8f7440 100%);
+  line-height: 1.02;
+  background: linear-gradient(180deg, var(--gold-white) 0%, var(--gold) 55%, var(--gold-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.05;
 }
 .gallery-head p {
   color: var(--ink-mute); font-size: 15px; margin-top: 6px;
@@ -872,26 +1153,28 @@ img { display: block; max-width: 100%; }
 
 .gallery-filters {
   display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
+
 .chip {
   padding: 10px 22px;
   background: rgba(255,255,255,.02);
   color: var(--ink-mute);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--b-soft);
   border-radius: 30px;
   font-size: 13.5px; font-weight: 500;
-  transition: color .2s, border-color .2s, background .2s;
+  transition: color .2s, border-color .2s, background .2s, box-shadow .2s;
 }
 .chip:hover {
   color: var(--gold-soft);
-  border-color: rgba(201,169,97,.45);
+  border-color: var(--b-gold);
 }
 .chip.active {
   color: #1a1206;
   background: linear-gradient(160deg, var(--gold-glow), var(--gold) 60%, var(--gold-deep));
   border-color: transparent;
   font-weight: 700;
+  box-shadow: 0 4px 18px rgba(201,169,97,.35);
 }
 
 .toggle {
@@ -900,11 +1183,13 @@ img { display: block; max-width: 100%; }
   color: var(--ink-mute); font-size: 13.5px;
   padding: 8px 16px;
   background: rgba(255,255,255,.02);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--b-soft);
   border-radius: 30px;
   cursor: pointer;
   user-select: none;
+  transition: border-color .2s;
 }
+.toggle:hover { border-color: var(--b-gold); }
 .toggle input {
   appearance: none;
   width: 34px; height: 18px;
@@ -913,6 +1198,7 @@ img { display: block; max-width: 100%; }
   position: relative;
   cursor: pointer;
   transition: background .2s;
+  flex-shrink: 0;
 }
 .toggle input::after {
   content: '';
@@ -923,22 +1209,29 @@ img { display: block; max-width: 100%; }
   transition: left .2s, background .2s;
 }
 .toggle input:checked { background: var(--gold-deep); }
-.toggle input:checked::after { left: 18px; background: var(--gold-glow); }
+.toggle input:checked::after {
+  left: 18px;
+  background: var(--gold-glow);
+  box-shadow: 0 0 8px rgba(244,224,168,.8);
+}
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
+
 .gallery-card {
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   padding: 14px;
-  background: linear-gradient(165deg, var(--bg-card), var(--bg-deep));
+  background:
+    radial-gradient(circle at 50% 0%, rgba(109,61,155,.10), transparent 55%),
+    linear-gradient(165deg, var(--bg-card), var(--bg-deep));
   border: 1px solid rgba(201,169,97,.45);
   box-shadow:
     inset 0 0 0 1px rgba(201,169,97,.15),
-    inset 0 0 0 5px rgba(6,5,13,.6),
+    inset 0 0 0 5px rgba(5,4,9,.65),
     inset 0 0 0 6px rgba(201,169,97,.22);
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   cursor: pointer;
@@ -952,9 +1245,10 @@ img { display: block; max-width: 100%; }
   border-color: rgba(201,169,97,.85);
   box-shadow:
     inset 0 0 0 1px rgba(201,169,97,.35),
-    inset 0 0 0 5px rgba(6,5,13,.7),
+    inset 0 0 0 5px rgba(5,4,9,.75),
     inset 0 0 0 6px rgba(201,169,97,.5),
-    var(--shadow-md);
+    var(--sh-md),
+    var(--sh-glow-sm);
 }
 
 .gallery-card .art {
@@ -969,8 +1263,15 @@ img { display: block; max-width: 100%; }
   border: 1px solid rgba(201,169,97,.18);
   position: relative;
 }
+.gallery-card .art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 40%, rgba(0,0,0,.4) 100%);
+  pointer-events: none;
+}
 .gallery-card.violet .art { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.6), transparent 65%), linear-gradient(160deg, var(--violet), var(--violet-deep)); }
-.gallery-card.crimson .art { background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.55), transparent 65%), linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
+.gallery-card.crimson .art { background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.55), transparent 65%), linear-gradient(160deg, var(--crimson), var(--crimson-deep)); }
 .gallery-card.gold .art { background: radial-gradient(circle at 50% 45%, rgba(201,169,97,.5), transparent 65%), linear-gradient(160deg, var(--gold-deep), var(--violet-deep)); }
 .gallery-card.deep .art { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.35), transparent 65%), linear-gradient(160deg, var(--violet-deep), var(--bg-void)); }
 
@@ -982,8 +1283,10 @@ img { display: block; max-width: 100%; }
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: transform .3s ease;
+  position: relative;
+  z-index: 1;
 }
-.gallery-card:hover .art .tarot-symbol { transform: scale(1.1); }
+.gallery-card:hover .art .tarot-symbol { transform: scale(1.10); }
 
 .gallery-card .text {
   text-align: center;
@@ -1003,144 +1306,175 @@ img { display: block; max-width: 100%; }
   color: var(--gold-glow);
   margin-bottom: 3px;
   line-height: 1.2;
+  letter-spacing: -.2px;
 }
 .gallery-card .text p {
-  font-size: 12px; color: var(--gold-soft);
+  font-size: 12px;
+  color: var(--gold-soft);
   font-weight: 600;
   letter-spacing: .4px;
 }
 
-/* ============================================================
+/* ═══════════════════════════════════════════════════════════
    ФУТЕР
-   ============================================================ */
+   ═══════════════════════════════════════════════════════════ */
 footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 40px 24px;
-  background: linear-gradient(180deg, rgba(6,5,13,.6), rgba(6,5,13,.9));
+  position: relative;
+  border-top: 1px solid var(--b-mid);
+  padding: 48px 48px 28px;
+  background: linear-gradient(180deg, rgba(5,4,9,.5), rgba(5,4,9,.95));
+  margin-top: 20px;
 }
+footer::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 300px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
 .footer-inner {
-  max-width: 1760px; margin: 0 auto;
+  max-width: 1800px;
+  margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
   gap: 30px; flex-wrap: wrap;
 }
 .footer-inner .logo { font-size: 17px; }
 .footer-inner .logo-mark { width: 32px; height: 42px; }
 .footer-inner .logo-mark::before { font-size: 6px; }
-.footer-links { display: flex; gap: 26px; flex-wrap: wrap; }
+
+.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
 .footer-links a {
   color: var(--ink-mute); font-size: 13px;
   transition: color .2s;
+  position: relative;
+}
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .25s;
 }
 .footer-links a:hover { color: var(--gold-soft); }
-.copyright { color: var(--ink-faint); font-size: 12px; letter-spacing: .4px; }
+.footer-links a:hover::after { width: 100%; }
 
-/* ============================================================
-   АДАПТИВ — для телефона всё аккуратно
-   ============================================================ */
+.copyright {
+  color: var(--ink-faint);
+  font-size: 12px;
+  letter-spacing: .4px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   АДАПТИВ
+   ═══════════════════════════════════════════════════════════ */
 @media (max-width: 1400px) {
-  .layout { padding: 0 32px; }
+  .layout,
   .divider { padding: 0 32px; }
   .divider::before { left: 32px; right: 32px; }
+  .topbar { padding: 14px 32px; }
 }
-
 @media (max-width: 1100px) {
   .main-nav { display: none; }
-  .topbar { padding: 14px 20px; gap: 14px; }
-  .layout { padding: 0 20px; }
-  .divider { padding: 0 20px; }
+  .topbar { padding: 12px 20px; gap: 12px; }
+  .layout, .divider { padding: 0 20px; }
   .divider::before { left: 20px; right: 20px; }
   .live-grid { grid-template-columns: 1fr; }
-  .live-main { grid-template-columns: 1fr; padding: 20px; gap: 20px; }
-  .live-art { height: 300px; }
-  .section-head h2 { font-size: 32px; }
-  .gallery-head h2 { font-size: 38px; }
-  .full-section { padding: 32px 0; }
-  footer { padding: 32px 20px 20px; }
-  .hot-row { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
-  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .live-main { grid-template-columns: 1fr; padding: 22px; gap: 22px; }
+  .live-art { height: 320px; }
+  .section-head h2 { font-size: 34px; }
+  .gallery-head h2 { font-size: 40px; }
+  .full-section { padding: 34px 0; }
+  footer { padding: 36px 20px 22px; }
+  .hot-row { gap: 20px; }
 }
-
 @media (max-width: 700px) {
-  .topbar { padding: 12px 16px; gap: 10px; }
+  body { font-size: 14.5px; }
+  .topbar { padding: 10px 14px; gap: 8px; }
   .topbar-actions .icon-btn:not(.wallet) { display: none; }
-  .logo { font-size: 18px; gap: 10px; }
+  .logo { font-size: 17px; gap: 10px; }
   .logo-mark { width: 32px; height: 42px; }
-
-  .layout { padding: 0 16px; }
-  .divider { padding: 0 16px; }
-  .divider::before { left: 16px; right: 16px; }
+  .layout, .divider { padding: 0 14px; }
+  .divider::before { left: 14px; right: 14px; }
 
   .section-head h2 { font-size: 26px; }
   .gallery-head h2 { font-size: 30px; }
-  .full-section { padding: 26px 0; }
+  .full-section { padding: 28px 0; }
 
-  /* На телефоне все карты в один столбец — не лагает */
-  .hot-row { grid-template-columns: 1fr; gap: 16px; }
+  .hot-row { grid-template-columns: 1fr; gap: 18px; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-  /* Убираем лишние декорации при тапе */
+  /* Убираем тяжёлые will-change на телефоне */
   .card-tarot, .gallery-card { will-change: auto; }
-  .card-tarot:hover, .gallery-card:hover { transform: none; }
 
   .tarot { width: 150px; height: 225px; }
   .tarot-symbol { width: 72px; height: 72px; }
-  .live-art { height: 260px; }
-  .live-info h3 { font-size: 22px; }
-  .bid-row strong { font-size: 22px; }
+  .live-art { height: 280px; }
+  .live-info h3 { font-size: 24px; }
+  .bid-row strong { font-size: 24px; }
 
-  /* Слоты и features — одной колонкой */
   .slots { grid-template-columns: 1fr; }
   .features-grid { grid-template-columns: 1fr; }
 
-  /* Галерея — символы меньше */
   .gallery-card { padding: 10px; }
   .gallery-card .art .tarot-symbol { width: 48px; height: 48px; }
   .gallery-card .text h5 { font-size: 16px; }
   .gallery-card .text p { font-size: 11px; }
 
-  /* Футер — в столбик */
   .footer-inner { flex-direction: column; text-align: center; gap: 20px; }
 }
-
 @media (max-width: 400px) {
   .section-head h2 { font-size: 22px; }
   .gallery-head h2 { font-size: 26px; }
   .card-text h4 { font-size: 19px; }
   .card-footer .price strong { font-size: 16px; }
+  .gallery-grid { grid-template-columns: 1fr; }
 }
 
-/* Уважаем настройку "уменьшить движение" */
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     SVG-СПРАЙТ: СИМВОЛЫ ТАРО
-     ============================================================ -->
+<!-- ═══════════════════════════════════════════════════════════
+     SVG-СПРАЙТ: СИМВОЛЫ ТАРО + ИНТЕРФЕЙС
+     ═══════════════════════════════════════════════════════════ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
 
-    <!-- ЗВЕЗДА -->
+    <!-- ── ТАРО: ЗВЕЗДА ── -->
     <symbol id="t-star" viewBox="0 0 64 64">
       <path d="M32 8 L34.5 25 L51.5 27.5 L34.5 30 L32 47 L29.5 30 L12.5 27.5 L29.5 25 Z"/>
       <circle cx="32" cy="27.5" r="2" fill="currentColor" stroke="none"/>
       <path d="M10 14 L13 17 M54 14 L51 17 M10 46 L13 43 M54 46 L51 43"/>
       <circle cx="32" cy="56" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="10" cy="14" r=".8" fill="currentColor" stroke="none"/>
+      <circle cx="54" cy="14" r=".8" fill="currentColor" stroke="none"/>
+      <circle cx="10" cy="46" r=".8" fill="currentColor" stroke="none"/>
+      <circle cx="54" cy="46" r=".8" fill="currentColor" stroke="none"/>
     </symbol>
 
-    <!-- ЛУНА -->
+    <!-- ── ТАРО: ЛУНА ── -->
     <symbol id="t-moon" viewBox="0 0 64 64">
       <path d="M42 10 A22 22 0 1 0 42 54 A17 17 0 0 1 42 10 Z"/>
       <circle cx="48" cy="22" r="1.2" fill="currentColor" stroke="none"/>
-      <circle cx="52" cy="30" r="0.9" fill="currentColor" stroke="none"/>
+      <circle cx="52" cy="30" r=".9" fill="currentColor" stroke="none"/>
       <circle cx="50" cy="40" r="1.2" fill="currentColor" stroke="none"/>
-      <circle cx="46" cy="48" r="0.8" fill="currentColor" stroke="none"/>
+      <circle cx="46" cy="48" r=".8" fill="currentColor" stroke="none"/>
+      <path d="M8 14 L10 16 M8 50 L10 48 M56 14 L54 16 M56 50 L54 48"/>
     </symbol>
 
-    <!-- СОЛНЦЕ -->
+    <!-- ── ТАРО: СОЛНЦЕ ── -->
     <symbol id="t-sun" viewBox="0 0 64 64">
       <circle cx="32" cy="32" r="9"/>
       <circle cx="32" cy="32" r="3" fill="currentColor" stroke="none"/>
@@ -1149,15 +1483,16 @@ footer {
       <path d="M22 14 L24 18 M42 14 L40 18 M22 50 L24 46 M42 50 L40 46"/>
     </symbol>
 
-    <!-- КОЛЕСО ФОРТУНЫ -->
+    <!-- ── ТАРО: КОЛЕСО ФОРТУНЫ ── -->
     <symbol id="t-wheel" viewBox="0 0 64 64">
       <circle cx="32" cy="32" r="20"/>
       <circle cx="32" cy="32" r="13"/>
       <circle cx="32" cy="32" r="5"/>
       <path d="M32 12 V19 M32 45 V52 M12 32 H19 M45 32 H52 M18 18 L23 23 M41 41 L46 46 M46 18 L41 23 M23 41 L18 46"/>
+      <circle cx="32" cy="32" r="1.5" fill="currentColor" stroke="none"/>
     </symbol>
 
-    <!-- БАШНЯ -->
+    <!-- ── ТАРО: БАШНЯ ── -->
     <symbol id="t-tower" viewBox="0 0 64 64">
       <path d="M20 56 L20 20 L27 16 L32 22 L37 16 L44 20 L44 56 Z"/>
       <path d="M17 56 H47"/>
@@ -1167,7 +1502,7 @@ footer {
       <path d="M32 13 V18"/>
     </symbol>
 
-    <!-- МЕЧ -->
+    <!-- ── ТАРО: МЕЧ ── -->
     <symbol id="t-sword" viewBox="0 0 64 64">
       <path d="M32 6 L35 11 V40 H29 V11 Z"/>
       <path d="M22 42 H42"/>
@@ -1176,7 +1511,7 @@ footer {
       <circle cx="32" cy="53" r="2" fill="currentColor" stroke="none"/>
     </symbol>
 
-    <!-- КУБОК -->
+    <!-- ── ТАРО: КУБОК ── -->
     <symbol id="t-cup" viewBox="0 0 64 64">
       <path d="M20 12 H44 V24 A12 12 0 0 1 32 36 A12 12 0 0 1 20 24 Z"/>
       <path d="M20 16 H14 A6 6 0 0 0 20 28"/>
@@ -1187,14 +1522,14 @@ footer {
       <circle cx="32" cy="22" r="2.5"/>
     </symbol>
 
-    <!-- ПЕНТАКЛЬ -->
+    <!-- ── ТАРО: ПЕНТАКЛЬ ── -->
     <symbol id="t-pentacle" viewBox="0 0 64 64">
       <circle cx="32" cy="32" r="22"/>
       <circle cx="32" cy="32" r="20" stroke-dasharray="2 3"/>
       <path d="M32 14 L36.5 29 L52 29 L39.5 38.5 L44 54 L32 44.5 L20 54 L24.5 38.5 L12 29 L27.5 29 Z"/>
     </symbol>
 
-    <!-- ВЛЮБЛЁННЫЕ -->
+    <!-- ── ТАРО: ВЛЮБЛЁННЫЕ ── -->
     <symbol id="t-lovers" viewBox="0 0 64 64">
       <circle cx="22" cy="18" r="6"/>
       <circle cx="42" cy="18" r="6"/>
@@ -1204,7 +1539,7 @@ footer {
       <path d="M32 8 L33 12 L37 13 L33 14 L32 18 L31 14 L27 13 L31 12 Z" fill="currentColor" stroke="none"/>
     </symbol>
 
-    <!-- ОКО -->
+    <!-- ── ТАРО: ОКО ── -->
     <symbol id="t-eye" viewBox="0 0 64 64">
       <path d="M8 32 C16 20 24 16 32 16 C40 16 48 20 56 32 C48 44 40 48 32 48 C24 48 16 44 8 32 Z"/>
       <circle cx="32" cy="32" r="8"/>
@@ -1214,39 +1549,39 @@ footer {
       <path d="M14 52 L18 48 M50 52 L46 48"/>
     </symbol>
 
-    <!-- Уведомления (колокол) -->
+    <!-- ── ИНТЕРФЕЙС: КОЛОКОЛ ── -->
     <symbol id="i-bell" viewBox="0 0 24 24">
       <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
       <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
     </symbol>
 
-    <!-- Кошелёк -->
+    <!-- ── ИНТЕРФЕЙС: КОШЕЛЁК ── -->
     <symbol id="i-wallet" viewBox="0 0 24 24">
       <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
       <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
       <path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>
     </symbol>
 
-    <!-- Замок -->
+    <!-- ── ИНТЕРФЕЙС: ЗАМОК ── -->
     <symbol id="i-lock" viewBox="0 0 24 24">
       <rect x="4" y="11" width="16" height="10" rx="2"/>
       <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
     </symbol>
 
-    <!-- Щит -->
+    <!-- ── ИНТЕРФЕЙС: ЩИТ ── -->
     <symbol id="i-shield" viewBox="0 0 24 24">
       <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/>
       <path d="M9 12l2 2 4-4"/>
     </symbol>
 
-    <!-- AI-защита -->
+    <!-- ── ИНТЕРФЕЙС: ЗАЩИТА ОТ AI ── -->
     <symbol id="i-eye-shield" viewBox="0 0 24 24">
       <path d="M12 2 L20 6 V12 c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/>
       <circle cx="12" cy="11" r="2"/>
       <path d="M12 13v4"/>
     </symbol>
 
-    <!-- Весы / DMCA -->
+    <!-- ── ИНТЕРФЕЙС: ВЕСЫ ── -->
     <symbol id="i-scale" viewBox="0 0 24 24">
       <path d="M12 3v18"/>
       <path d="M4 7h16"/>
@@ -1255,19 +1590,21 @@ footer {
       <path d="M8 21h8"/>
     </symbol>
 
-    <!-- Стрелка вправо -->
+    <!-- ── ИНТЕРФЕЙС: СТРЕЛКА ── -->
     <symbol id="i-arrow" viewBox="0 0 24 24">
       <path d="M5 12h14M13 6l6 6-6 6"/>
     </symbol>
 
-    <!-- Лого-звезда -->
+    <!-- ── ЛОГО: ЗВЕЗДА ── -->
     <symbol id="i-logo-star" viewBox="0 0 24 24">
       <path d="M12 3 L13.8 9.5 L20.5 10.5 L15.5 14.8 L17 21.5 L12 17.8 L7 21.5 L8.5 14.8 L3.5 10.5 L10.2 9.5 Z"/>
     </symbol>
   </defs>
 </svg>
 
-<!-- ===================== ХЕДЕР ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     ХЕДЕР
+     ═══════════════════════════════════════════════════════════ -->
 <header class="topbar">
   <div class="logo">
     <div class="logo-mark">
@@ -1289,7 +1626,7 @@ footer {
       <svg class="ic" viewBox="0 0 24 24"><use href="#i-bell"/></svg>
       <span class="badge">3</span>
     </button>
-    <button class="icon-btn wallet">
+    <button class="icon-btn wallet" title="Баланс">
       <svg class="ic" viewBox="0 0 24 24"><use href="#i-wallet"/></svg>
       1 240
     </button>
@@ -1298,7 +1635,9 @@ footer {
   </div>
 </header>
 
-<!-- ===================== LIVE-АУКЦИОНЫ ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     LIVE-АУКЦИОНЫ
+     ═══════════════════════════════════════════════════════════ -->
 <section class="full-section">
   <div class="layout">
     <div class="section-head">
@@ -1370,9 +1709,11 @@ footer {
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider"><span>II</span></div>
 
-<!-- ===================== ГОРЯЧИЕ ЛОТЫ ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     ГОРЯЧИЕ ЛОТЫ
+     ═══════════════════════════════════════════════════════════ -->
 <section class="full-section">
   <div class="layout">
     <div class="section-head">
@@ -1388,7 +1729,6 @@ footer {
 
     <div class="hot-row">
 
-      <!-- Карта №1 — Tall -->
       <article class="card-tarot v-violet size-tall">
         <div class="corners"></div>
         <div class="card-head">
@@ -1410,7 +1750,6 @@ footer {
         </div>
       </article>
 
-      <!-- Карта №2 -->
       <article class="card-tarot v-gold">
         <div class="corners"></div>
         <div class="card-head">
@@ -1432,7 +1771,6 @@ footer {
         </div>
       </article>
 
-      <!-- Карта №3 -->
       <article class="card-tarot v-crimson">
         <div class="corners"></div>
         <div class="card-head">
@@ -1454,7 +1792,6 @@ footer {
         </div>
       </article>
 
-      <!-- Карта №4 — Wide -->
       <article class="card-tarot v-deep size-wide">
         <div class="corners"></div>
         <div class="card-head">
@@ -1480,9 +1817,11 @@ footer {
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider"><span>III</span></div>
 
-<!-- ===================== СЛОТЫ КОММИШЕК ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     СЛОТЫ КОММИШЕК
+     ═══════════════════════════════════════════════════════════ -->
 <section class="full-section">
   <div class="layout">
     <div class="section-head">
@@ -1532,9 +1871,11 @@ footer {
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider"><span>IV</span></div>
 
-<!-- ===================== ДОВЕРИЕ ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     ДОВЕРИЕ
+     ═══════════════════════════════════════════════════════════ -->
 <section class="full-section">
   <div class="layout">
     <div class="section-head">
@@ -1580,9 +1921,11 @@ footer {
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider"><span>V</span></div>
 
-<!-- ===================== ГАЛЕРЕЯ ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     ГАЛЕРЕЯ
+     ═══════════════════════════════════════════════════════════ -->
 <section class="full-section">
   <div class="layout">
     <div class="gallery-head">
@@ -1673,7 +2016,9 @@ footer {
   </div>
 </section>
 
-<!-- ===================== ФУТЕР ===================== -->
+<!-- ═══════════════════════════════════════════════════════════
+     ФУТЕР
+     ═══════════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div class="logo">
