@@ -5,18 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ArtHaven — рынок артов</title>
 
-<!-- Шрифт Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===================== ПЕРЕМЕННЫЕ ===================== */
 :root {
   --bg-deep:     #0f0a0d;
   --bg-main:     #161016;
   --bg-card:     #1e161c;
-  --bg-hover:    #2a1f26;
   --gold:        #f5b96a;
   --gold-bright: #ffd88f;
   --orange:      #e8934a;
@@ -30,15 +27,12 @@
   --nsfw:        #b03a5e;
   --border:      rgba(245,185,106,.10);
   --border-hover: rgba(245,185,106,.35);
-  --shadow-sm:   0 4px 14px rgba(0,0,0,.35);
   --shadow-md:   0 12px 40px rgba(0,0,0,.5);
   --shadow-glow: 0 8px 40px rgba(245,185,106,.20);
   --radius:      16px;
-  --radius-sm:   10px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -50,8 +44,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-
-/* Живой фон — анимированные градиентные пятна */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
@@ -66,7 +58,6 @@ body::before {
   100% { transform: translate(-30px, 20px) scale(1.05); }
 }
 
-/* Скрытый скроллбар для красоты */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb {
@@ -88,7 +79,6 @@ img { display: block; max-width: 100%; }
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid var(--border);
 }
-
 .logo {
   display: flex; align-items: center; gap: 12px;
   font-family: 'Manrope', sans-serif;
@@ -118,14 +108,8 @@ img { display: block; max-width: 100%; }
   border-radius: 8px;
   transition: all .2s;
 }
-.main-nav a:hover {
-  color: var(--gold);
-  background: rgba(245,185,106,.08);
-}
-.main-nav a.active {
-  color: var(--gold);
-  background: rgba(245,185,106,.12);
-}
+.main-nav a:hover { color: var(--gold); background: rgba(245,185,106,.08); }
+.main-nav a.active { color: var(--gold); background: rgba(245,185,106,.12); }
 
 .topbar-actions {
   margin-left: auto; display: flex; align-items: center; gap: 10px;
@@ -141,13 +125,9 @@ img { display: block; max-width: 100%; }
   color: var(--white);
   transition: all .2s;
 }
-.icon-btn:hover {
-  background: rgba(245,185,106,.10);
-  border-color: var(--border-hover);
-}
+.icon-btn:hover { background: rgba(245,185,106,.10); border-color: var(--border-hover); }
 .icon-btn.wallet {
-  color: var(--gold);
-  font-weight: 700;
+  color: var(--gold); font-weight: 700;
   background: linear-gradient(135deg, rgba(245,185,106,.15), rgba(232,147,74,.10));
   border-color: rgba(245,185,106,.30);
 }
@@ -160,8 +140,7 @@ img { display: block; max-width: 100%; }
 }
 .avatar {
   width: 40px; height: 40px; border-radius: 12px;
-  background:
-    linear-gradient(135deg, var(--gold) 0%, var(--wine) 100%);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--wine) 100%);
   border: 2px solid rgba(245,185,106,.4);
   cursor: pointer;
   transition: transform .2s;
@@ -174,7 +153,7 @@ img { display: block; max-width: 100%; }
   padding: 12px 22px;
   background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
   color: #1a0f05;
-  font-weight: 700; font-size: 14px; letter-spacing: .2px;
+  font-weight: 700; font-size: 14px;
   border-radius: 12px;
   box-shadow: 0 6px 24px rgba(245,185,106,.35), inset 0 1px 0 rgba(255,255,255,.3);
   transition: all .25s;
@@ -185,11 +164,8 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
   opacity: 0; transition: opacity .25s;
 }
-.btn-primary span, .btn-primary > * { position: relative; z-index: 1; }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 34px rgba(245,185,106,.5), inset 0 1px 0 rgba(255,255,255,.4);
-}
+.btn-primary span { position: relative; z-index: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(245,185,106,.5); }
 .btn-primary:hover::after { opacity: 1; }
 .btn-primary.sm { padding: 9px 16px; font-size: 13px; }
 .btn-primary.full { width: 100%; padding: 14px; }
@@ -204,75 +180,68 @@ img { display: block; max-width: 100%; }
   border-radius: 12px;
   transition: all .2s;
 }
-.btn-ghost:hover {
-  background: rgba(245,185,106,.12);
-  border-color: var(--gold);
-}
+.btn-ghost:hover { background: rgba(245,185,106,.12); border-color: var(--gold); }
 
-/* ===================== ГЕРОЙ ===================== */
-.hero {
-  display: grid; grid-template-columns: 1.15fr .85fr;
-  gap: 60px; padding: 80px 40px;
-  max-width: 1360px; margin: 0 auto;
-  align-items: center;
+/* ===================== ЗАГОЛОВОК СЕКЦИЙ ===================== */
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 14px;
-  background: rgba(245,185,106,.08);
-  border: 1px solid rgba(245,185,106,.20);
-  border-radius: 30px;
-  font-size: 12px; font-weight: 600; color: var(--gold);
-  text-transform: uppercase; letter-spacing: 1px;
-  margin-bottom: 22px;
-}
-.hero-eyebrow .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-  animation: blink 1.5s infinite;
-}
-@keyframes blink { 50% { opacity: .3; } }
-
-.hero h1 {
+.section-head .title-wrap { display: flex; flex-direction: column; gap: 6px; }
+.section-head h2 {
   font-family: 'Manrope', sans-serif;
-  font-size: 56px; line-height: 1.05;
-  font-weight: 800; letter-spacing: -1.5px;
+  font-size: 34px; font-weight: 800;
+  letter-spacing: -1px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-head h2 .live-pulse {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--danger);
+  box-shadow: 0 0 12px var(--danger);
+  animation: pulse 1.4s infinite;
+}
+@keyframes pulse { 50% { opacity: .3; } }
+.section-head p { color: var(--gray); font-size: 15px; }
+
+section.block {
+  max-width: 1360px; margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* ===================== LIVE-АУКЦИОНЫ (ВЕРХ) ===================== */
+.live-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 22px;
   margin-bottom: 22px;
 }
-.hero h1 .accent {
-  background: linear-gradient(135deg, var(--gold), var(--orange) 60%, var(--wine-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-sub {
-  font-size: 18px; color: var(--gray);
-  margin-bottom: 34px; max-width: 500px;
-}
-.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* LIVE-АУКЦИОН */
-.live-auction {
+.live-main {
   position: relative;
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%);
   border: 1px solid var(--border-hover);
   border-radius: 24px;
-  padding: 18px;
-  box-shadow: var(--shadow-md), 0 0 80px rgba(245,185,106,.15);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 24px;
+  box-shadow: var(--shadow-md), 0 0 80px rgba(245,185,106,.12);
+  overflow: hidden;
 }
-.live-auction::before {
+.live-main::before {
   content: '';
   position: absolute; inset: -1px;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(245,185,106,.5), transparent 40%, rgba(107,31,46,.5));
+  background: linear-gradient(135deg, rgba(245,185,106,.4), transparent 40%, rgba(107,31,46,.4));
   z-index: -1;
-  opacity: .6;
-  filter: blur(10px);
+  opacity: .5;
+  filter: blur(14px);
 }
+
 .live-badge {
-  position: absolute; top: 26px; left: 26px; z-index: 3;
+  position: absolute; top: 32px; left: 32px; z-index: 3;
   display: flex; align-items: center; gap: 6px;
   background: rgba(224,83,83,.9);
   color: white;
@@ -286,22 +255,20 @@ img { display: block; max-width: 100%; }
   background: white;
   animation: pulse 1.2s infinite;
 }
-@keyframes pulse { 50% { opacity: .3; } }
 
-.auction-art {
-  height: 300px;
+.live-art {
+  height: 340px;
   border-radius: 16px;
   background:
     radial-gradient(circle at 50% 45%, rgba(245,185,106,.45), transparent 55%),
     linear-gradient(135deg, var(--wine) 0%, var(--bg-deep) 100%);
   display: grid; place-items: center;
-  margin-bottom: 20px;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
-.auction-art::after {
+.live-art::after {
   content: '◈';
-  font-size: 120px;
+  font-size: 140px;
   color: var(--gold);
   text-shadow: 0 0 60px var(--orange), 0 0 20px var(--gold);
   animation: float 3s ease-in-out infinite;
@@ -311,9 +278,15 @@ img { display: block; max-width: 100%; }
   50% { transform: translateY(-10px); }
 }
 
-.auction-meta h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-.auction-meta .author { font-size: 13px; color: var(--gray); margin-bottom: 16px; }
-.auction-meta .author b { color: var(--gold); }
+.live-info { display: flex; flex-direction: column; justify-content: center; }
+.live-info h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 26px; font-weight: 800;
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+.live-info .author { color: var(--gray); font-size: 14px; margin-bottom: 20px; }
+.live-info .author b { color: var(--gold); font-weight: 600; }
 
 .bid-row {
   display: flex; justify-content: space-between; align-items: center;
@@ -325,27 +298,253 @@ img { display: block; max-width: 100%; }
 .bid-row span { color: var(--gray); font-size: 13px; }
 .bid-row strong {
   font-family: 'Manrope', sans-serif;
-  font-size: 22px; font-weight: 800;
+  font-size: 24px; font-weight: 800;
   color: var(--gold);
 }
-
 .timer {
   text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 15px; font-weight: 600;
+  font-family: 'Manrope', monospace;
+  font-size: 16px; font-weight: 700;
   color: var(--gold);
-  padding: 10px;
+  padding: 12px;
   background: rgba(245,185,106,.06);
   border: 1px solid rgba(245,185,106,.15);
   border-radius: 10px;
   margin-bottom: 14px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
-/* ===================== ФИЛЬТРЫ ===================== */
-.filter-bar {
+/* Сайдбар аукционов */
+.live-side {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.mini-auction {
+  flex: 1;
+  display: flex; gap: 14px;
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 14px;
+  transition: all .25s;
+  cursor: pointer;
+}
+.mini-auction:hover {
+  border-color: var(--border-hover);
+  transform: translateX(-4px);
+}
+.mini-thumb {
+  width: 80px; height: 80px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--wine), var(--bg-deep));
+  display: grid; place-items: center;
+  font-size: 32px; color: var(--gold);
+  text-shadow: 0 0 20px var(--orange);
+}
+.mini-thumb.orange { background: linear-gradient(135deg, var(--orange), var(--wine)); }
+.mini-thumb.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
+
+.mini-info { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+.mini-info h4 {
+  font-size: 15px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mini-info .mini-price {
+  color: var(--gold); font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+}
+.mini-info .mini-time {
+  color: var(--gray); font-size: 12px;
+  font-family: monospace; letter-spacing: 1px;
+}
+
+/* ===================== YCH / ГАРЯЧИЕ ЛОТЫ ===================== */
+.hot-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+.hot-card {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer;
+  position: relative;
+}
+.hot-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, rgba(245,185,106,.6), transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.hot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(245,185,106,.15); }
+.hot-card:hover::before { opacity: 1; }
+
+.hot-thumb {
+  position: relative;
+  aspect-ratio: 1.2;
+  overflow: hidden;
+}
+.hot-thumb .art {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--bg-deep), var(--wine));
+  display: grid; place-items: center;
+  font-size: 70px; color: var(--gold);
+  opacity: .9;
+  transition: transform .4s;
+  text-shadow: 0 0 30px var(--orange);
+}
+.hot-card:hover .art { transform: scale(1.08); }
+.hot-thumb .art.wine { background: linear-gradient(135deg, var(--wine), var(--orange)); }
+.hot-thumb .art.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
+
+.tag {
+  position: absolute; z-index: 2;
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .3px;
+  backdrop-filter: blur(8px);
+}
+.tag.gold {
+  top: 12px; left: 12px;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #1a0f05;
+  box-shadow: 0 4px 14px rgba(245,185,106,.5);
+}
+.tag.nsfw { top: 12px; right: 12px; background: rgba(176,58,94,.9); color: white; }
+.tag.ych {
+  top: 12px; left: 12px;
+  background: rgba(156,46,66,.92);
+  color: white;
+  border: 1px solid rgba(245,185,106,.35);
+}
+
+.hot-body { padding: 14px; }
+.hot-body h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; letter-spacing: -.2px; }
+.hot-body .author { color: var(--gray); font-size: 12px; margin-bottom: 12px; }
+.hot-body .author b { color: var(--gold); font-weight: 500; }
+
+.hot-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.hot-footer .price { display: flex; flex-direction: column; }
+.hot-footer .price span { font-size: 10px; color: var(--gray); text-transform: uppercase; letter-spacing: .8px; }
+.hot-footer .price strong {
+  font-family: 'Manrope', sans-serif;
+  color: var(--gold); font-size: 16px; font-weight: 800;
+}
+
+/* ===================== КОММИШКИ (СЛОТЫ) ===================== */
+.slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+.slot {
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid rgba(245,185,106,.15);
+  border-radius: 16px;
+  padding: 26px;
+  transition: all .3s;
+  overflow: hidden;
+}
+.slot::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--orange), var(--wine));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s;
+}
+.slot.open:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.slot.open:hover::after { transform: scaleX(1); }
+.slot.closed { opacity: .4; }
+
+.slot-num {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(109,191,122,.12);
+  color: var(--success);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  margin-bottom: 14px;
+}
+.slot-num::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--success); border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+}
+.slot h4 { font-size: 19px; font-weight: 700; margin-bottom: 14px; letter-spacing: -.3px; }
+.slot ul { list-style: none; margin-bottom: 20px; }
+.slot ul li {
+  padding: 8px 0;
+  color: var(--gray); font-size: 14px;
+  border-bottom: 1px dashed rgba(255,255,255,.06);
+  display: flex; justify-content: space-between;
+}
+.slot ul li:last-child { border-bottom: none; }
+.slot ul b { color: var(--gold); font-weight: 700; }
+
+/* ===================== ФИЧИ (ДОВЕРИЕ) ===================== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.feature {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 16px;
+  padding: 26px;
+  transition: all .3s;
+}
+.feature:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+.feature-icon {
+  width: 50px; height: 50px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, rgba(245,185,106,.15), rgba(107,31,46,.20));
+  border: 1px solid rgba(245,185,106,.25);
+  border-radius: 14px;
+  font-size: 24px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 16px rgba(245,185,106,.4));
+}
+.feature h4 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+.feature p { color: var(--gray); font-size: 13px; line-height: 1.5; }
+
+/* ===================== ГАЛЕРЕЯ (САМЫЙ НИЗ) ===================== */
+.gallery {
+  max-width: 1360px; margin: 0 auto;
+  padding: 80px 40px 60px;
+  border-top: 1px solid rgba(245,185,106,.10);
+}
+.gallery-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 30px; gap: 20px; flex-wrap: wrap;
+}
+.gallery-head h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 38px; font-weight: 800;
+  letter-spacing: -1.5px;
+}
+.gallery-head p { color: var(--gray); font-size: 15px; margin-top: 6px; }
+
+.gallery-filters {
   display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-  padding: 30px 40px 20px; max-width: 1360px; margin: 0 auto;
+  margin-bottom: 26px;
 }
 .chip {
   padding: 10px 20px;
@@ -368,7 +567,7 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center; gap: 10px;
   margin-left: auto;
   color: var(--gray); font-size: 14px;
-  padding: 10px 16px;
+  padding: 8px 16px;
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 30px;
@@ -394,285 +593,90 @@ img { display: block; max-width: 100%; }
 .toggle input:checked { background: var(--gold); }
 .toggle input:checked::after { left: 18px; }
 
-/* ===================== СЕТКА ЛОТОВ ===================== */
-.grid {
+.gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 22px;
-  padding: 20px 40px 60px;
-  max-width: 1360px; margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
 }
-
-.card {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(255,255,255,.05);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: all .3s cubic-bezier(.2,.8,.2,1);
-  cursor: pointer;
-  position: relative;
-}
-.card::before {
-  content: '';
-  position: absolute; inset: 0;
-  border-radius: var(--radius);
-  padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(245,185,106,.6), transparent);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity .3s;
-  pointer-events: none;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(245,185,106,.15);
-}
-.card:hover::before { opacity: 1; }
-
-.card-thumb {
+.gallery-item {
   position: relative;
   aspect-ratio: 1;
-  overflow: hidden;
-}
-.thumb-art {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--bg-deep), var(--wine));
-  display: grid; place-items: center;
-  font-size: 80px; color: var(--gold);
-  opacity: .9;
-  transition: transform .4s;
-  text-shadow: 0 0 30px var(--orange);
-}
-.card:hover .thumb-art { transform: scale(1.08); }
-.thumb-art.wine {
-  background: linear-gradient(135deg, var(--wine), var(--orange));
-}
-.thumb-art.blue {
-  background: linear-gradient(135deg, #1a2a4a, #4a2a6a);
-}
-
-.tag {
-  position: absolute; z-index: 2;
-  padding: 5px 11px;
-  border-radius: 8px;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .3px;
-  backdrop-filter: blur(8px);
-}
-.tag.gold {
-  top: 12px; left: 12px;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
-  color: #1a0f05;
-  box-shadow: 0 4px 14px rgba(245,185,106,.5);
-}
-.tag.nsfw {
-  top: 12px; right: 12px;
-  background: rgba(176,58,94,.9);
-  color: white;
-}
-
-.card-body { padding: 16px; }
-.card-body h3 {
-  font-size: 16px; font-weight: 700;
-  margin-bottom: 4px;
-  letter-spacing: -.2px;
-}
-.card-body .author {
-  color: var(--gray); font-size: 13px;
-  margin-bottom: 14px;
-}
-.card-body .author b { color: var(--gold); font-weight: 500; }
-
-.card-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,.05);
-}
-.price { display: flex; flex-direction: column; }
-.price span {
-  font-size: 11px; color: var(--gray);
-  text-transform: uppercase; letter-spacing: .8px;
-}
-.price strong {
-  font-family: 'Manrope', sans-serif;
-  color: var(--gold); font-size: 17px; font-weight: 800;
-}
-
-/* ===================== КОММИШКИ ===================== */
-.commissions {
-  max-width: 1360px; margin: 0 auto;
-  padding: 60px 40px;
-}
-.section-head {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 32px;
-}
-.section-head h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 34px; font-weight: 800;
-  letter-spacing: -1px;
-}
-.section-head p { color: var(--gray); font-size: 15px; }
-
-.slots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 22px;
-}
-.slot {
-  position: relative;
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(245,185,106,.15);
-  border-radius: var(--radius);
-  padding: 26px;
-  transition: all .3s;
-  overflow: hidden;
-}
-.slot::after {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--orange), var(--wine));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .4s;
-}
-.slot.open:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.slot.open:hover::after { transform: scaleX(1); }
-.slot.closed { opacity: .4; }
-
-.slot-num {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(109,191,122,.12);
-  color: var(--success);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px; font-weight: 600;
-  margin-bottom: 14px;
-}
-.slot-num::before {
-  content: ''; width: 6px; height: 6px;
-  background: var(--success); border-radius: 50%;
-  box-shadow: 0 0 8px var(--success);
-}
-.slot h4 {
-  font-size: 19px; font-weight: 700;
-  margin-bottom: 14px;
-  letter-spacing: -.3px;
-}
-.slot ul {
-  list-style: none;
-  margin-bottom: 20px;
-}
-.slot ul li {
-  padding: 8px 0;
-  color: var(--gray); font-size: 14px;
-  border-bottom: 1px dashed rgba(255,255,255,.06);
-  display: flex; justify-content: space-between;
-}
-.slot ul li:last-child { border-bottom: none; }
-.slot ul b { color: var(--gold); font-weight: 700; }
-
-/* ===================== ФИЧИ ===================== */
-.features {
-  max-width: 1360px; margin: 0 auto;
-  padding: 20px 40px 80px;
-}
-.features h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 34px; font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 32px;
-}
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-.feature {
-  position: relative;
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(255,255,255,.05);
-  border-radius: var(--radius);
-  padding: 28px;
-  transition: all .3s;
-  overflow: hidden;
-}
-.feature:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-}
-.feature-icon {
-  width: 54px; height: 54px;
-  display: grid; place-items: center;
-  background: linear-gradient(135deg, rgba(245,185,106,.15), rgba(107,31,46,.20));
-  border: 1px solid rgba(245,185,106,.25);
   border-radius: 14px;
-  font-size: 26px;
-  margin-bottom: 18px;
-  filter: drop-shadow(0 0 16px rgba(245,185,106,.4));
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--bg-deep), var(--wine));
+  transition: all .3s;
 }
-.feature h4 {
-  font-size: 17px; font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 8px;
-  letter-spacing: -.2px;
+.gallery-item .art {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  font-size: 70px; color: var(--gold);
+  text-shadow: 0 0 30px var(--orange);
+  transition: transform .4s;
 }
-.feature p { color: var(--gray); font-size: 14px; line-height: 1.5; }
+.gallery-item .art.wine { background: linear-gradient(135deg, var(--wine), var(--orange)); }
+.gallery-item .art.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
+.gallery-item .art.green { background: linear-gradient(135deg, #1a3a2a, #4a6a2a); }
+
+.gallery-item:hover .art { transform: scale(1.1); }
+.gallery-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.8));
+  opacity: 0; transition: opacity .3s;
+  pointer-events: none;
+}
+.gallery-item:hover::after { opacity: 1; }
+
+.gallery-item .overlay {
+  position: absolute; left: 14px; right: 14px; bottom: 14px;
+  z-index: 2;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all .3s;
+  pointer-events: none;
+}
+.gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
+.gallery-item .overlay h5 {
+  font-size: 14px; font-weight: 700;
+  margin-bottom: 2px;
+}
+.gallery-item .overlay p {
+  font-size: 12px; color: var(--gold);
+  font-weight: 600;
+}
 
 /* ===================== ФУТЕР ===================== */
 footer {
   border-top: 1px solid var(--border);
-  padding: 60px 40px 30px;
+  padding: 40px 40px 24px;
   background: rgba(0,0,0,.35);
-  margin-top: 40px;
 }
-.footer-cols {
-  max-width: 1360px; margin: 0 auto 32px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 60px;
-}
-.footer-cols h5 {
-  font-family: 'Manrope', sans-serif;
-  color: var(--gold); font-size: 15px; font-weight: 700;
-  margin-bottom: 16px;
-  letter-spacing: .3px;
-}
-.footer-cols a, .footer-cols p {
-  display: block; color: var(--gray);
-  font-size: 14px; margin-bottom: 10px;
-  transition: color .2s;
-}
-.footer-cols a:hover { color: var(--gold); }
-.copyright {
+.footer-inner {
   max-width: 1360px; margin: 0 auto;
-  text-align: center; color: var(--gray-dark);
-  font-size: 13px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,.04);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 30px; flex-wrap: wrap;
 }
+.footer-inner .logo { font-size: 18px; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { color: var(--gray); font-size: 13px; transition: color .2s; }
+.footer-links a:hover { color: var(--gold); }
+.copyright { color: var(--gray-dark); font-size: 12px; }
 
 /* ===================== МОБИЛЬНАЯ ===================== */
 @media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
-  .hero h1 { font-size: 42px; }
   .main-nav { display: none; }
   .topbar { padding: 14px 20px; gap: 16px; }
-  .grid, .filter-bar, .commissions, .features { padding-left: 24px; padding-right: 24px; }
-  .footer-cols { grid-template-columns: 1fr; gap: 32px; }
-  footer { padding: 40px 24px 24px; }
+  section.block, .gallery { padding-left: 24px; padding-right: 24px; }
+  .live-grid { grid-template-columns: 1fr; }
+  .live-main { grid-template-columns: 1fr; }
+  .live-art { height: 240px; }
+  .footer-inner { flex-direction: column; text-align: center; }
 }
 @media (max-width: 600px) {
-  .hero h1 { font-size: 34px; }
-  .hero-sub { font-size: 16px; }
-  .section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .section-head h2, .gallery-head h2 { font-size: 26px; }
   .topbar-actions .icon-btn:not(.wallet) { display: none; }
-  .btn-primary { padding: 11px 18px; font-size: 13px; }
+  .gallery { padding-top: 50px; }
 }
 </style>
 </head>
@@ -686,11 +690,11 @@ footer {
   </div>
 
   <nav class="main-nav">
-    <a href="#" class="active">Галерея</a>
-    <a href="#">Аукционы</a>
+    <a href="#" class="active">Аукционы</a>
     <a href="#">Коммишки</a>
     <a href="#">Магазин</a>
     <a href="#">Художники</a>
+    <a href="#">Галерея</a>
   </nav>
 
   <div class="topbar-actions">
@@ -701,150 +705,142 @@ footer {
   </div>
 </header>
 
-<!-- ===================== ГЕРОЙ ===================== -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">
-      <span class="dot"></span>
-      Escrow-сделки · Защита от AI
+<!-- ===================== LIVE-АУКЦИОНЫ (ВЕРХ) ===================== -->
+<section class="block">
+  <div class="section-head">
+    <div class="title-wrap">
+      <h2><span class="live-pulse"></span> Живые аукционы</h2>
+      <p>Ставки идут прямо сейчас — не пропусти момент</p>
     </div>
-    <h1>Рынок артов, где <span class="accent">художник в безопасности</span></h1>
-    <p class="hero-sub">Аукционы адоптов, коммишки, YCH и магазин ассетов. Оплата картой или криптой — деньги заморожены до приёмки работы.</p>
-    <div class="hero-cta">
-      <button class="btn-primary"><span>🔥 Смотреть аукционы</span></button>
-      <button class="btn-ghost">Стать художником</button>
-    </div>
+    <button class="btn-ghost">Все аукционы →</button>
   </div>
 
-  <aside class="live-auction">
-    <div class="live-badge">LIVE</div>
-    <div class="auction-art"></div>
-    <div class="auction-meta">
-      <h3>Paimon — Closed Species</h3>
-      <p class="author">by <b>@kuro_art</b> · Legendary traits</p>
-      <div class="bid-row">
-        <span>Текущая ставка</span>
-        <strong>240 USDT</strong>
+  <div class="live-grid">
+    <aside class="live-main">
+      <div class="live-badge">LIVE</div>
+      <div class="live-art"></div>
+      <div class="live-info">
+        <h3>Paimon — Closed Species</h3>
+        <p class="author">by <b>@kuro_art</b> · Legendary traits</p>
+        <div class="bid-row">
+          <span>Текущая ставка</span>
+          <strong>240 USDT</strong>
+        </div>
+        <div class="timer">⏱ 04 : 12 : 33</div>
+        <button class="btn-primary full"><span>Сделать ставку</span></button>
       </div>
-      <div class="timer">⏱ 04 : 12 : 33</div>
-      <button class="btn-primary full"><span>Сделать ставку</span></button>
+    </aside>
+
+    <div class="live-side">
+      <div class="mini-auction">
+        <div class="mini-thumb orange">◈</div>
+        <div class="mini-info">
+          <h4>Dark Fae Adopt</h4>
+          <div class="mini-price">120 USDT</div>
+          <div class="mini-time">⏱ 02:18:41</div>
+        </div>
+      </div>
+      <div class="mini-auction">
+        <div class="mini-thumb blue">◈</div>
+        <div class="mini-info">
+          <h4>Wolf Spirit — SB 80</h4>
+          <div class="mini-price">95 USDT</div>
+          <div class="mini-time">⏱ 00:46:12</div>
+        </div>
+      </div>
+      <div class="mini-auction">
+        <div class="mini-thumb">◈</div>
+        <div class="mini-info">
+          <h4>Mermay YCH — 2 slots</h4>
+          <div class="mini-price">45 USDT</div>
+          <div class="mini-time">⏱ 11:04:55</div>
+        </div>
+      </div>
     </div>
-  </aside>
+  </div>
 </section>
 
-<!-- ===================== ФИЛЬТРЫ ===================== -->
-<div class="filter-bar">
-  <button class="chip active">Все</button>
-  <button class="chip">Адопты</button>
-  <button class="chip">YCH</button>
-  <button class="chip">Коммишки</button>
-  <button class="chip">Ассеты</button>
-  <button class="chip">Live2D / 3D</button>
-  <label class="toggle">
-    <input type="checkbox">
-    <span>Скрыть NSFW</span>
-  </label>
-</div>
-
-<!-- ===================== СЕТКА ЛОТОВ ===================== -->
-<section class="grid">
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art">◈</div>
-      <span class="tag gold">🔥 Горячее</span>
-    </div>
-    <div class="card-body">
-      <h3>Paimon — Legendary</h3>
-      <p class="author">by <b>@kuro_art</b></p>
-      <div class="card-footer">
-        <div class="price"><span>SB</span><strong>150 USDT</strong></div>
-        <button class="btn-primary sm"><span>Ставка</span></button>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art wine">◈</div>
-      <span class="tag nsfw">18+</span>
-    </div>
-    <div class="card-body">
-      <h3>Dark Fae Adopt</h3>
-      <p class="author">by <b>@mira_draws</b></p>
-      <div class="card-footer">
-        <div class="price"><span>SB</span><strong>80 USDT</strong></div>
-        <button class="btn-primary sm"><span>Ставка</span></button>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art blue">◈</div>
-    </div>
-    <div class="card-body">
-      <h3>YCH — Cat Slot</h3>
-      <p class="author">by <b>@sunny_art</b></p>
-      <div class="card-footer">
-        <div class="price"><span>Фикс</span><strong>45 USDT</strong></div>
-        <button class="btn-primary sm"><span>Купить</span></button>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art wine">◈</div>
-      <span class="tag gold">New</span>
-    </div>
-    <div class="card-body">
-      <h3>Live2D модель под ключ</h3>
-      <p class="author">by <b>@vtuber_lab</b></p>
-      <div class="card-footer">
-        <div class="price"><span>от</span><strong>600 USDT</strong></div>
-        <button class="btn-primary sm"><span>Заказать</span></button>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art blue">◈</div>
-    </div>
-    <div class="card-body">
-      <h3>Набор кистей Procreate</h3>
-      <p class="author">by <b>@brush_lab</b></p>
-      <div class="card-footer">
-        <div class="price"><span>Фикс</span><strong>25 USDT</strong></div>
-        <button class="btn-primary sm"><span>Купить</span></button>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-thumb">
-      <div class="thumb-art">◈</div>
-      <span class="tag nsfw">18+</span>
-    </div>
-    <div class="card-body">
-      <h3>Wolf Spirit Adopt</h3>
-      <p class="author">by <b>@noir_fox</b></p>
-      <div class="card-footer">
-        <div class="price"><span>SB</span><strong>120 USDT</strong></div>
-        <button class="btn-primary sm"><span>Ставка</span></button>
-      </div>
-    </div>
-  </article>
-
-</section>
-
-<!-- ===================== КОММИШКИ ===================== -->
-<section class="commissions">
+<!-- ===================== YCH + ГОРЯЧИЕ ЛОТЫ ===================== -->
+<section class="block" style="padding-top: 0;">
   <div class="section-head">
-    <div>
-      <h2>Открытые слоты</h2>
-      <p>Актуальные коммишки от художников прямо сейчас</p>
+    <div class="title-wrap">
+      <h2>🔥 Ищут покупателя</h2>
+      <p>YCH, фикс-прайсы и срочные лоты</p>
+    </div>
+    <button class="btn-ghost">Все лоты →</button>
+  </div>
+
+  <div class="hot-row">
+
+    <article class="hot-card">
+      <div class="hot-thumb">
+        <div class="art wine">◈</div>
+        <span class="tag ych">YCH · 2 слота</span>
+      </div>
+      <div class="hot-body">
+        <h4>YCH — Cat Slot</h4>
+        <p class="author">by <b>@sunny_art</b></p>
+        <div class="hot-footer">
+          <div class="price"><span>Фикс</span><strong>45 USDT</strong></div>
+          <button class="btn-primary sm"><span>Купить</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="hot-card">
+      <div class="hot-thumb">
+        <div class="art">◈</div>
+        <span class="tag gold">🔥 Горячее</span>
+      </div>
+      <div class="hot-body">
+        <h4>Paimon — Legendary</h4>
+        <p class="author">by <b>@kuro_art</b></p>
+        <div class="hot-footer">
+          <div class="price"><span>SB</span><strong>150 USDT</strong></div>
+          <button class="btn-primary sm"><span>Ставка</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="hot-card">
+      <div class="hot-thumb">
+        <div class="art blue">◈</div>
+        <span class="tag nsfw">18+</span>
+      </div>
+      <div class="hot-body">
+        <h4>Dark Fae Adopt</h4>
+        <p class="author">by <b>@mira_draws</b></p>
+        <div class="hot-footer">
+          <div class="price"><span>SB</span><strong>80 USDT</strong></div>
+          <button class="btn-primary sm"><span>Ставка</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="hot-card">
+      <div class="hot-thumb">
+        <div class="art wine">◈</div>
+        <span class="tag gold">New</span>
+      </div>
+      <div class="hot-body">
+        <h4>Live2D модель под ключ</h4>
+        <p class="author">by <b>@vtuber_lab</b></p>
+        <div class="hot-footer">
+          <div class="price"><span>от</span><strong>600 USDT</strong></div>
+          <button class="btn-primary sm"><span>Заказать</span></button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== ОТКРЫТЫЕ СЛОТЫ КОММИШЕК ===================== -->
+<section class="block" style="padding-top: 0;">
+  <div class="section-head">
+    <div class="title-wrap">
+      <h2>Открытые слоты коммишек</h2>
+      <p>Актуальные заказы от художников прямо сейчас</p>
     </div>
     <button class="btn-ghost">Все слоты →</button>
   </div>
@@ -884,55 +880,129 @@ footer {
   </div>
 </section>
 
-<!-- ===================== ФИЧИ ===================== -->
-<section class="features">
-  <h2>Почему нам доверяют</h2>
+<!-- ===================== ДОВЕРИЕ (КОРОТКО) ===================== -->
+<section class="block" style="padding-top: 0;">
+  <div class="section-head">
+    <div class="title-wrap">
+      <h2>Почему нам доверяют</h2>
+    </div>
+  </div>
+
   <div class="features-grid">
     <div class="feature">
       <div class="feature-icon">🔒</div>
       <h4>Escrow-сделки</h4>
-      <p>Деньги заморожены до приёмки финального арта. Художник видит оплату — работает спокойно.</p>
+      <p>Деньги заморожены до приёмки финального арта.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">⚔️</div>
       <h4>Анти-снайпер</h4>
-      <p>Ставка за 5 минут до конца автоматически продлевает аукцион ещё на 10 минут.</p>
+      <p>Ставка за 5 минут — продление на 10 минут.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🛡️</div>
       <h4>Защита от AI</h4>
-      <p>Glaze и Nightshade-шумы, запрет парсинга роботами. Ваш стиль остаётся вашим.</p>
+      <p>Glaze, Nightshade, запрет парсинга.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">⚖️</div>
       <h4>DMCA и логи</h4>
-      <p>Готовые претензии в один клик и полный лог загрузок — железное доказательство в суде.</p>
+      <p>Готовые претензии и лог загрузок для суда.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ГАЛЕРЕЯ (САМЫЙ НИЗ) ===================== -->
+<section class="gallery">
+  <div class="gallery-head">
+    <div>
+      <h2>Галерея</h2>
+      <p>Портфолио художников · без лотов и продаж</p>
+    </div>
+    <button class="btn-ghost">Загрузить ещё →</button>
+  </div>
+
+  <div class="gallery-filters">
+    <button class="chip active">Всё</button>
+    <button class="chip">Иллюстрации</button>
+    <button class="chip">Концепты</button>
+    <button class="chip">Персонажи</button>
+    <button class="chip">Fan-art</button>
+    <button class="chip">3D / Live2D</button>
+    <label class="toggle">
+      <input type="checkbox">
+      <span>Скрыть NSFW</span>
+    </label>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="art">◈</div>
+      <div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art wine">◈</div>
+      <div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art blue">◈</div>
+      <div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art green">◈</div>
+      <div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art wine">◈</div>
+      <div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art blue">◈</div>
+      <div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art green">◈</div>
+      <div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art">◈</div>
+      <div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art wine">◈</div>
+      <div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art blue">◈</div>
+      <div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art green">◈</div>
+      <div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="art">◈</div>
+      <div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div>
     </div>
   </div>
 </section>
 
 <!-- ===================== ФУТЕР ===================== -->
 <footer>
-  <div class="footer-cols">
-    <div>
-      <h5>◈ ArtHaven</h5>
-      <p>Рынок артов для художников и коллекционеров. Escrow, аукционы, коммишки и магазин в одном месте.</p>
+  <div class="footer-inner">
+    <div class="logo">
+      <div class="logo-mark">◈</div>
+      <div>Art<span class="logo-text-accent">Haven</span></div>
     </div>
-    <div>
-      <h5>Правила</h5>
-      <a href="#">ToS художника</a>
+    <div class="footer-links">
+      <a href="#">ToS</a>
       <a href="#">Чёрный список</a>
-      <a href="#">Арбитраж споров</a>
-      <a href="#">Смарт-лицензии</a>
-    </div>
-    <div>
-      <h5>Связь</h5>
-      <a href="#">Telegram-бот</a>
+      <a href="#">Арбитраж</a>
+      <a href="#">Telegram</a>
       <a href="#">Discord</a>
-      <a href="#">API для разработчиков</a>
     </div>
+    <div class="copyright">© 2025 ArtHaven</div>
   </div>
-  <p class="copyright">© 2025 ArtHaven. Все арты принадлежат их авторам.</p>
 </footer>
 
 </body>
