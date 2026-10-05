@@ -1404,8 +1404,8 @@ footer::before {
 <body>
 
 <!-- ═══════════════════════════════════════════════════════════
-     SVG-СПРАЙТ: СЛОЖНЫЕ ГРАВЮРЫ ТАРО
-     Каждая сцена — многослойная гравюра из 40+ элементов
+     SVG-СПРАЙТ: ИЛЛЮМИНИРОВАННЫЕ ГРАВЮРЫ ТАРО
+     Каждая сцена — композиция из 100+ элементов
      ═══════════════════════════════════════════════════════════ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -1421,354 +1421,525 @@ footer::before {
       </g>
     </symbol>
 
-    <!-- ═══════════════════════════════════════════════════════
-         ЗВЕЗДА — сложная гравюра
-         ═══════════════════════════════════════════════════════ -->
-    <symbol id="sc-star" viewBox="0 0 100 130">
-      <!-- Внешняя рамка с точками -->
-      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+    <!-- ─── ВЕРХНИЙ КАРТУШ (универсальный для всех карт) ─── -->
+    <symbol id="orn-cartouche" viewBox="0 0 100 16">
+      <g stroke="currentColor" fill="none" stroke-width=".6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Основная линия -->
+        <path d="M8 8 Q30 8 50 8 Q70 8 92 8"/>
+        <!-- Центральный завиток -->
+        <path d="M50 8 Q47 4 50 3 Q53 4 50 8"/>
+        <path d="M50 8 Q47 12 50 13 Q53 12 50 8"/>
+        <!-- Боковые завитки -->
+        <path d="M30 8 Q28 5 26 6 Q24 8 26 10 Q28 11 30 8"/>
+        <path d="M70 8 Q72 5 74 6 Q76 8 74 10 Q72 11 70 8"/>
+        <!-- Точки -->
+        <circle cx="20" cy="8" r=".8" fill="currentColor"/>
+        <circle cx="80" cy="8" r=".8" fill="currentColor"/>
+        <!-- Концевые засечки -->
+        <path d="M8 5 L8 11"/>
+        <path d="M92 5 L92 11"/>
       </g>
-      <!-- Точки-звёзды по углам рамки -->
-      <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
-      </g>
+    </symbol>
 
-      <!-- Мандала: 3 круга -->
-      <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
-        <circle cx="50" cy="65" r="30" stroke-width=".5"/>
+    <!-- ─── НИЖНЯЯ ЛЕНТА-СКРОЛЛ ─── -->
+    <symbol id="orn-scroll" viewBox="0 0 100 12">
+      <g stroke="currentColor" fill="none" stroke-width=".6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 6 Q20 2 34 6 Q48 10 62 6 Q76 2 94 6"/>
+        <path d="M6 6 Q20 10 34 6 Q48 2 62 6 Q76 10 94 6" opacity=".6"/>
+        <circle cx="50" cy="6" r="1.2" fill="currentColor"/>
+        <path d="M40 6 L44 6 M56 6 L60 6"/>
       </g>
-
-      <!-- Деления как на компасе (12 позиций) -->
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
-        <path d="M50 23 L50 27 M71 32 L68 35 M82 53 L78 56 M82 77 L78 74 M71 98 L68 95 M50 107 L50 103 M29 98 L32 95 M18 77 L22 74 M18 53 L22 56 M29 32 L32 35"/>
-      </g>
-
-      <!-- Внешние длинные лучи -->
-      <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 12 L50 22 M50 108 L50 118"/>
-        <path d="M6 65 L16 65 M84 65 L94 65"/>
-        <path d="M19 30 L27 38 M81 30 L73 38 M19 100 L27 92 M81 100 L73 92"/>
-      </g>
-
-      <!-- Малые лучи-искры -->
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".7" stroke-linecap="round">
-        <path d="M32 20 L34 26 M68 20 L66 26 M32 110 L34 104 M68 110 L66 104"/>
-        <path d="M14 47 L20 49 M14 83 L20 81 M86 47 L80 49 M86 83 L80 81"/>
-      </g>
-
-      <!-- ОСНОВНАЯ ЗВЕЗДА — 8-конечная -->
-      <g stroke="currentColor" fill="none" stroke-width="1.4" stroke-linejoin="round">
-        <path d="M50 32 L53 60 L80 65 L53 70 L50 98 L47 70 L20 65 L47 60 Z"/>
-      </g>
-      <!-- Вторая звезда — 45° поворот, тоньше -->
-      <g stroke="currentColor" fill="none" stroke-width=".8" stroke-linejoin="round" opacity=".7">
-        <path d="M50 32 L53 60 L80 65 L53 70 L50 98 L47 70 L20 65 L47 60 Z" transform="rotate(45 50 65)"/>
-      </g>
-
-      <!-- КОНЦЕНТРИЧЕСКИЕ круги вокруг центра -->
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".65">
-        <circle cx="50" cy="65" r="9"/>
-        <circle cx="50" cy="65" r="6"/>
-      </g>
-
-      <!-- Око в центре -->
-      <path d="M44 65 Q50 60 56 65 Q50 70 44 65 Z" stroke="currentColor" fill="none" stroke-width=".9"/>
-      <circle cx="50" cy="65" r="1.5" fill="currentColor" stroke="none"/>
-
-      <!-- Микро-звёзды вокруг -->
-      <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="50" cy="18" r=".8"/>
-        <circle cx="50" cy="112" r=".8"/>
-        <circle cx="14" cy="65" r=".8"/>
-        <circle cx="86" cy="65" r=".8"/>
-      </g>
-
-      <!-- Нижняя волнистая гравировка -->
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         ЛУНА — сложная гравюра
+         ЗВЕЗДА — иллюминированная гравюра
+         ═══════════════════════════════════════════════════════ -->
+    <symbol id="sc-star" viewBox="0 0 100 130">
+      <!-- ВНЕШНЯЯ РАМКА-ПОРТАЛ -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
+      </g>
+      <!-- Точки-гвоздики по углам -->
+      <g fill="currentColor" stroke="none" opacity=".55">
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <!-- Уголки-флероны -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <!-- ВЕРХНИЙ КАРТУШ -->
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <!-- БОКОВЫЕ КОЛОННЫ -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <!-- Капители -->
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <!-- Базы -->
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
+      </g>
+
+      <!-- МАНДАЛА-ФОН: 4 круга -->
+      <g stroke="currentColor" fill="none" opacity=".35">
+        <circle cx="50" cy="68" r="40" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="34" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="28" stroke-width=".4"/>
+      </g>
+
+      <!-- 12 ДЕЛЕНИЙ КОМПАСА -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
+        <path d="M50 28 L50 33 M71 37 L68 41 M82 58 L78 61 M82 78 L78 75 M71 99 L68 95 M50 108 L50 103 M29 99 L32 95 M18 78 L22 75 M18 58 L22 61 M29 37 L32 41"/>
+      </g>
+
+      <!-- ВНЕШНИЕ ЛУЧИ-ИСКРЫ -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-linecap="round">
+        <path d="M50 16 L50 24 M50 112 L50 120"/>
+        <path d="M8 68 L16 68 M84 68 L92 68"/>
+        <path d="M19 33 L26 40 M81 33 L74 40 M19 103 L26 96 M81 103 L74 96"/>
+      </g>
+
+      <!-- МАЛЫЕ ЛУЧИ -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".7" stroke-linecap="round">
+        <path d="M30 22 L33 28 M70 22 L67 28 M30 114 L33 108 M70 114 L67 108"/>
+        <path d="M13 50 L19 52 M13 86 L19 84 M87 50 L81 52 M87 86 L81 84"/>
+      </g>
+
+      <!-- ОСНОВНАЯ ЗВЕЗДА — 8-конечная, двойной контур -->
+      <g stroke="currentColor" fill="none" stroke-width="1.4" stroke-linejoin="round">
+        <path d="M50 36 L53 63 L79 68 L53 73 L50 100 L47 73 L21 68 L47 63 Z"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".7" stroke-linejoin="round">
+        <path d="M50 36 L53 63 L79 68 L53 73 L50 100 L47 73 L21 68 L47 63 Z" transform="translate(1 1)" stroke-dasharray="1 2"/>
+      </g>
+
+      <!-- ВТОРАЯ ЗВЕЗДА — 45° поворот -->
+      <g stroke="currentColor" fill="none" stroke-width=".8" stroke-linejoin="round" opacity=".7">
+        <path d="M50 36 L53 63 L79 68 L53 73 L50 100 L47 73 L21 68 L47 63 Z" transform="rotate(45 50 68)"/>
+      </g>
+
+      <!-- КОНЦЕНТРИЧЕСКИЕ КРУГИ -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".65">
+        <circle cx="50" cy="68" r="10"/>
+        <circle cx="50" cy="68" r="7"/>
+        <circle cx="50" cy="68" r="4"/>
+      </g>
+
+      <!-- ГЛАЗ В ЦЕНТРЕ -->
+      <path d="M44 68 Q50 63 56 68 Q50 73 44 68 Z" stroke="currentColor" fill="none" stroke-width=".9"/>
+      <circle cx="50" cy="68" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M50 62 L50 65 M50 71 L50 74 M44 68 L47 68 M53 68 L56 68" stroke="currentColor" fill="none" stroke-width=".4" opacity=".6"/>
+
+      <!-- СВЯЗЬ ЗВЁЗД (созвездие из микро-точек) -->
+      <g stroke="currentColor" fill="none" stroke-width=".3" opacity=".5" stroke-dasharray="1 2">
+        <path d="M35 45 L50 36 L65 45"/>
+        <path d="M35 91 L50 100 L65 91"/>
+        <path d="M22 68 L35 45 M78 68 L65 45"/>
+        <path d="M22 68 L35 91 M78 68 L65 91"/>
+      </g>
+
+      <!-- МИКРО-ЗВЁЗДЫ -->
+      <g fill="currentColor" stroke="none" opacity=".6">
+        <circle cx="50" cy="20" r=".8"/>
+        <circle cx="50" cy="116" r=".8"/>
+        <circle cx="12" cy="68" r=".8"/>
+        <circle cx="88" cy="68" r=".8"/>
+        <circle cx="35" cy="45" r=".6"/>
+        <circle cx="65" cy="45" r=".6"/>
+        <circle cx="35" cy="91" r=".6"/>
+        <circle cx="65" cy="91" r=".6"/>
+      </g>
+
+      <!-- НИЖНЯЯ ЛЕНТА-СКРОЛЛ -->
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
+    </symbol>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ЛУНА — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-moon" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
       </g>
-
-      <!-- Мандала -->
-      <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
-      </g>
-
-      <!-- Деления -->
       <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
-        <path d="M50 23 L50 27 M82 53 L78 56 M82 77 L78 74 M50 107 L50 103 M18 77 L22 74 M18 53 L22 56"/>
-        <path d="M71 32 L68 35 M71 98 L68 95 M29 98 L32 95 M29 32 L32 35"/>
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
       </g>
 
-      <!-- Лучи сверху -->
-      <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 12 L50 22 M50 108 L50 118"/>
-        <path d="M19 30 L27 38 M81 30 L73 38"/>
-        <path d="M6 65 L16 65 M84 65 L94 65"/>
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
-      <!-- ОБЛАКА снизу -->
-      <g stroke="currentColor" fill="none" stroke-width=".7" opacity=".55">
-        <path d="M18 105 Q24 100 30 103 Q36 98 42 102 Q48 96 54 102 Q60 98 66 103 Q72 100 78 105"/>
-        <path d="M22 110 Q28 107 34 109 Q40 106 46 109 Q52 106 58 109 Q64 107 70 110"/>
+      <g stroke="currentColor" fill="none" opacity=".35">
+        <circle cx="50" cy="68" r="40" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="34" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <!-- ЛУНА — большая, с лицом -->
-      <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round">
-        <path d="M62 28 A30 30 0 1 0 62 102 A24 24 0 0 1 62 28 Z"/>
-      </g>
-      <!-- Внутренняя тень луны -->
-      <path d="M62 28 A30 30 0 0 0 62 102 A24 24 0 0 1 62 28 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
-
-      <!-- Кратеры -->
-      <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="70" cy="42" r="2.2"/>
-        <circle cx="76" cy="56" r="1.3"/>
-        <circle cx="73" cy="72" r="2.2"/>
-        <circle cx="68" cy="86" r="1.2"/>
-        <circle cx="80" cy="68" r="1"/>
+      <!-- 12 делений -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
+        <path d="M50 28 L50 33 M82 58 L78 61 M82 78 L78 75 M50 108 L50 103 M18 78 L22 75 M18 58 L22 61"/>
+        <path d="M71 37 L68 41 M71 99 L68 95 M29 99 L32 95 M29 37 L32 41"/>
       </g>
 
-      <!-- Профиль-лицо на луне (намёк) -->
+      <!-- Внешние лучи -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-linecap="round">
+        <path d="M50 16 L50 24 M50 112 L50 120"/>
+        <path d="M8 68 L16 68 M84 68 L92 68"/>
+        <path d="M19 33 L26 40 M81 33 L74 40"/>
+      </g>
+
+      <!-- ОБЛАКА снизу — трёхслойные -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55">
+        <path d="M18 108 Q24 103 30 106 Q36 101 42 105 Q48 99 54 105 Q60 101 66 106 Q72 103 78 108"/>
+        <path d="M22 113 Q28 110 34 112 Q40 109 46 112 Q52 109 58 112 Q64 110 70 113"/>
+        <path d="M26 118 Q32 116 38 117 Q44 115 50 117 Q56 115 62 117 Q68 116 74 118"/>
+      </g>
+
+      <!-- ЛУНА — большая, двойной контур -->
+      <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round">
+        <path d="M62 30 A30 30 0 1 0 62 102 A24 24 0 0 1 62 30 Z"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".6" stroke-linejoin="round">
+        <path d="M62 30 A30 30 0 0 0 62 102 A24 24 0 0 1 62 30 Z"/>
+      </g>
+
+      <!-- Внутренние концентрические дуги -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5">
+        <path d="M66 38 A24 24 0 0 0 66 94" stroke-dasharray="2 2"/>
+      </g>
+
+      <!-- КРАТЕРЫ -->
+      <g fill="currentColor" stroke="none" opacity=".55">
+        <circle cx="70" cy="44" r="2.2"/>
+        <circle cx="76" cy="58" r="1.3"/>
+        <circle cx="73" cy="74" r="2.2"/>
+        <circle cx="68" cy="88" r="1.2"/>
+        <circle cx="80" cy="68" r="1"/>
+        <circle cx="78" cy="48" r=".7"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5">
+        <circle cx="70" cy="44" r="3.2"/>
+        <circle cx="73" cy="74" r="3.2"/>
+      </g>
+
+      <!-- ЛИЦО-ПРОФИЛЬ -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6">
         <path d="M76 52 Q78 56 76 60"/>
         <path d="M78 66 Q80 68 78 70"/>
       </g>
 
-      <!-- ЗВЁЗДЫ вокруг -->
+      <!-- 3 ЗВЕЗДЫ вокруг -->
       <g stroke="currentColor" fill="none" stroke-width=".9">
-        <path d="M28 42 L30 46 L34 48 L30 50 L28 54 L26 50 L22 48 L26 46 Z"/>
-        <path d="M22 68 L23 71 L26 72 L23 73 L22 76 L21 73 L18 72 L21 71 Z"/>
-        <path d="M26 84 L27 86 L29 87 L27 88 L26 90 L25 88 L23 87 L25 86 Z"/>
+        <path d="M28 44 L30 48 L34 50 L30 52 L28 56 L26 52 L22 50 L26 48 Z"/>
+        <path d="M22 70 L23 73 L26 74 L23 75 L22 78 L21 75 L18 74 L21 73 Z"/>
+        <path d="M26 86 L27 88 L29 89 L27 90 L26 92 L25 90 L23 89 L25 88 Z"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="32" cy="30" r=".9"/>
-        <circle cx="18" cy="56" r=".9"/>
-        <circle cx="30" cy="62" r=".7"/>
-        <circle cx="20" cy="80" r=".7"/>
+        <circle cx="32" cy="32" r=".9"/>
+        <circle cx="18" cy="58" r=".9"/>
+        <circle cx="30" cy="64" r=".7"/>
+        <circle cx="20" cy="82" r=".7"/>
       </g>
 
-      <!-- Нижняя гравировка -->
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <!-- КАПЛИ-РОСИНКИ -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" stroke-linecap="round">
+        <path d="M26 32 L26 35"/>
+        <path d="M36 24 L36 27"/>
+        <path d="M22 46 L22 49"/>
+      </g>
+
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         СОЛНЦЕ — сложная гравюра
+         СОЛНЦЕ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-sun" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="44" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="37" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="30" stroke-width=".4"/>
       </g>
 
-      <!-- Зодиакальные деления -->
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
-        <path d="M50 20 L50 24 M82 50 L78 53 M82 80 L78 77 M50 110 L50 106 M18 80 L22 77 M18 50 L22 53"/>
-        <path d="M71 30 L68 33 M71 100 L68 97 M29 100 L32 97 M29 30 L32 33"/>
-        <path d="M88 65 L83 65 M12 65 L17 65"/>
+      <!-- 12 делений зодиака -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
+        <path d="M50 24 L50 28 M82 52 L78 55 M82 84 L78 81 M50 112 L50 108 M18 84 L22 81 M18 52 L22 55"/>
+        <path d="M71 33 L68 36 M71 103 L68 100 M29 103 L32 100 M29 33 L32 36"/>
+        <path d="M88 68 L83 68 M12 68 L17 68"/>
       </g>
 
-      <!-- Внешние лучи (12 штук) -->
-      <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 10 L50 20 M50 110 L50 120"/>
-        <path d="M7 65 L17 65 M83 65 L93 65"/>
-        <path d="M17 32 L24 39 M83 32 L76 39 M17 98 L24 91 M83 98 L76 91"/>
-        <path d="M25 17 L31 24 M75 17 L69 24 M25 113 L31 106 M75 113 L69 106"/>
+      <!-- Внешние длинные лучи (12) -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
+        <path d="M50 12 L50 22 M50 114 L50 124"/>
+        <path d="M7 68 L17 68 M83 68 L93 68"/>
+        <path d="M17 35 L24 42 M83 35 L76 42 M17 101 L24 94 M83 101 L76 94"/>
+        <path d="M25 20 L31 27 M75 20 L69 27 M25 116 L31 109 M75 116 L69 109"/>
       </g>
 
-      <!-- Средние лучи (12 штук) -->
-      <g stroke="currentColor" fill="none" stroke-width=".9" stroke-linecap="round">
-        <path d="M50 22 L50 30 M50 100 L50 108"/>
-        <path d="M13 65 L21 65 M79 65 L87 65"/>
-        <path d="M22 37 L28 43 M78 37 L72 43 M22 93 L28 87 M78 93 L72 87"/>
+      <!-- Средние лучи (12) -->
+      <g stroke="currentColor" fill="none" stroke-width=".8" stroke-linecap="round">
+        <path d="M50 24 L50 32 M50 104 L50 112"/>
+        <path d="M13 68 L21 68 M79 68 L87 68"/>
+        <path d="M22 40 L28 46 M78 40 L72 46 M22 96 L28 90 M78 96 L72 90"/>
       </g>
 
-      <!-- Внутренние лучи (8 штук) -->
-      <g stroke="currentColor" fill="none" stroke-width="1.1" stroke-linecap="round">
-        <path d="M50 34 L50 42 M50 88 L50 96"/>
-        <path d="M24 65 L32 65 M68 65 L76 65"/>
-        <path d="M34 49 L40 55 M66 49 L60 55 M34 81 L40 75 M66 81 L60 75"/>
+      <!-- Внутренние лучи (8) -->
+      <g stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round">
+        <path d="M50 36 L50 44 M50 92 L50 100"/>
+        <path d="M24 68 L32 68 M68 68 L76 68"/>
+        <path d="M34 52 L40 58 M66 52 L60 58 M34 84 L40 78 M66 84 L60 78"/>
       </g>
 
-      <!-- СОЛНЦЕ с лицом -->
+      <!-- СОЛНЦЕ -->
       <g stroke="currentColor" fill="none" stroke-width="1.4">
-        <circle cx="50" cy="65" r="17"/>
-        <circle cx="50" cy="65" r="14" stroke-width=".5" opacity=".7"/>
+        <circle cx="50" cy="68" r="17"/>
+        <circle cx="50" cy="68" r="14" stroke-width=".5" opacity=".7"/>
+        <circle cx="50" cy="68" r="11" stroke-width=".4" opacity=".5" stroke-dasharray="2 2"/>
       </g>
-      <!-- Лицо -->
+      <!-- ЛИЦО -->
       <g stroke="currentColor" fill="none" stroke-width=".8">
-        <circle cx="45" cy="61" r="1.2" fill="currentColor"/>
-        <circle cx="55" cy="61" r="1.2" fill="currentColor"/>
-        <path d="M44 71 Q50 75 56 71"/>
-        <path d="M47 74 Q50 77 53 74"/>
+        <circle cx="45" cy="64" r="1.2" fill="currentColor"/>
+        <circle cx="55" cy="64" r="1.2" fill="currentColor"/>
+        <path d="M44 74 Q50 78 56 74"/>
+        <path d="M47 77 Q50 80 53 77"/>
+        <path d="M45 60 Q46 58 47 60"/>
+        <path d="M53 60 Q54 58 55 60"/>
       </g>
-      <!-- Малые солнца-искры -->
+      <!-- Малые солнца-искры по углам -->
       <g stroke="currentColor" fill="none" stroke-width=".7">
-        <path d="M22 30 L23 33 L26 34 L23 35 L22 38 L21 35 L18 34 L21 33 Z"/>
-        <path d="M78 30 L79 33 L82 34 L79 35 L78 38 L77 35 L74 34 L77 33 Z"/>
-        <path d="M22 96 L23 99 L26 100 L23 101 L22 104 L21 101 L18 100 L21 99 Z"/>
-        <path d="M78 96 L79 99 L82 100 L79 101 L78 104 L77 101 L74 100 L77 99 Z"/>
+        <path d="M22 34 L23 37 L26 38 L23 39 L22 42 L21 39 L18 38 L21 37 Z"/>
+        <path d="M78 34 L79 37 L82 38 L79 39 L78 42 L77 39 L74 38 L77 37 Z"/>
+        <path d="M22 100 L23 103 L26 104 L23 105 L22 108 L21 105 L18 104 L21 103 Z"/>
+        <path d="M78 100 L79 103 L82 104 L79 105 L78 108 L77 105 L74 104 L77 103 Z"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         КОЛЕСО ФОРТУНЫ — сложная гравюра
+         КОЛЕСО ФОРТУНЫ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-wheel" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="46" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="44" stroke-width=".4"/>
       </g>
 
-      <!-- 4 стихии по углам -->
+      <!-- 4 СТИХИИ ПО УГЛАМ -->
       <g stroke="currentColor" fill="none" stroke-width=".7" opacity=".6">
-        <!-- Верх-лево — алхимический символ -->
-        <path d="M18 22 L22 18 M20 20 L24 24"/>
-        <!-- Верх-право — звезда -->
-        <path d="M78 20 L80 23 L83 24 L80 25 L78 28 L76 25 L73 24 L76 23 Z"/>
-        <!-- Низ-лево — полумесяц -->
-        <path d="M18 106 Q14 110 18 114 Q22 110 18 106"/>
-        <!-- Низ-право — пламя -->
-        <path d="M82 106 Q80 110 82 114 Q84 110 82 106"/>
+        <!-- Алхимия -->
+        <path d="M18 24 L22 20 M20 22 L24 26"/>
+        <!-- Звезда -->
+        <path d="M78 22 L80 25 L83 26 L80 27 L78 30 L76 27 L73 26 L76 25 Z"/>
+        <!-- Полумесяц -->
+        <path d="M18 110 Q14 114 18 118 Q22 114 18 110"/>
+        <!-- Пламя -->
+        <path d="M82 110 Q80 114 82 118 Q84 114 82 110"/>
       </g>
 
-      <!-- Внешнее кольцо с делениями -->
-      <circle cx="50" cy="65" r="40" stroke="currentColor" fill="none" stroke-width=".6" opacity=".55"/>
+      <!-- ВНЕШНЕЕ КОЛЬЦО с 12 делениями -->
+      <circle cx="50" cy="68" r="40" stroke="currentColor" fill="none" stroke-width=".6" opacity=".55"/>
       <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
-        <path d="M50 25 L50 29 M50 101 L50 105"/>
-        <path d="M90 65 L86 65 M14 65 L10 65"/>
-        <path d="M78 37 L75 40 M78 93 L75 90 M22 93 L25 90 M22 37 L25 40"/>
-        <path d="M68 25 L67 30 M68 105 L67 100 M32 105 L33 100 M32 25 L33 30"/>
-        <path d="M85 51 L81 53 M85 79 L81 77 M15 79 L19 77 M15 51 L19 53"/>
+        <path d="M50 28 L50 33 M50 103 L50 108"/>
+        <path d="M90 68 L85 68 M15 68 L10 68"/>
+        <path d="M78 40 L75 44 M78 96 L75 92 M22 96 L25 92 M22 40 L25 44"/>
+        <path d="M68 28 L67 33 M68 108 L67 103 M32 108 L33 103 M32 28 L33 33"/>
+        <path d="M85 54 L81 56 M85 82 L81 80 M15 82 L19 80 M15 54 L19 56"/>
       </g>
 
-      <!-- Колесо: 3 кольца -->
-      <circle cx="50" cy="65" r="34" stroke="currentColor" fill="none" stroke-width="1.3"/>
-      <circle cx="50" cy="65" r="26" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-dasharray="2 2"/>
-      <circle cx="50" cy="65" r="20" stroke="currentColor" fill="none" stroke-width=".9"/>
-      <circle cx="50" cy="65" r="13" stroke="currentColor" fill="none" stroke-width="1"/>
-      <circle cx="50" cy="65" r="6" stroke="currentColor" fill="none" stroke-width="1.2"/>
+      <!-- КОЛЕСО: 5 колец -->
+      <circle cx="50" cy="68" r="34" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <circle cx="50" cy="68" r="27" stroke="currentColor" fill="none" stroke-width=".5" stroke-dasharray="2 2" opacity=".6"/>
+      <circle cx="50" cy="68" r="21" stroke="currentColor" fill="none" stroke-width=".9"/>
+      <circle cx="50" cy="68" r="14" stroke="currentColor" fill="none" stroke-width="1"/>
+      <circle cx="50" cy="68" r="7" stroke="currentColor" fill="none" stroke-width="1.2"/>
 
-      <!-- 8 спиц -->
+      <!-- 8 СПИЦ -->
       <g stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round">
-        <path d="M50 31 L50 46 M50 84 L50 99"/>
-        <path d="M16 65 L31 65 M69 65 L84 65"/>
-        <path d="M26 41 L35 50 M74 41 L65 50 M26 89 L35 80 M74 89 L65 80"/>
+        <path d="M50 34 L50 47 M50 89 L50 102"/>
+        <path d="M16 68 L29 68 M71 68 L84 68"/>
+        <path d="M26 44 L35 53 M74 44 L65 53 M26 92 L35 83 M74 92 L65 83"/>
       </g>
 
-      <!-- Центр — глаз/звезда -->
-      <circle cx="50" cy="65" r="3" fill="currentColor" stroke="none"/>
-      <g stroke="currentColor" fill="none" stroke-width=".6" stroke-linecap="round">
-        <path d="M50 58 L50 61 M50 69 L50 72 M43 65 L46 65 M54 65 L57 65"/>
+      <!-- ЦЕНТР — малая мандала -->
+      <circle cx="50" cy="68" r="2.5" fill="currentColor" stroke="none"/>
+      <g stroke="currentColor" fill="none" stroke-width=".4" stroke-linecap="round">
+        <path d="M50 60 L50 63 M50 73 L50 76 M42 68 L45 68 M55 68 L58 68"/>
       </g>
 
-      <!-- Точки в вершинах -->
+      <!-- МИКРО-ТОЧКИ в вершинах -->
       <g fill="currentColor" stroke="none" opacity=".65">
-        <circle cx="50" cy="25" r="1.2"/>
-        <circle cx="50" cy="105" r="1.2"/>
-        <circle cx="10" cy="65" r="1.2"/>
-        <circle cx="90" cy="65" r="1.2"/>
+        <circle cx="50" cy="28" r="1.2"/>
+        <circle cx="50" cy="108" r="1.2"/>
+        <circle cx="10" cy="68" r="1.2"/>
+        <circle cx="90" cy="68" r="1.2"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <!-- 4 СИМВОЛА ПО КРУГУ (между делениями) -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5">
+        <path d="M40 24 L42 22 L44 24 M40 24 L44 24"/>
+        <path d="M56 24 L58 22 L60 24 M56 24 L60 24"/>
+        <path d="M40 112 L42 114 L44 112 M40 112 L44 112"/>
+        <path d="M56 112 L58 114 L60 112 M56 112 L60 112"/>
+      </g>
+
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         БАШНЯ — сложная гравюра
+         БАШНЯ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-tower" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <!-- Молния — тройная -->
-      <path d="M50 18 L43 40 L50 40 L43 62 L57 38 L50 38 L57 18 Z" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round"/>
-      <path d="M50 18 L43 40 L50 40 L43 62 L57 38 L50 38 L57 18 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" transform="scale(1.06) translate(-3 -2)"/>
+      <!-- МОЛНИЯ — тройная -->
+      <path d="M50 20 L43 42 L50 42 L43 64 L57 40 L50 40 L57 20 Z" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round"/>
+      <path d="M50 20 L43 42 L50 42 L43 64 L57 40 L50 40 L57 20 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" transform="translate(-2 -2)"/>
+      <path d="M50 20 L43 42 L50 42 L43 64 L57 40 L50 40 L57 20 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" transform="translate(2 2)"/>
 
-      <!-- Лучи-искры от молнии -->
+      <!-- Лучи-искры -->
       <g stroke="currentColor" fill="none" stroke-width=".7" opacity=".7" stroke-linecap="round">
-        <path d="M32 22 L28 18 M68 22 L72 18 M20 30 L16 26 M80 30 L84 26"/>
+        <path d="M32 24 L28 20 M68 24 L72 20 M20 32 L16 28 M80 32 L84 28"/>
+        <path d="M28 46 L24 44 M72 46 L76 44"/>
       </g>
 
-      <!-- БАШНЯ с зубцами -->
+      <!-- БАШНЯ -->
       <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round">
-        <path d="M30 108 L30 52 L38 46 L42 58 L50 50 L58 58 L62 46 L70 52 L70 108 Z"/>
+        <path d="M30 108 L30 54 L38 48 L42 60 L50 52 L58 60 L62 48 L70 54 L70 108 Z"/>
       </g>
-      <!-- Зубцы-короны сверху -->
-      <path d="M38 46 L38 38 M42 58 L42 42 M50 50 L50 36 M58 58 L58 42 M62 46 L62 38" stroke="currentColor" fill="none" stroke-width="1.1"/>
-      <path d="M36 38 L40 38 M40 42 L44 42 M48 36 L52 36 M56 42 L60 42 M60 38 L64 38" stroke="currentColor" fill="none" stroke-width=".8"/>
+      <!-- Двойной контур башни -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-linejoin="round">
+        <path d="M32 108 L32 56 L38 50 L42 62 L50 54 L58 62 L62 50 L68 56 L68 108"/>
+      </g>
 
-      <!-- База башни -->
+      <!-- ЗУБЦЫ-КОРОНЫ сверху -->
+      <path d="M38 48 L38 40 M42 60 L42 42 M50 52 L50 38 M58 60 L58 42 M62 48 L62 40" stroke="currentColor" fill="none" stroke-width="1.1"/>
+      <path d="M36 40 L40 40 M40 42 L44 42 M48 38 L52 38 M56 42 L60 42 M60 40 L64 40" stroke="currentColor" fill="none" stroke-width=".8"/>
+
+      <!-- БАЗА -->
       <path d="M26 108 L74 108" stroke="currentColor" fill="none" stroke-width="1.4"/>
       <path d="M28 112 L72 112" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <path d="M30 116 L70 116" stroke="currentColor" fill="none" stroke-width=".4" opacity=".4"/>
 
-      <!-- 2 окна-зигзага -->
+      <!-- 2 ОКНА-ЗИГЗАГА (по 3 зигзага) -->
       <g stroke="currentColor" fill="none" stroke-width=".9">
-        <path d="M40 68 L43 71 L40 74 L43 77 L40 80 L43 83"/>
-        <path d="M60 68 L57 71 L60 74 L57 77 L60 80 L57 83"/>
+        <path d="M40 70 L43 73 L40 76 L43 79 L40 82 L43 85"/>
+        <path d="M60 70 L57 73 L60 76 L57 79 L60 82 L57 85"/>
+      </g>
+      <!-- Верхние окна -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".7">
+        <path d="M44 56 L46 58 L44 60"/>
+        <path d="M56 56 L54 58 L56 60"/>
       </g>
 
-      <!-- Ворота с замком -->
-      <path d="M44 108 L44 94 A6 6 0 0 1 56 94 L56 108" stroke="currentColor" fill="none" stroke-width="1.1"/>
-      <circle cx="50" cy="99" r="1.5" fill="currentColor" stroke="none"/>
+      <!-- ВОРОТА с замком -->
+      <path d="M44 108 L44 96 A6 6 0 0 1 56 96 L56 108" stroke="currentColor" fill="none" stroke-width="1.1"/>
+      <circle cx="50" cy="100" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M50 101 L50 104" stroke="currentColor" fill="none" stroke-width=".5"/>
 
-      <!-- Падающая корона (повёрнута) -->
+      <!-- ПАДАЮЩАЯ КОРОНА -->
       <g stroke="currentColor" fill="none" stroke-width="1" opacity=".85" transform="rotate(35 22 30)">
         <path d="M14 34 L14 24 L18 28 L22 20 L26 28 L30 24 L30 34 Z"/>
         <circle cx="14" cy="24" r=".9" fill="currentColor"/>
@@ -1776,378 +1947,558 @@ footer::before {
         <circle cx="30" cy="24" r=".9" fill="currentColor"/>
       </g>
 
-      <!-- Звёзды вокруг -->
+      <!-- ЗВЁЗДЫ вокруг -->
       <g stroke="currentColor" fill="none" stroke-width=".8" opacity=".7">
-        <path d="M22 46 L23 49 L26 50 L23 51 L22 54 L21 51 L18 50 L21 49 Z"/>
-        <path d="M78 46 L79 49 L82 50 L79 51 L78 54 L77 51 L74 50 L77 49 Z"/>
+        <path d="M22 48 L23 51 L26 52 L23 53 L22 56 L21 53 L18 52 L21 51 Z"/>
+        <path d="M78 48 L79 51 L82 52 L79 53 L78 56 L77 53 L74 52 L77 51 Z"/>
+        <path d="M22 78 L23 80 L25 81 L23 82 L22 84 L21 82 L19 81 L21 80 Z"/>
+        <path d="M78 78 L79 80 L81 81 L79 82 L78 84 L77 82 L75 81 L77 80 Z"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="20" cy="66" r=".8"/>
-        <circle cx="80" cy="66" r=".8"/>
-        <circle cx="26" cy="86" r=".7"/>
-        <circle cx="74" cy="86" r=".7"/>
+        <circle cx="20" cy="68" r=".8"/>
+        <circle cx="80" cy="68" r=".8"/>
+        <circle cx="26" cy="88" r=".7"/>
+        <circle cx="74" cy="88" r=".7"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         МЕЧ — сложная гравюра
+         МЕЧ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-sword" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
-        <path d="M50 22 L50 26 M50 104 L50 108 M84 65 L80 65 M16 65 L20 65"/>
-        <path d="M82 33 L79 36 M82 97 L79 94 M18 97 L21 94 M18 33 L21 36"/>
+      <!-- 12-позиционные деления -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55" stroke-linecap="round">
+        <path d="M50 24 L50 28 M50 108 L50 112"/>
+        <path d="M84 68 L80 68 M16 68 L20 68"/>
+        <path d="M82 36 L79 39 M82 100 L79 97 M18 100 L21 97 M18 36 L21 39"/>
+        <path d="M71 27 L68 32 M71 109 L68 104 M29 109 L32 104 M29 27 L32 32"/>
       </g>
 
-      <!-- Внешние лучи-искры -->
+      <!-- Внешние лучи -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 12 L50 20 M50 110 L50 118"/>
-        <path d="M8 65 L16 65 M84 65 L92 65"/>
+        <path d="M50 12 L50 22 M50 114 L50 124"/>
+        <path d="M8 68 L18 68 M82 68 L92 68"/>
+        <path d="M19 33 L26 40 M81 33 L74 40 M19 103 L26 96 M81 103 L74 96"/>
       </g>
 
-      <!-- Звёзды-спутники -->
+      <!-- ЗВЁЗДЫ-СПУТНИКИ -->
       <g stroke="currentColor" fill="none" stroke-width=".9">
-        <path d="M22 42 L24 46 L28 48 L24 50 L22 54 L20 50 L16 48 L20 46 Z"/>
-        <path d="M78 42 L80 46 L84 48 L80 50 L78 54 L76 50 L72 48 L76 46 Z"/>
-        <path d="M22 78 L23 81 L26 82 L23 83 L22 86 L21 83 L18 82 L21 81 Z"/>
-        <path d="M78 78 L79 81 L82 82 L79 83 L78 86 L77 83 L74 82 L77 81 Z"/>
+        <path d="M22 44 L24 48 L28 50 L24 52 L22 56 L20 52 L16 50 L20 48 Z"/>
+        <path d="M78 44 L80 48 L84 50 L80 52 L78 56 L76 52 L72 50 L76 48 Z"/>
+        <path d="M22 82 L23 85 L26 86 L23 87 L22 90 L21 87 L18 86 L21 85 Z"/>
+        <path d="M78 82 L79 85 L82 86 L79 87 L78 90 L77 87 L74 86 L77 85 Z"/>
+      </g>
+      <g fill="currentColor" stroke="none" opacity=".55">
+        <circle cx="26" cy="30" r=".8"/>
+        <circle cx="74" cy="30" r=".8"/>
+        <circle cx="26" cy="106" r=".8"/>
+        <circle cx="74" cy="106" r=".8"/>
       </g>
 
-      <!-- КОРОНА над мечом -->
+      <!-- КОРОНА НАД МЕЧОМ -->
       <g stroke="currentColor" fill="none" stroke-width="1.1" stroke-linejoin="round">
         <path d="M50 4 L40 12 L43 20 L50 15 L57 20 L60 12 Z"/>
         <circle cx="40" cy="12" r="1" fill="currentColor"/>
         <circle cx="50" cy="15" r="1.2" fill="currentColor"/>
         <circle cx="60" cy="12" r="1" fill="currentColor"/>
       </g>
+      <path d="M40 12 L40 8 M50 15 L50 4 M60 12 L60 8" stroke="currentColor" fill="none" stroke-width=".5" opacity=".7"/>
 
-      <!-- КЛИНОК -->
+      <!-- КЛИНОК с засечками -->
       <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round">
-        <path d="M50 24 L54 32 L54 86 L46 86 L46 32 Z"/>
+        <path d="M50 26 L54 34 L54 86 L46 86 L46 34 Z"/>
       </g>
       <!-- Дол (центральная борозда) -->
-      <path d="M50 28 L50 84" stroke="currentColor" fill="none" stroke-width=".4" opacity=".6"/>
-      <!-- Боковые засечки на клинке -->
-      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5">
-        <path d="M47 36 L47 82 M53 36 L53 82"/>
+      <path d="M50 30 L50 84" stroke="currentColor" fill="none" stroke-width=".4" opacity=".6"/>
+      <!-- Боковые тонкие линии -->
+      <path d="M47 38 L47 82 M53 38 L53 82" stroke="currentColor" fill="none" stroke-width=".3" opacity=".5"/>
+      <!-- Доп. насечки -->
+      <g stroke="currentColor" fill="none" stroke-width=".3" opacity=".4">
+        <path d="M48 44 L52 44 M48 50 L52 50 M48 56 L52 56 M48 62 L52 62 M48 68 L52 68 M48 74 L52 74 M48 80 L52 80"/>
       </g>
 
       <!-- ГАРДА -->
-      <path d="M28 88 L72 88" stroke="currentColor" fill="none" stroke-width="1.3"/>
-      <!-- Ромб на гарде -->
-      <path d="M32 88 L36 84 L40 88 L36 92 Z" stroke="currentColor" fill="none" stroke-width=".7"/>
-      <path d="M60 88 L64 84 L68 88 L64 92 Z" stroke="currentColor" fill="none" stroke-width=".7"/>
-      <!-- Рубин в центре гарды -->
-      <circle cx="50" cy="88" r="2.5" stroke="currentColor" fill="none" stroke-width=".9"/>
-      <circle cx="50" cy="88" r="1" fill="currentColor" stroke="none"/>
+      <path d="M28 90 L72 90" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M28 88 L28 92 M72 88 L72 92" stroke="currentColor" fill="none" stroke-width=".8"/>
+      <!-- Ромбы на концах -->
+      <path d="M30 90 L34 86 L38 90 L34 94 Z" stroke="currentColor" fill="none" stroke-width=".7"/>
+      <path d="M62 90 L66 86 L70 90 L66 94 Z" stroke="currentColor" fill="none" stroke-width=".7"/>
+      <!-- Рубин в центре -->
+      <circle cx="50" cy="90" r="2.5" stroke="currentColor" fill="none" stroke-width=".9"/>
+      <circle cx="50" cy="90" r="1" fill="currentColor" stroke="none"/>
 
       <!-- РУКОЯТЬ -->
-      <path d="M46 92 L54 92 L54 102 L46 102 Z" stroke="currentColor" fill="none" stroke-width="1"/>
-      <!-- Навивка -->
-      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".7">
-        <path d="M46 94 L54 94 M46 96 L54 96 M46 98 L54 98 M46 100 L54 100"/>
+      <path d="M46 94 L54 94 L54 104 L46 104 Z" stroke="currentColor" fill="none" stroke-width="1"/>
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".7">
+        <path d="M46 96 L54 96 M46 98 L54 98 M46 100 L54 100 M46 102 L54 102"/>
+      </g>
+      <!-- Диагональная навивка -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5">
+        <path d="M46 96 L54 98 M46 98 L54 100 M46 100 L54 102"/>
       </g>
 
       <!-- НАВЕРШИЕ -->
-      <path d="M43 110 L57 110 L54 106 L46 106 Z" stroke="currentColor" fill="none" stroke-width="1"/>
-      <circle cx="50" cy="113" r="2" fill="currentColor" stroke="none"/>
+      <path d="M43 112 L57 112 L54 108 L46 108 Z" stroke="currentColor" fill="none" stroke-width="1"/>
+      <circle cx="50" cy="115" r="2" fill="currentColor" stroke="none"/>
+      <path d="M50 112 L50 108" stroke="currentColor" fill="none" stroke-width=".4"/>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <use href="#orn-scroll" x="10" y="118" width="80" height="8" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         КУБОК — сложная гравюра
+         КУБОК — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-cup" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <!-- Лучи-искры сверху -->
+      <!-- ЛУЧИ сверху -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".6" stroke-linecap="round">
-        <path d="M50 14 L50 22"/>
-        <path d="M32 20 L36 26"/>
-        <path d="M68 20 L64 26"/>
-        <path d="M22 30 L28 34"/>
-        <path d="M78 30 L72 34"/>
+        <path d="M50 14 L50 24"/>
+        <path d="M32 22 L36 28"/>
+        <path d="M68 22 L64 28"/>
+        <path d="M22 32 L28 36"/>
+        <path d="M78 32 L72 36"/>
+        <path d="M16 44 L22 46"/>
+        <path d="M84 44 L78 46"/>
       </g>
 
-      <!-- Фонтан-струя -->
-      <path d="M50 26 Q46 40 50 52 Q54 40 50 26" stroke="currentColor" fill="none" stroke-width=".6" opacity=".7"/>
-      <path d="M50 26 Q42 34 44 46" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
-      <path d="M50 26 Q58 34 56 46" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <!-- ФОНТАН из кубка — 5 струй -->
+      <path d="M50 28 Q46 40 50 52 Q54 40 50 28" stroke="currentColor" fill="none" stroke-width=".6" opacity=".7"/>
+      <path d="M50 28 Q42 36 44 48" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <path d="M50 28 Q58 36 56 48" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <path d="M50 28 Q40 32 42 42" stroke="currentColor" fill="none" stroke-width=".3" opacity=".4"/>
+      <path d="M50 28 Q60 32 58 42" stroke="currentColor" fill="none" stroke-width=".3" opacity=".4"/>
 
-      <!-- КУБОК с чашей -->
+      <!-- КАПЛИ из фонтана -->
+      <g fill="currentColor" stroke="none" opacity=".6">
+        <circle cx="46" cy="44" r=".8"/>
+        <circle cx="54" cy="44" r=".8"/>
+        <circle cx="48" cy="52" r=".7"/>
+        <circle cx="52" cy="52" r=".7"/>
+      </g>
+
+      <!-- КУБОК с двойным контуром -->
       <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round">
-        <path d="M32 38 L68 38 L68 60 A18 18 0 0 1 50 78 A18 18 0 0 1 32 60 Z"/>
+        <path d="M32 40 L68 40 L68 62 A18 18 0 0 1 50 80 A18 18 0 0 1 32 62 Z"/>
       </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-linejoin="round">
+        <path d="M34 42 L66 42 L66 62 A16 16 0 0 1 50 78 A16 16 0 0 1 34 62 Z"/>
+      </g>
+
       <!-- Двойной обод -->
-      <path d="M32 42 L68 42" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <path d="M32 44 L68 44" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <path d="M32 48 L68 48" stroke="currentColor" fill="none" stroke-width=".3" opacity=".5"/>
 
       <!-- Ручки с завитком -->
       <g stroke="currentColor" fill="none" stroke-width="1" stroke-linejoin="round">
-        <path d="M32 46 L22 46 Q14 46 16 54 Q18 60 26 58"/>
-        <path d="M68 46 L78 46 Q86 46 84 54 Q82 60 74 58"/>
+        <path d="M32 48 L22 48 Q14 48 16 56 Q18 62 26 60"/>
+        <path d="M68 48 L78 48 Q86 48 84 56 Q82 62 74 60"/>
+      </g>
+      <!-- Внутренние завитки ручек -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".6">
+        <path d="M20 54 Q18 58 22 58"/>
+        <path d="M80 54 Q82 58 78 58"/>
       </g>
 
-      <!-- Засечки на чаше (гравировка) -->
+      <!-- ГРАВИРОВКА на чаше -->
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5">
-        <path d="M40 48 L40 70 M60 48 L60 70"/>
-        <path d="M36 56 L40 56 M36 62 L40 62 M36 68 L40 68"/>
-        <path d="M60 56 L64 56 M60 62 L64 62 M60 68 L64 68"/>
+        <path d="M40 52 L40 72 M60 52 L60 72"/>
+        <path d="M36 58 L40 58 M36 64 L40 64 M36 70 L40 70"/>
+        <path d="M60 58 L64 58 M60 64 L64 64 M60 70 L64 70"/>
       </g>
 
       <!-- ЖЕМЧУЖИНА -->
-      <circle cx="50" cy="58" r="6" stroke="currentColor" fill="none" stroke-width="1"/>
-      <circle cx="50" cy="58" r="3" stroke="currentColor" fill="none" stroke-width=".5" opacity=".7"/>
-      <circle cx="50" cy="58" r="1.5" fill="currentColor" stroke="none"/>
-      <!-- Блики -->
-      <path d="M47 55 Q48 54 49 54" stroke="currentColor" fill="none" stroke-width=".6" opacity=".8"/>
+      <circle cx="50" cy="60" r="6" stroke="currentColor" fill="none" stroke-width="1"/>
+      <circle cx="50" cy="60" r="3" stroke="currentColor" fill="none" stroke-width=".5" opacity=".7"/>
+      <circle cx="50" cy="60" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M47 57 Q48 56 49 56" stroke="currentColor" fill="none" stroke-width=".6" opacity=".8"/>
 
       <!-- НОЖКА -->
-      <path d="M50 78 L50 96" stroke="currentColor" fill="none" stroke-width="1.2"/>
-      <path d="M48 78 L48 96 M52 78 L52 96" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <path d="M50 80 L50 98" stroke="currentColor" fill="none" stroke-width="1.2"/>
+      <path d="M48 80 L48 98 M52 80 L52 98" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
 
       <!-- БАЗА -->
-      <g stroke="currentColor" fill="none" stroke-width="1.1" stroke-linejoin="round">
-        <path d="M44 96 L56 96 L60 104 L40 104 Z"/>
-      </g>
-      <path d="M38 106 L62 106" stroke="currentColor" fill="none" stroke-width="1"/>
+      <path d="M44 98 L56 98 L60 106 L40 106 Z" stroke="currentColor" fill="none" stroke-width="1.1" stroke-linejoin="round"/>
+      <path d="M38 108 L62 108" stroke="currentColor" fill="none" stroke-width="1"/>
+      <path d="M40 112 L60 112" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
 
       <!-- 2 РОЗЫ по бокам -->
       <g stroke="currentColor" fill="none" stroke-width=".8">
-        <path d="M20 96 Q22 88 26 86 Q28 90 26 94 Q24 96 20 96 Z"/>
-        <path d="M26 86 Q28 84 30 86"/>
-        <path d="M80 96 Q78 88 74 86 Q72 90 74 94 Q76 96 80 96 Z"/>
-        <path d="M74 86 Q72 84 70 86"/>
+        <path d="M20 100 Q22 92 26 90 Q28 94 26 98 Q24 100 20 100 Z"/>
+        <path d="M26 90 Q28 88 30 90"/>
+        <path d="M23 93 L25 95 M26 92 L26 95"/>
+        <path d="M80 100 Q78 92 74 90 Q72 94 74 98 Q76 100 80 100 Z"/>
+        <path d="M74 90 Q72 88 70 90"/>
+        <path d="M77 93 L75 95 M74 92 L74 95"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         ПЕНТАКЛЬ — сложная гравюра
+         ПЕНТАКЛЬ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-pentacle" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="46" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="46" stroke-width=".4"/>
       </g>
 
-      <!-- Внешнее кольцо с 5 рунами -->
-      <circle cx="50" cy="65" r="36" stroke="currentColor" fill="none" stroke-width="1.1"/>
-      <circle cx="50" cy="65" r="32" stroke="currentColor" fill="none" stroke-width=".5" stroke-dasharray="3 3"/>
-      <circle cx="50" cy="65" r="28" stroke="currentColor" fill="none" stroke-width=".6" opacity=".6"/>
+      <!-- ДВОЙНОЕ ВНЕШНЕЕ КОЛЬЦО -->
+      <circle cx="50" cy="68" r="36" stroke="currentColor" fill="none" stroke-width="1.1"/>
+      <circle cx="50" cy="68" r="33" stroke="currentColor" fill="none" stroke-width=".4" opacity=".6"/>
+      <circle cx="50" cy="68" r="29" stroke="currentColor" fill="none" stroke-width=".5" stroke-dasharray="3 3"/>
+      <circle cx="50" cy="68" r="26" stroke="currentColor" fill="none" stroke-width=".6" opacity=".55"/>
 
-      <!-- 5 рун вокруг -->
-      <g stroke="currentColor" fill="none" stroke-width=".9">
-        <!-- Верх -->
-        <path d="M50 26 L50 32 M46 29 L54 29"/>
-        <!-- Право-верх -->
-        <path d="M82 55 L78 59 M78 55 L82 59 M80 57 L80 62"/>
-        <!-- Право-низ -->
-        <path d="M68 90 L72 86 L68 82"/>
-        <!-- Лево-низ -->
-        <path d="M32 90 L28 86 L32 82"/>
-        <!-- Лево-верх -->
-        <path d="M18 55 L22 59 M18 59 L22 55 M20 57 L20 62"/>
+      <!-- 5 РУН вокруг -->
+      <g stroke="currentColor" fill="none" stroke-width=".9" stroke-linejoin="round">
+        <!-- Верх — Algiz -->
+        <path d="M50 22 L50 28 M46 25 L54 25 M48 22 L48 25 M52 22 L52 25"/>
+        <!-- Право-верх — Gebo -->
+        <path d="M84 58 L80 62 M80 58 L84 62"/>
+        <path d="M80 60 L80 66 M84 60 L84 66"/>
+        <!-- Право-низ — Sowilo -->
+        <path d="M68 96 L74 90 L70 90 L74 84"/>
+        <!-- Лево-низ — Tiwaz -->
+        <path d="M32 96 L26 90 M29 93 L29 100"/>
+        <!-- Лево-верх — Eihwaz -->
+        <path d="M16 58 L20 62 M16 62 L20 58 M18 58 L18 64"/>
       </g>
 
-      <!-- ПЕНТАГРАММА -->
-      <path d="M50 40 L57 60 L78 60 L61 72 L67 92 L50 80 L33 92 L39 72 L22 60 L43 60 Z" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round"/>
+      <!-- ПЕНТАГРАММА — двойной контур -->
+      <path d="M50 40 L58 60 L80 60 L62 74 L70 96 L50 82 L30 96 L38 74 L20 60 L42 60 Z" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linejoin="round"/>
+      <path d="M50 42 L58 62 L78 62 L60 74 L68 94 L50 82 L32 94 L40 74 L22 62 L42 62 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" stroke-dasharray="1 2"/>
 
-      <!-- Внутренний круг -->
-      <circle cx="50" cy="65" r="8" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <!-- ЦЕНТРАЛЬНЫЙ КРУГ -->
+      <circle cx="50" cy="68" r="8" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
 
-      <!-- Точки в вершинах пентаграммы -->
+      <!-- ВНУТРЕННИЕ ЛИНИИ ПЕНТАГРАММЫ (соединяющие вершины) -->
+      <g stroke="currentColor" fill="none" stroke-width=".3" opacity=".4" stroke-dasharray="1 2">
+        <path d="M50 40 L62 74 M50 40 L38 74 M78 60 L30 96 M22 60 L70 96 M78 60 L50 82 M22 60 L50 82"/>
+      </g>
+
+      <!-- ТОЧКИ В ВЕРШИНАХ -->
       <g fill="currentColor" stroke="none">
-        <circle cx="50" cy="40" r="1.3"/>
-        <circle cx="78" cy="60" r="1.3"/>
-        <circle cx="67" cy="92" r="1.3"/>
-        <circle cx="33" cy="92" r="1.3"/>
-        <circle cx="22" cy="60" r="1.3"/>
-        <circle cx="50" cy="65" r="2"/>
+        <circle cx="50" cy="40" r="1.5"/>
+        <circle cx="78" cy="60" r="1.5"/>
+        <circle cx="70" cy="96" r="1.5"/>
+        <circle cx="30" cy="96" r="1.5"/>
+        <circle cx="22" cy="60" r="1.5"/>
+        <circle cx="50" cy="68" r="2.2"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".6">
+        <circle cx="50" cy="40" r="3"/>
+        <circle cx="78" cy="60" r="3"/>
+        <circle cx="70" cy="96" r="3"/>
+        <circle cx="30" cy="96" r="3"/>
+        <circle cx="22" cy="60" r="3"/>
       </g>
 
-      <!-- Лучи по сторонам -->
+      <!-- ЛУЧИ-ИСКРЫ -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 12 L50 20 M50 108 L50 116 M8 65 L16 65 M84 65 L92 65"/>
+        <path d="M50 12 L50 20 M50 108 L50 116 M8 68 L16 68 M84 68 L92 68"/>
         <path d="M22 30 L26 34 M78 30 L74 34 M22 100 L26 96 M78 100 L74 96"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <!-- МАЛЫЕ ТОЧКИ-ГВОЗДИКИ между рунами -->
+      <g fill="currentColor" stroke="none" opacity=".5">
+        <circle cx="72" cy="30" r=".8"/>
+        <circle cx="28" cy="30" r=".8"/>
+        <circle cx="88" cy="44" r=".8"/>
+        <circle cx="12" cy="44" r=".8"/>
+        <circle cx="88" cy="92" r=".8"/>
+        <circle cx="12" cy="92" r=".8"/>
+      </g>
+
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         ВЛЮБЛЁННЫЕ — сложная гравюра
+         ВЛЮБЛЁННЫЕ — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-lovers" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <!-- АНГЕЛ-СОЛНЦЕ сверху с лучами -->
-      <circle cx="50" cy="28" r="8" stroke="currentColor" fill="none" stroke-width="1.1"/>
-      <circle cx="50" cy="28" r="4" stroke="currentColor" fill="none" stroke-width=".5"/>
-      <circle cx="50" cy="28" r="1.5" fill="currentColor" stroke="none"/>
-      <g stroke="currentColor" fill="none" stroke-width=".7" opacity=".8" stroke-linecap="round">
+      <!-- АНГЕЛ-СОЛНЦЕ сверху с 12 лучами -->
+      <circle cx="50" cy="30" r="8" stroke="currentColor" fill="none" stroke-width="1.1"/>
+      <circle cx="50" cy="30" r="4" stroke="currentColor" fill="none" stroke-width=".5"/>
+      <circle cx="50" cy="30" r="1.5" fill="currentColor" stroke="none"/>
+      <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".8" stroke-linecap="round">
         <path d="M50 14 L50 8"/>
-        <path d="M38 20 L34 16"/>
-        <path d="M62 20 L66 16"/>
-        <path d="M36 30 L32 32"/>
-        <path d="M64 30 L68 32"/>
-        <path d="M36 40 L32 42"/>
-        <path d="M64 40 L68 42"/>
+        <path d="M42 17 L39 13"/>
+        <path d="M58 17 L61 13"/>
+        <path d="M36 24 L32 22"/>
+        <path d="M64 24 L68 22"/>
+        <path d="M34 30 L30 30"/>
+        <path d="M66 30 L70 30"/>
+        <path d="M36 36 L32 38"/>
+        <path d="M64 36 L68 38"/>
+        <path d="M42 41 L39 45"/>
+        <path d="M58 41 L61 45"/>
+        <path d="M50 44 L50 50"/>
       </g>
 
-      <!-- 2 ДЕРЕВА по бокам -->
-      <g stroke="currentColor" fill="none" stroke-width=".9" opacity=".8">
-        <!-- Левое -->
-        <path d="M22 100 L22 76 Q18 76 16 72 Q18 68 22 68 Q22 62 26 62 Q30 62 30 68 Q34 68 34 72 Q34 76 30 76 L30 100"/>
-        <!-- Правое -->
-        <path d="M78 100 L78 76 Q74 76 72 72 Q74 68 78 68 Q78 62 82 62 Q86 62 86 68 Q90 68 90 72 Q90 76 86 76 L86 100"/>
+      <!-- 2 ДЕРЕВА с ветвями -->
+      <g stroke="currentColor" fill="none" stroke-width=".8" opacity=".85">
+        <!-- Левое дерево -->
+        <path d="M22 104 L22 82 Q18 82 16 78 Q18 74 22 74 Q22 68 26 68 Q30 68 30 74 Q34 74 34 78 Q34 82 30 82 L30 104"/>
+        <!-- Ветви -->
+        <path d="M22 88 L16 84 M22 92 L16 90 M30 88 L34 84 M30 92 L34 90"/>
+        <!-- Корни -->
+        <path d="M22 104 L20 108 M30 104 L32 108"/>
+        <!-- Правое дерево -->
+        <path d="M78 104 L78 82 Q74 82 72 78 Q74 74 78 74 Q78 68 82 68 Q86 68 86 74 Q90 74 90 78 Q90 82 86 82 L86 104"/>
+        <path d="M78 88 L72 84 M78 92 L72 90 M86 88 L90 84 M86 92 L90 90"/>
+        <path d="M78 104 L76 108 M86 104 L88 108"/>
       </g>
 
-      <!-- ЗЕМЛЯ -->
-      <path d="M16 106 Q50 100 84 106" stroke="currentColor" fill="none" stroke-width=".6" opacity=".55"/>
-      <path d="M18 110 Q50 105 82 110" stroke="currentColor" fill="none" stroke-width=".4" opacity=".4"/>
+      <!-- ЗЕМЛЯ с цветами -->
+      <path d="M16 108 Q50 102 84 108" stroke="currentColor" fill="none" stroke-width=".6" opacity=".6"/>
+      <path d="M18 112 Q50 107 82 112" stroke="currentColor" fill="none" stroke-width=".4" opacity=".45"/>
+      <!-- Малые цветы на земле -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".7">
+        <path d="M28 106 Q29 104 30 106 M29 106 L29 108"/>
+        <path d="M42 105 Q43 103 44 105 M43 105 L43 107"/>
+        <path d="M56 105 Q57 103 58 105 M57 105 L57 107"/>
+        <path d="M70 106 Q71 104 72 106 M71 106 L71 108"/>
+      </g>
 
       <!-- ДВА СИЛУЭТА -->
       <g stroke="currentColor" fill="none" stroke-width="1.2" stroke-linejoin="round">
         <path d="M32 104 C32 86 36 76 42 70 C44 68 46 68 46 72 C46 80 44 92 42 104 Z"/>
         <path d="M68 104 C68 86 64 76 58 70 C56 68 54 68 54 72 C54 80 56 92 58 104 Z"/>
       </g>
+      <!-- Двойной контур силуэтов -->
+      <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".5" stroke-linejoin="round">
+        <path d="M34 104 C34 88 37 78 42 72 C44 70 45 70 45 73 C45 81 44 92 43 104"/>
+        <path d="M66 104 C66 88 63 78 58 72 C56 70 55 70 55 73 C55 81 56 92 57 104"/>
+      </g>
       <circle cx="42" cy="62" r="4" stroke="currentColor" fill="none" stroke-width="1.2"/>
       <circle cx="58" cy="62" r="4" stroke="currentColor" fill="none" stroke-width="1.2"/>
 
-      <!-- СЕРДЦЕ между ними -->
-      <path d="M50 88 C47 85 44 85 44 88 C44 91 50 96 50 96 C50 96 56 91 56 88 C56 85 53 85 50 88 Z" stroke="currentColor" fill="none" stroke-width="1"/>
-      <path d="M50 84 L50 88" stroke="currentColor" fill="none" stroke-width=".6"/>
+      <!-- СЕРДЦЕ -->
+      <path d="M50 90 C47 87 44 87 44 90 C44 93 50 98 50 98 C50 98 56 93 56 90 C56 87 53 87 50 90 Z" stroke="currentColor" fill="none" stroke-width="1"/>
+      <path d="M50 84 L50 90" stroke="currentColor" fill="none" stroke-width=".6" opacity=".7"/>
+      <!-- Малые искры из сердца -->
+      <g fill="currentColor" stroke="none" opacity=".6">
+        <circle cx="46" cy="86" r=".6"/>
+        <circle cx="54" cy="86" r=".6"/>
+        <circle cx="50" cy="82" r=".6"/>
+      </g>
 
       <!-- ЗВЁЗДЫ -->
       <g stroke="currentColor" fill="none" stroke-width=".8" opacity=".7">
-        <path d="M20 30 L21 33 L24 34 L21 35 L20 38 L19 35 L16 34 L19 33 Z"/>
-        <path d="M80 30 L81 33 L84 34 L81 35 L80 38 L79 35 L76 34 L79 33 Z"/>
+        <path d="M20 34 L21 37 L24 38 L21 39 L20 42 L19 39 L16 38 L19 37 Z"/>
+        <path d="M80 34 L81 37 L84 38 L81 39 L80 42 L79 39 L76 38 L79 37 Z"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".5">
-        <circle cx="14" cy="56" r=".8"/>
-        <circle cx="86" cy="56" r=".8"/>
-        <circle cx="20" cy="46" r=".6"/>
-        <circle cx="80" cy="46" r=".6"/>
+        <circle cx="14" cy="60" r=".8"/>
+        <circle cx="86" cy="60" r=".8"/>
+        <circle cx="20" cy="48" r=".6"/>
+        <circle cx="80" cy="48" r=".6"/>
+        <circle cx="26" cy="58" r=".5"/>
+        <circle cx="74" cy="58" r=".5"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══════════════════════════════════════════════════════
-         ОКО — сложная гравюра
+         ОКО — иллюминированная гравюра
          ═══════════════════════════════════════════════════════ -->
     <symbol id="sc-eye" viewBox="0 0 100 130">
       <g stroke="currentColor" fill="none" stroke-width=".4" opacity=".35">
-        <rect x="6" y="10" width="88" height="110" rx="2"/>
-        <rect x="9" y="13" width="82" height="104" rx="1" stroke-dasharray="1 4"/>
+        <rect x="5" y="9" width="90" height="112" rx="2"/>
+        <rect x="8" y="12" width="84" height="106" rx="1" stroke-dasharray="1 4"/>
       </g>
       <g fill="currentColor" stroke="none" opacity=".55">
-        <circle cx="10" cy="14" r=".9"/>
-        <circle cx="90" cy="14" r=".9"/>
-        <circle cx="10" cy="116" r=".9"/>
-        <circle cx="90" cy="116" r=".9"/>
+        <circle cx="9" cy="13" r="1"/>
+        <circle cx="91" cy="13" r="1"/>
+        <circle cx="9" cy="117" r="1"/>
+        <circle cx="91" cy="117" r="1"/>
+      </g>
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".5" stroke-linecap="round">
+        <path d="M5 9 Q10 9 10 5"/>
+        <path d="M95 9 Q90 9 90 5"/>
+        <path d="M5 121 Q10 121 10 125"/>
+        <path d="M95 121 Q90 121 90 125"/>
+      </g>
+
+      <use href="#orn-cartouche" x="5" y="10" width="90" height="14" opacity=".45"/>
+
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".45">
+        <path d="M14 28 L14 110 M18 28 L18 110"/>
+        <path d="M82 28 L82 110 M86 28 L86 110"/>
+        <path d="M12 28 L20 28 M12 32 L20 32 M80 28 L88 28 M80 32 L88 32"/>
+        <path d="M12 106 L20 106 M12 110 L20 110 M80 106 L88 106 M80 110 L88 110"/>
       </g>
 
       <g stroke="currentColor" fill="none" opacity=".35">
-        <circle cx="50" cy="65" r="42" stroke-width=".4"/>
-        <circle cx="50" cy="65" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
+        <circle cx="50" cy="68" r="42" stroke-width=".4"/>
+        <circle cx="50" cy="68" r="36" stroke-width=".4" stroke-dasharray="2 3"/>
       </g>
 
-      <!-- 12 лучей вокруг -->
+      <!-- 12 ЛУЧЕЙ вокруг -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55" stroke-linecap="round">
-        <path d="M50 10 L50 20 M50 110 L50 120"/>
-        <path d="M7 65 L17 65 M83 65 L93 65"/>
-        <path d="M18 32 L25 39 M82 32 L75 39 M18 98 L25 91 M82 98 L75 91"/>
-        <path d="M28 15 L34 22 M72 15 L66 22 M28 115 L34 108 M72 115 L66 108"/>
+        <path d="M50 10 L50 20 M50 116 L50 126"/>
+        <path d="M7 68 L17 68 M83 68 L93 68"/>
+        <path d="M18 33 L25 40 M82 33 L75 40 M18 103 L25 96 M82 103 L75 96"/>
+        <path d="M28 16 L34 23 M72 16 L66 23 M28 120 L34 113 M72 120 L66 113"/>
       </g>
 
       <!-- ОБЛАКА снизу -->
       <g stroke="currentColor" fill="none" stroke-width=".6" opacity=".55">
-        <path d="M20 108 Q26 104 32 107 Q38 103 44 106 Q50 102 56 106 Q62 103 68 107 Q74 104 80 108"/>
-        <path d="M24 114 Q30 111 36 113 Q42 110 48 113 Q54 110 60 113 Q66 111 72 114"/>
+        <path d="M20 112 Q26 108 32 111 Q38 107 44 110 Q50 106 56 110 Q62 107 68 111 Q74 108 80 112"/>
+        <path d="M24 117 Q30 114 36 116 Q42 113 48 116 Q54 113 60 116 Q66 114 72 117"/>
       </g>
 
       <!-- ВНЕШНИЙ ТРЕУГОЛЬНИК -->
-      <path d="M50 22 L86 92 L14 92 Z" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linejoin="round"/>
-      <!-- Внутренний треугольник -->
-      <path d="M50 30 L80 88 L20 88 Z" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <path d="M50 24 L86 96 L14 96 Z" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M50 32 L80 92 L20 92 Z" stroke="currentColor" fill="none" stroke-width=".5" opacity=".6"/>
+      <path d="M50 40 L74 88 L26 88 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".4" stroke-dasharray="2 2"/>
 
       <!-- ГЛАЗ -->
-      <path d="M30 64 C40 52 60 52 70 64 C60 76 40 76 30 64 Z" stroke="currentColor" fill="none" stroke-width="1.4"/>
-      <!-- Радужка -->
-      <circle cx="50" cy="64" r="8" stroke="currentColor" fill="none" stroke-width="1.1"/>
-      <circle cx="50" cy="64" r="5" stroke="currentColor" fill="none" stroke-width=".5" opacity=".7"/>
-      <circle cx="50" cy="64" r="2.5" fill="currentColor" stroke="none"/>
-      <!-- Блик -->
-      <circle cx="48" cy="62" r=".8" fill="currentColor" stroke="none" opacity=".8"/>
+      <path d="M30 68 C40 56 60 56 70 68 C60 80 40 80 30 68 Z" stroke="currentColor" fill="none" stroke-width="1.4"/>
+      <path d="M34 68 C40 60 60 60 66 68 C60 76 40 76 34 68 Z" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+
+      <!-- РАДУЖКА -->
+      <circle cx="50" cy="68" r="8" stroke="currentColor" fill="none" stroke-width="1.1"/>
+      <circle cx="50" cy="68" r="5" stroke="currentColor" fill="none" stroke-width=".5" opacity=".7"/>
+      <circle cx="50" cy="68" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="48" cy="66" r=".8" fill="currentColor" stroke="none" opacity=".8"/>
 
       <!-- РЕСНИЦЫ сверху -->
       <g stroke="currentColor" fill="none" stroke-width=".7" stroke-linecap="round">
-        <path d="M32 60 L30 56"/>
-        <path d="M40 55 L39 51"/>
-        <path d="M50 53 L50 49"/>
-        <path d="M60 55 L61 51"/>
-        <path d="M68 60 L70 56"/>
+        <path d="M32 62 L30 58"/>
+        <path d="M40 58 L39 54"/>
+        <path d="M50 56 L50 52"/>
+        <path d="M60 58 L61 54"/>
+        <path d="M68 62 L70 58"/>
+      </g>
+      <!-- Ресницы снизу -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".6" stroke-linecap="round">
+        <path d="M38 76 L37 78"/>
+        <path d="M50 77 L50 80"/>
+        <path d="M62 76 L63 78"/>
       </g>
 
-      <!-- 6 ЗВЁЗД вокруг -->
+      <!-- 6 ЗВЁЗД -->
       <g stroke="currentColor" fill="none" stroke-width=".7">
         <path d="M22 46 L23 48 L25 49 L23 50 L22 52 L21 50 L19 49 L21 48 Z"/>
         <path d="M78 46 L79 48 L81 49 L79 50 L78 52 L77 50 L75 49 L77 48 Z"/>
@@ -2157,7 +2508,15 @@ footer::before {
         <path d="M86 62 L87 64 L89 65 L87 66 L86 68 L85 66 L83 65 L85 64 Z"/>
       </g>
 
-      <path d="M22 122 Q28 118 34 122 Q40 126 46 122 Q52 118 58 122 Q64 126 70 122 Q76 118 82 122" stroke="currentColor" fill="none" stroke-width=".4" opacity=".5"/>
+      <!-- РУНЫ между звёздами -->
+      <g stroke="currentColor" fill="none" stroke-width=".5" opacity=".55">
+        <path d="M14 34 L18 30 L14 30"/>
+        <path d="M86 34 L82 30 L86 30"/>
+        <path d="M14 102 L18 98 L14 98"/>
+        <path d="M86 102 L82 98 L86 98"/>
+      </g>
+
+      <use href="#orn-scroll" x="10" y="115" width="80" height="10" opacity=".5"/>
     </symbol>
 
     <!-- ═══ Интерфейс ═══ -->
