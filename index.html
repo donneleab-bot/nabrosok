@@ -10,26 +10,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ============================================================
+   ПАЛИТРА «НОЧНАЯ СОВА»
+   Фон — глубокий сине-фиолетовый (перья в темноте)
+   Акценты — тёплый янтарь (глаза совы, свеча)
+   ============================================================ */
 :root {
-  --bg-deep:     #0f0a0d;
-  --bg-main:     #161016;
-  --bg-card:     #1e161c;
-  --gold:        #f5b96a;
-  --gold-bright: #ffd88f;
-  --orange:      #e8934a;
-  --wine:        #6b1f2e;
-  --wine-light:  #9c2e42;
-  --white:       #f5f0e8;
-  --gray:        #a39699;
-  --gray-dark:   #6a5c62;
-  --danger:      #e05353;
-  --success:     #6dbf7a;
-  --nsfw:        #b03a5e;
-  --border:      rgba(245,185,106,.10);
-  --border-hover: rgba(245,185,106,.35);
-  --shadow-md:   0 12px 40px rgba(0,0,0,.5);
-  --shadow-glow: 0 8px 40px rgba(245,185,106,.20);
-  --radius:      16px;
+  /* Фоны — с холодным синим подтоном, чтобы глаза отдыхали */
+  --bg-void:     #0b0e17;   /* самый глубокий — почти чернила */
+  --bg-deep:     #10141f;   /* подложка страницы */
+  --bg-main:     #141926;   /* основной фон */
+  --bg-card:     #1a2032;   /* карточки */
+  --bg-hover:    #232a40;   /* hover */
+
+  /* Янтарная гамма — «сова» */
+  --amber:       #d9a441;   /* основной янтарь — не слишком яркий */
+  --amber-soft:  #e6b866;   /* мягче, для текста */
+  --amber-glow:  #f2c97a;   /* свечение */
+  --amber-deep:  #a87a2c;   /* тёмный, для границ */
+
+  /* Перья совы — фиолетово-бордовое */
+  --plume:       #4a2a4a;   /* тёмно-сливовый */
+  --plume-light: #6d3d6b;   /* светлее */
+  --plume-deep:  #2a1a2e;   /* глубже */
+
+  /* Нейтральные */
+  --ink:         #ece4d4;   /* тёплый белый — не бьёт по глазам */
+  --ink-soft:    #b5a892;   /* приглушённый текст */
+  --ink-mute:    #7a7082;   /* второй план */
+  --ink-faint:   #4a4555;   /* совсем тихий */
+
+  /* Семантика */
+  --danger:      #c76a6a;   /* приглушённый красный */
+  --success:     #7ba87b;   /* приглушённый зелёный */
+  --nsfw:        #9c4a6a;
+
+  /* Границы и тени — мягкие, не режут */
+  --border:      rgba(217,164,65,.10);
+  --border-soft: rgba(236,228,212,.06);
+  --border-hover: rgba(217,164,65,.30);
+
+  --shadow-sm:   0 4px 14px rgba(0,0,0,.30);
+  --shadow-md:   0 14px 40px rgba(0,0,0,.45);
+  --shadow-glow: 0 8px 32px rgba(217,164,65,.18);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,245 +61,321 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg-main);
-  color: var(--white);
-  line-height: 1.55;
+  color: var(--ink);
+  line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+/* Фон: медленно дышащие градиенты — не отвлекают, но живые */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
   background:
-    radial-gradient(circle at 15% 10%, rgba(245,185,106,.14), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(107,31,46,.35), transparent 50%),
-    radial-gradient(circle at 50% 90%, rgba(232,147,74,.10), transparent 55%);
-  animation: floatBg 20s ease-in-out infinite alternate;
+    radial-gradient(circle at 12% 8%, rgba(217,164,65,.10), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(109,61,107,.22), transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(74,42,74,.20), transparent 55%),
+    linear-gradient(180deg, var(--bg-main) 0%, var(--bg-void) 100%);
+  animation: breatheBg 24s ease-in-out infinite alternate;
 }
-@keyframes floatBg {
+@keyframes breatheBg {
   0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-30px, 20px) scale(1.05); }
+  100% { transform: translate(-20px, 15px) scale(1.04); }
 }
 
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-track { background: var(--bg-void); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--wine), var(--gold));
+  background: linear-gradient(var(--plume), var(--amber-deep));
   border-radius: 10px;
+  border: 2px solid var(--bg-void);
 }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(var(--plume-light), var(--amber)); }
+
+::selection { background: rgba(217,164,65,.30); color: var(--ink); }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 img { display: block; max-width: 100%; }
 
-/* ===================== ХЕДЕР ===================== */
+/* ============================================================
+   ХЕДЕР
+   ============================================================ */
 .topbar {
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; gap: 32px;
   padding: 16px 40px;
-  background: rgba(15, 10, 13, .72);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  background: rgba(11, 14, 23, .78);
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
   border-bottom: 1px solid var(--border);
 }
+
+/* Логотип — сова из SVG */
 .logo {
   display: flex; align-items: center; gap: 12px;
   font-family: 'Manrope', sans-serif;
   font-size: 21px; font-weight: 800; letter-spacing: -.3px;
 }
 .logo-mark {
-  width: 34px; height: 34px;
+  width: 38px; height: 38px;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
-  border-radius: 10px;
-  color: #1a1418; font-size: 20px; font-weight: 900;
-  box-shadow: var(--shadow-glow);
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--plume-deep), var(--bg-void));
+  border: 1px solid rgba(217,164,65,.30);
+  box-shadow: inset 0 1px 0 rgba(242,201,122,.15), 0 4px 16px rgba(0,0,0,.4);
+  position: relative;
 }
-.logo-text-accent { color: var(--gold); }
+.logo-mark svg { width: 24px; height: 24px; }
+.logo-mark .eye {
+  fill: var(--amber);
+  filter: drop-shadow(0 0 4px var(--amber));
+}
+.logo-mark .body { fill: var(--plume-light); }
+
+.logo-text-accent { color: var(--amber); }
 
 .main-nav {
-  display: flex; gap: 6px;
+  display: flex; gap: 4px;
   padding: 5px;
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.02);
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.04);
+  border: 1px solid var(--border-soft);
 }
 .main-nav a {
   padding: 8px 16px;
-  color: var(--gray);
+  color: var(--ink-mute);
   font-size: 14px; font-weight: 500;
   border-radius: 8px;
-  transition: all .2s;
+  transition: all .22s ease;
 }
-.main-nav a:hover { color: var(--gold); background: rgba(245,185,106,.08); }
-.main-nav a.active { color: var(--gold); background: rgba(245,185,106,.12); }
+.main-nav a:hover { color: var(--amber-soft); background: rgba(217,164,65,.06); }
+.main-nav a.active {
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(217,164,65,.18), rgba(109,61,107,.18));
+  box-shadow: inset 0 1px 0 rgba(242,201,122,.15);
+}
 
 .topbar-actions {
   margin-left: auto; display: flex; align-items: center; gap: 10px;
 }
+
+/* SVG-иконки вместо эмодзи */
 .icon-btn {
   position: relative;
-  height: 40px; padding: 0 14px;
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.06);
+  height: 40px; min-width: 40px; padding: 0 12px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border-soft);
   border-radius: 10px;
-  font-size: 14px;
-  color: var(--white);
-  transition: all .2s;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  transition: all .22s ease;
 }
-.icon-btn:hover { background: rgba(245,185,106,.10); border-color: var(--border-hover); }
+.icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.icon-btn:hover {
+  background: rgba(217,164,65,.08);
+  border-color: var(--border-hover);
+  color: var(--amber-soft);
+}
 .icon-btn.wallet {
-  color: var(--gold); font-weight: 700;
-  background: linear-gradient(135deg, rgba(245,185,106,.15), rgba(232,147,74,.10));
-  border-color: rgba(245,185,106,.30);
+  color: var(--amber);
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(217,164,65,.12), rgba(109,61,107,.10));
+  border-color: rgba(217,164,65,.25);
+  font-family: 'Manrope', sans-serif;
 }
-.badge {
-  position: absolute; top: -5px; right: -5px;
-  background: var(--danger); color: white;
-  font-size: 10px; font-weight: 700;
-  padding: 2px 6px; border-radius: 20px;
-  border: 2px solid var(--bg-main);
-}
-.avatar {
-  width: 40px; height: 40px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--wine) 100%);
-  border: 2px solid rgba(245,185,106,.4);
-  cursor: pointer;
-  transition: transform .2s;
-}
-.avatar:hover { transform: scale(1.05); }
 
-/* ===================== КНОПКИ ===================== */
+.badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 5px; border-radius: 20px;
+  border: 2px solid var(--bg-void);
+  min-width: 18px; text-align: center;
+}
+
+.avatar {
+  width: 40px; height: 40px; border-radius: 11px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(242,201,122,.4), transparent 60%),
+    linear-gradient(135deg, var(--plume), var(--plume-deep));
+  border: 1px solid rgba(217,164,65,.30);
+  cursor: pointer;
+  transition: all .22s ease;
+  position: relative;
+}
+.avatar::after {
+  content: '';
+  position: absolute; inset: 6px;
+  border-radius: 6px;
+  background: radial-gradient(circle at 30% 35%, var(--amber) 0%, var(--amber-deep) 40%, transparent 42%),
+              radial-gradient(circle at 70% 35%, var(--amber) 0%, var(--amber-deep) 40%, transparent 42%);
+}
+.avatar:hover { transform: scale(1.05); border-color: var(--amber); }
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 12px 22px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
-  color: #1a0f05;
-  font-weight: 700; font-size: 14px;
+  background: linear-gradient(135deg, var(--amber) 0%, var(--amber-deep) 100%);
+  color: #1a1206;
+  font-weight: 700; font-size: 14px; letter-spacing: .1px;
   border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(245,185,106,.35), inset 0 1px 0 rgba(255,255,255,.3);
-  transition: all .25s;
-  position: relative; overflow: hidden;
+  box-shadow:
+    0 6px 22px rgba(217,164,65,.28),
+    inset 0 1px 0 rgba(255,255,255,.25);
+  transition: all .25s ease;
+  position: relative;
+  overflow: hidden;
 }
 .btn-primary::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-  opacity: 0; transition: opacity .25s;
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
+  opacity: 0;
+  transition: opacity .25s ease;
 }
-.btn-primary span { position: relative; z-index: 1; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(245,185,106,.5); }
+.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+.btn-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 30px rgba(217,164,65,.42), inset 0 1px 0 rgba(255,255,255,.35);
+}
 .btn-primary:hover::after { opacity: 1; }
-.btn-primary.sm { padding: 9px 16px; font-size: 13px; }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary.sm { padding: 9px 16px; font-size: 13px; border-radius: 10px; }
 .btn-primary.full { width: 100%; padding: 14px; }
 
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 22px;
-  background: rgba(245,185,106,.06);
-  border: 1px solid rgba(245,185,106,.30);
-  color: var(--gold);
+  background: rgba(217,164,65,.05);
+  border: 1px solid rgba(217,164,65,.22);
+  color: var(--amber-soft);
   font-weight: 600; font-size: 14px;
   border-radius: 12px;
-  transition: all .2s;
+  transition: all .22s ease;
 }
-.btn-ghost:hover { background: rgba(245,185,106,.12); border-color: var(--gold); }
+.btn-ghost:hover {
+  background: rgba(217,164,65,.10);
+  border-color: rgba(217,164,65,.50);
+  color: var(--amber-glow);
+}
+.btn-ghost svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* ===================== ЗАГОЛОВОК СЕКЦИЙ ===================== */
-.section-head {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 32px;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.section-head .title-wrap { display: flex; flex-direction: column; gap: 6px; }
-.section-head h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 34px; font-weight: 800;
-  letter-spacing: -1px;
-  display: flex; align-items: center; gap: 14px;
-}
-.section-head h2 .live-pulse {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--danger);
-  box-shadow: 0 0 12px var(--danger);
-  animation: pulse 1.4s infinite;
-}
-@keyframes pulse { 50% { opacity: .3; } }
-.section-head p { color: var(--gray); font-size: 15px; }
-
+/* ============================================================
+   СЕКЦИИ
+   ============================================================ */
 section.block {
   max-width: 1360px; margin: 0 auto;
   padding: 60px 40px;
 }
 
-/* ===================== LIVE-АУКЦИОНЫ (ВЕРХ) ===================== */
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 20px; flex-wrap: wrap;
+}
+.section-head .title-wrap { display: flex; flex-direction: column; gap: 6px; }
+.section-head h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 34px; font-weight: 800;
+  letter-spacing: -.9px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-head h2 .live-pulse {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 12px var(--amber), 0 0 24px rgba(217,164,65,.5);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .45; transform: scale(.9); }
+}
+.section-head p { color: var(--ink-mute); font-size: 15px; }
+
+/* ============================================================
+   LIVE-АУКЦИОНЫ
+   ============================================================ */
 .live-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 22px;
-  margin-bottom: 22px;
 }
 
 .live-main {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%);
-  border: 1px solid var(--border-hover);
-  border-radius: 24px;
+  background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  border: 1px solid rgba(217,164,65,.20);
+  border-radius: 22px;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
+  grid-template-columns: 1.05fr .95fr;
   gap: 24px;
-  box-shadow: var(--shadow-md), 0 0 80px rgba(245,185,106,.12);
+  box-shadow: var(--shadow-md), 0 0 90px rgba(217,164,65,.08);
   overflow: hidden;
 }
 .live-main::before {
   content: '';
   position: absolute; inset: -1px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(245,185,106,.4), transparent 40%, rgba(107,31,46,.4));
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(217,164,65,.35), transparent 45%, rgba(109,61,107,.35));
   z-index: -1;
-  opacity: .5;
-  filter: blur(14px);
+  opacity: .45;
+  filter: blur(18px);
 }
 
 .live-badge {
   position: absolute; top: 32px; left: 32px; z-index: 3;
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(224,83,83,.9);
-  color: white;
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(199,106,106,.92);
+  color: #fff;
   padding: 6px 12px; border-radius: 20px;
-  font-size: 11px; font-weight: 800;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 16px rgba(224,83,83,.5);
+  font-size: 10.5px; font-weight: 800;
+  letter-spacing: 1.4px;
+  box-shadow: 0 4px 16px rgba(199,106,106,.45);
 }
 .live-badge::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%;
-  background: white;
-  animation: pulse 1.2s infinite;
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #fff;
+  animation: pulse 1.4s ease-in-out infinite;
 }
 
+/* Картинка лота — «сова в ночи» */
 .live-art {
   height: 340px;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 50% 45%, rgba(245,185,106,.45), transparent 55%),
-    linear-gradient(135deg, var(--wine) 0%, var(--bg-deep) 100%);
+    radial-gradient(circle at 50% 45%, rgba(217,164,65,.30), transparent 55%),
+    radial-gradient(circle at 50% 45%, rgba(109,61,107,.30), transparent 70%),
+    linear-gradient(160deg, var(--plume-deep) 0%, var(--bg-void) 100%);
   display: grid; place-items: center;
   position: relative;
   overflow: hidden;
 }
-.live-art::after {
-  content: '◈';
-  font-size: 140px;
-  color: var(--gold);
-  text-shadow: 0 0 60px var(--orange), 0 0 20px var(--gold);
-  animation: float 3s ease-in-out infinite;
+/* Силуэт совы — SVG */
+.live-art svg {
+  width: 180px; height: 180px;
+  filter: drop-shadow(0 0 40px rgba(217,164,65,.55)) drop-shadow(0 0 80px rgba(109,61,107,.4));
+  animation: hover 5s ease-in-out infinite;
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes hover {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
+.live-art .owl-body { fill: var(--plume); }
+.live-art .owl-eye {
+  fill: var(--amber-glow);
+  filter: drop-shadow(0 0 8px var(--amber)) drop-shadow(0 0 16px rgba(217,164,65,.7));
+}
+.live-art .owl-pupil { fill: var(--bg-void); }
+.live-art .owl-beak { fill: var(--amber); }
 
 .live-info { display: flex; flex-direction: column; justify-content: center; }
 .live-info h3 {
@@ -285,64 +384,72 @@ section.block {
   letter-spacing: -.5px;
   margin-bottom: 6px;
 }
-.live-info .author { color: var(--gray); font-size: 14px; margin-bottom: 20px; }
-.live-info .author b { color: var(--gold); font-weight: 600; }
+.live-info .author { color: var(--ink-mute); font-size: 14px; margin-bottom: 20px; }
+.live-info .author b { color: var(--amber-soft); font-weight: 600; }
 
 .bid-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 14px 0;
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
   margin-bottom: 14px;
 }
-.bid-row span { color: var(--gray); font-size: 13px; }
+.bid-row span { color: var(--ink-mute); font-size: 13px; }
 .bid-row strong {
   font-family: 'Manrope', sans-serif;
   font-size: 24px; font-weight: 800;
-  color: var(--gold);
+  color: var(--amber-soft);
+  text-shadow: 0 0 20px rgba(217,164,65,.35);
 }
+
 .timer {
   text-align: center;
   font-family: 'Manrope', monospace;
   font-size: 16px; font-weight: 700;
-  color: var(--gold);
+  color: var(--amber-soft);
   padding: 12px;
-  background: rgba(245,185,106,.06);
-  border: 1px solid rgba(245,185,106,.15);
+  background: rgba(217,164,65,.05);
+  border: 1px solid rgba(217,164,65,.15);
   border-radius: 10px;
   margin-bottom: 14px;
   letter-spacing: 3px;
+  font-variant-numeric: tabular-nums;
 }
 
-/* Сайдбар аукционов */
-.live-side {
-  display: flex; flex-direction: column; gap: 14px;
-}
+/* Мини-аукционы сбоку */
+.live-side { display: flex; flex-direction: column; gap: 14px; }
 .mini-auction {
   flex: 1;
   display: flex; gap: 14px;
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 16px;
+  background: linear-gradient(165deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid var(--border-soft);
+  border-radius: 15px;
   padding: 14px;
-  transition: all .25s;
+  transition: all .25s ease;
   cursor: pointer;
 }
 .mini-auction:hover {
   border-color: var(--border-hover);
-  transform: translateX(-4px);
+  transform: translateX(-3px);
+  box-shadow: 0 8px 26px rgba(0,0,0,.35);
 }
 .mini-thumb {
-  width: 80px; height: 80px;
+  width: 78px; height: 78px;
   border-radius: 12px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--wine), var(--bg-deep));
+  background: linear-gradient(150deg, var(--plume-deep), var(--bg-void));
   display: grid; place-items: center;
-  font-size: 32px; color: var(--gold);
-  text-shadow: 0 0 20px var(--orange);
+  border: 1px solid rgba(217,164,65,.12);
+  position: relative;
+  overflow: hidden;
 }
-.mini-thumb.orange { background: linear-gradient(135deg, var(--orange), var(--wine)); }
-.mini-thumb.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
+.mini-thumb svg { width: 44px; height: 44px; }
+.mini-thumb .owl-body { fill: var(--plume-light); }
+.mini-thumb .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 5px var(--amber)); }
+.mini-thumb .owl-pupil { fill: var(--bg-void); }
+.mini-thumb .owl-beak { fill: var(--amber); }
+.mini-thumb.amber { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
+.mini-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
 
 .mini-info { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
 .mini-info h4 {
@@ -350,24 +457,28 @@ section.block {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .mini-info .mini-price {
-  color: var(--gold); font-weight: 700;
+  color: var(--amber-soft); font-weight: 700;
   font-family: 'Manrope', sans-serif;
   font-size: 15px;
 }
 .mini-info .mini-time {
-  color: var(--gray); font-size: 12px;
-  font-family: monospace; letter-spacing: 1px;
+  color: var(--ink-mute); font-size: 11.5px;
+  font-family: 'Manrope', monospace;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
 }
 
-/* ===================== YCH / ГАРЯЧИЕ ЛОТЫ ===================== */
+/* ============================================================
+   ГОРЯЧИЕ ЛОТЫ
+   ============================================================ */
 .hot-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 18px;
 }
 .hot-card {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(255,255,255,.05);
+  background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
   overflow: hidden;
   transition: all .3s cubic-bezier(.2,.8,.2,1);
@@ -379,75 +490,88 @@ section.block {
   position: absolute; inset: 0;
   border-radius: 16px;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(245,185,106,.6), transparent);
+  background: linear-gradient(135deg, transparent, rgba(217,164,65,.55), transparent);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .3s ease;
   pointer-events: none;
 }
-.hot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(245,185,106,.15); }
+.hot-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 55px rgba(0,0,0,.5), 0 0 40px rgba(217,164,65,.12);
+}
 .hot-card:hover::before { opacity: 1; }
 
 .hot-thumb {
   position: relative;
-  aspect-ratio: 1.2;
+  aspect-ratio: 1.15;
   overflow: hidden;
-}
-.hot-thumb .art {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--bg-deep), var(--wine));
+  background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
   display: grid; place-items: center;
-  font-size: 70px; color: var(--gold);
-  opacity: .9;
-  transition: transform .4s;
-  text-shadow: 0 0 30px var(--orange);
 }
-.hot-card:hover .art { transform: scale(1.08); }
-.hot-thumb .art.wine { background: linear-gradient(135deg, var(--wine), var(--orange)); }
-.hot-thumb .art.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
+.hot-thumb svg {
+  width: 90px; height: 90px;
+  filter: drop-shadow(0 0 20px rgba(217,164,65,.4));
+  transition: transform .4s ease;
+}
+.hot-card:hover .hot-thumb svg { transform: scale(1.10); }
+.hot-thumb .owl-body { fill: var(--plume-light); }
+.hot-thumb .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 6px var(--amber)); }
+.hot-thumb .owl-pupil { fill: var(--bg-void); }
+.hot-thumb .owl-beak { fill: var(--amber); }
+
+.hot-thumb.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
+.hot-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
+.hot-thumb.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
 
 .tag {
   position: absolute; z-index: 2;
   padding: 5px 11px;
   border-radius: 8px;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .3px;
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
   backdrop-filter: blur(8px);
 }
-.tag.gold {
+.tag.amber {
   top: 12px; left: 12px;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
-  color: #1a0f05;
-  box-shadow: 0 4px 14px rgba(245,185,106,.5);
+  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
+  color: #1a1206;
+  box-shadow: 0 4px 14px rgba(217,164,65,.4);
 }
-.tag.nsfw { top: 12px; right: 12px; background: rgba(176,58,94,.9); color: white; }
-.tag.ych {
+.tag.nsfw { top: 12px; right: 12px; background: rgba(156,74,106,.9); color: #fff; }
+.tag.plume {
   top: 12px; left: 12px;
-  background: rgba(156,46,66,.92);
-  color: white;
-  border: 1px solid rgba(245,185,106,.35);
+  background: rgba(74,42,74,.92);
+  color: var(--amber-soft);
+  border: 1px solid rgba(217,164,65,.30);
 }
 
-.hot-body { padding: 14px; }
+.hot-body { padding: 15px; }
 .hot-body h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; letter-spacing: -.2px; }
-.hot-body .author { color: var(--gray); font-size: 12px; margin-bottom: 12px; }
-.hot-body .author b { color: var(--gold); font-weight: 500; }
+.hot-body .author { color: var(--ink-mute); font-size: 12px; margin-bottom: 12px; }
+.hot-body .author b { color: var(--amber-soft); font-weight: 500; }
 
 .hot-footer {
   display: flex; justify-content: space-between; align-items: center;
   padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,.05);
+  border-top: 1px solid var(--border-soft);
 }
 .hot-footer .price { display: flex; flex-direction: column; }
-.hot-footer .price span { font-size: 10px; color: var(--gray); text-transform: uppercase; letter-spacing: .8px; }
+.hot-footer .price span {
+  font-size: 10px; color: var(--ink-mute);
+  text-transform: uppercase; letter-spacing: 1px;
+}
 .hot-footer .price strong {
   font-family: 'Manrope', sans-serif;
-  color: var(--gold); font-size: 16px; font-weight: 800;
+  color: var(--amber-soft); font-size: 16px; font-weight: 800;
 }
 
-/* ===================== КОММИШКИ (СЛОТЫ) ===================== */
+/* ============================================================
+   СЛОТЫ КОММИШЕК
+   ============================================================ */
 .slots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -455,27 +579,31 @@ section.block {
 }
 .slot {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(245,185,106,.15);
+  background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid rgba(217,164,65,.14);
   border-radius: 16px;
   padding: 26px;
-  transition: all .3s;
+  transition: all .3s ease;
   overflow: hidden;
 }
 .slot::after {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--orange), var(--wine));
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--amber), var(--plume-light), var(--amber-deep));
   transform: scaleX(0); transform-origin: left;
-  transition: transform .4s;
+  transition: transform .4s ease;
 }
-.slot.open:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.slot.open:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
 .slot.open:hover::after { transform: scaleX(1); }
-.slot.closed { opacity: .4; }
+.slot.closed { opacity: .42; }
 
 .slot-num {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(109,191,122,.12);
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(123,168,123,.10);
   color: var(--success);
   padding: 5px 12px;
   border-radius: 20px;
@@ -490,46 +618,58 @@ section.block {
 .slot h4 { font-size: 19px; font-weight: 700; margin-bottom: 14px; letter-spacing: -.3px; }
 .slot ul { list-style: none; margin-bottom: 20px; }
 .slot ul li {
-  padding: 8px 0;
-  color: var(--gray); font-size: 14px;
-  border-bottom: 1px dashed rgba(255,255,255,.06);
+  padding: 9px 0;
+  color: var(--ink-soft); font-size: 14px;
+  border-bottom: 1px dashed rgba(236,228,212,.06);
   display: flex; justify-content: space-between;
 }
 .slot ul li:last-child { border-bottom: none; }
-.slot ul b { color: var(--gold); font-weight: 700; }
+.slot ul b { color: var(--amber-soft); font-weight: 700; }
 
-/* ===================== ФИЧИ (ДОВЕРИЕ) ===================== */
+/* ============================================================
+   ДОВЕРИЕ
+   ============================================================ */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 .feature {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(255,255,255,.05);
+  background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 26px;
-  transition: all .3s;
+  transition: all .3s ease;
 }
-.feature:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+.feature:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.35);
+}
 .feature-icon {
-  width: 50px; height: 50px;
+  width: 48px; height: 48px;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, rgba(245,185,106,.15), rgba(107,31,46,.20));
-  border: 1px solid rgba(245,185,106,.25);
-  border-radius: 14px;
-  font-size: 24px;
+  background: linear-gradient(135deg, rgba(217,164,65,.12), rgba(74,42,74,.22));
+  border: 1px solid rgba(217,164,65,.22);
+  border-radius: 13px;
   margin-bottom: 16px;
-  filter: drop-shadow(0 0 16px rgba(245,185,106,.4));
+  color: var(--amber-soft);
 }
-.feature h4 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
-.feature p { color: var(--gray); font-size: 13px; line-height: 1.5; }
+.feature-icon svg {
+  width: 22px; height: 22px;
+  stroke: currentColor; fill: none; stroke-width: 1.8;
+  filter: drop-shadow(0 0 8px rgba(217,164,65,.4));
+}
+.feature h4 { font-size: 16px; font-weight: 700; color: var(--amber-soft); margin-bottom: 6px; }
+.feature p { color: var(--ink-mute); font-size: 13.5px; line-height: 1.55; }
 
-/* ===================== ГАЛЕРЕЯ (САМЫЙ НИЗ) ===================== */
+/* ============================================================
+   ГАЛЕРЕЯ
+   ============================================================ */
 .gallery {
   max-width: 1360px; margin: 0 auto;
   padding: 80px 40px 60px;
-  border-top: 1px solid rgba(245,185,106,.10);
+  border-top: 1px solid var(--border);
 }
 .gallery-head {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -538,9 +678,9 @@ section.block {
 .gallery-head h2 {
   font-family: 'Manrope', sans-serif;
   font-size: 38px; font-weight: 800;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.3px;
 }
-.gallery-head p { color: var(--gray); font-size: 15px; margin-top: 6px; }
+.gallery-head p { color: var(--ink-mute); font-size: 15px; margin-top: 6px; }
 
 .gallery-filters {
   display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
@@ -548,55 +688,59 @@ section.block {
 }
 .chip {
   padding: 10px 20px;
-  background: rgba(255,255,255,.03);
-  color: var(--gray);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+  color: var(--ink-mute);
+  border: 1px solid var(--border-soft);
   border-radius: 30px;
-  font-size: 14px; font-weight: 500;
-  transition: all .2s;
+  font-size: 13.5px; font-weight: 500;
+  transition: all .22s ease;
 }
-.chip:hover { color: var(--gold); border-color: var(--border-hover); }
+.chip:hover { color: var(--amber-soft); border-color: rgba(217,164,65,.35); }
 .chip.active {
-  color: #1a0f05;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #1a1206;
+  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
   border-color: transparent;
   font-weight: 700;
-  box-shadow: 0 4px 16px rgba(245,185,106,.35);
+  box-shadow: 0 4px 16px rgba(217,164,65,.30);
 }
+
 .toggle {
   display: flex; align-items: center; gap: 10px;
   margin-left: auto;
-  color: var(--gray); font-size: 14px;
+  color: var(--ink-mute); font-size: 13.5px;
   padding: 8px 16px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border-soft);
   border-radius: 30px;
   cursor: pointer;
   user-select: none;
+  transition: border-color .22s ease;
 }
+.toggle:hover { border-color: rgba(217,164,65,.30); }
 .toggle input {
   appearance: none;
-  width: 36px; height: 20px;
-  background: var(--gray-dark);
+  width: 34px; height: 18px;
+  background: var(--ink-faint);
   border-radius: 20px;
   position: relative;
   cursor: pointer;
-  transition: .2s;
+  transition: .25s ease;
 }
 .toggle input::after {
-  content: ''; position: absolute;
-  top: 2px; left: 2px;
-  width: 16px; height: 16px;
-  background: white; border-radius: 50%;
-  transition: .2s;
+  content: '';
+  position: absolute; top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  background: var(--ink-soft);
+  border-radius: 50%;
+  transition: .25s ease;
 }
-.toggle input:checked { background: var(--gold); }
-.toggle input:checked::after { left: 18px; }
+.toggle input:checked { background: var(--amber-deep); }
+.toggle input:checked::after { left: 18px; background: var(--amber-glow); }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
 }
 .gallery-item {
   position: relative;
@@ -604,26 +748,35 @@ section.block {
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--bg-deep), var(--wine));
-  transition: all .3s;
+  background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
+  transition: all .3s ease;
+  border: 1px solid var(--border-soft);
 }
 .gallery-item .art {
   width: 100%; height: 100%;
   display: grid; place-items: center;
-  font-size: 70px; color: var(--gold);
-  text-shadow: 0 0 30px var(--orange);
-  transition: transform .4s;
+  transition: transform .45s ease;
 }
-.gallery-item .art.wine { background: linear-gradient(135deg, var(--wine), var(--orange)); }
-.gallery-item .art.blue { background: linear-gradient(135deg, #1a2a4a, #4a2a6a); }
-.gallery-item .art.green { background: linear-gradient(135deg, #1a3a2a, #4a6a2a); }
+.gallery-item .art svg {
+  width: 80px; height: 80px;
+  filter: drop-shadow(0 0 20px rgba(217,164,65,.4));
+}
+.gallery-item .owl-body { fill: var(--plume-light); }
+.gallery-item .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 6px var(--amber)); }
+.gallery-item .owl-pupil { fill: var(--bg-void); }
+.gallery-item .owl-beak { fill: var(--amber); }
 
-.gallery-item:hover .art { transform: scale(1.1); }
+.gallery-item .art.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
+.gallery-item .art.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
+.gallery-item .art.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
+.gallery-item .art.deep  { background: linear-gradient(150deg, var(--bg-void), var(--plume-deep)); }
+
+.gallery-item:hover .art { transform: scale(1.09); }
 .gallery-item::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.8));
-  opacity: 0; transition: opacity .3s;
+  background: linear-gradient(180deg, transparent 45%, rgba(11,14,23,.9));
+  opacity: 0; transition: opacity .3s ease;
   pointer-events: none;
 }
 .gallery-item:hover::after { opacity: 1; }
@@ -633,7 +786,7 @@ section.block {
   z-index: 2;
   transform: translateY(10px);
   opacity: 0;
-  transition: all .3s;
+  transition: all .3s ease;
   pointer-events: none;
 }
 .gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
@@ -642,28 +795,35 @@ section.block {
   margin-bottom: 2px;
 }
 .gallery-item .overlay p {
-  font-size: 12px; color: var(--gold);
+  font-size: 12px; color: var(--amber-soft);
   font-weight: 600;
 }
 
-/* ===================== ФУТЕР ===================== */
+/* ============================================================
+   ФУТЕР
+   ============================================================ */
 footer {
   border-top: 1px solid var(--border);
   padding: 40px 40px 24px;
-  background: rgba(0,0,0,.35);
+  background: rgba(11,14,23,.6);
 }
 .footer-inner {
   max-width: 1360px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
   gap: 30px; flex-wrap: wrap;
 }
-.footer-inner .logo { font-size: 18px; }
-.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-.footer-links a { color: var(--gray); font-size: 13px; transition: color .2s; }
-.footer-links a:hover { color: var(--gold); }
-.copyright { color: var(--gray-dark); font-size: 12px; }
+.footer-inner .logo { font-size: 17px; }
+.footer-links { display: flex; gap: 26px; flex-wrap: wrap; }
+.footer-links a {
+  color: var(--ink-mute); font-size: 13px;
+  transition: color .2s ease;
+}
+.footer-links a:hover { color: var(--amber-soft); }
+.copyright { color: var(--ink-faint); font-size: 12px; }
 
-/* ===================== МОБИЛЬНАЯ ===================== */
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
 @media (max-width: 1024px) {
   .main-nav { display: none; }
   .topbar { padding: 14px 20px; gap: 16px; }
@@ -677,6 +837,7 @@ footer {
   .section-head h2, .gallery-head h2 { font-size: 26px; }
   .topbar-actions .icon-btn:not(.wallet) { display: none; }
   .gallery { padding-top: 50px; }
+  .section-head h2 { font-size: 24px; }
 }
 </style>
 </head>
@@ -685,7 +846,19 @@ footer {
 <!-- ===================== ХЕДЕР ===================== -->
 <header class="topbar">
   <div class="logo">
-    <div class="logo-mark">◈</div>
+    <div class="logo-mark">
+      <!-- Сова -->
+      <svg viewBox="0 0 40 40">
+        <path class="body" d="M20 4 C10 4 6 12 6 20 C6 30 12 36 20 36 C28 36 34 30 34 20 C34 12 30 4 20 4 Z"/>
+        <path class="body" d="M8 6 L13 12 L8 14 Z"/>
+        <path class="body" d="M32 6 L27 12 L32 14 Z"/>
+        <circle class="eye" cx="14.5" cy="19" r="4"/>
+        <circle class="eye" cx="25.5" cy="19" r="4"/>
+        <circle class="pupil" cx="14.5" cy="19" r="1.6"/>
+        <circle class="pupil" cx="25.5" cy="19" r="1.6"/>
+        <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+      </svg>
+    </div>
     <div>Art<span class="logo-text-accent">Haven</span></div>
   </div>
 
@@ -698,27 +871,54 @@ footer {
   </nav>
 
   <div class="topbar-actions">
-    <button class="icon-btn">🔔<span class="badge">3</span></button>
-    <button class="icon-btn wallet">💎 1 240 $</button>
-    <button class="btn-primary"><span>+ Открыть слот</span></button>
-    <div class="avatar"></div>
+    <button class="icon-btn" title="Уведомления">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <span class="badge">3</span>
+    </button>
+    <button class="icon-btn wallet">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+        <path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>
+      </svg>
+      1 240
+    </button>
+    <button class="btn-primary"><span>Открыть слот</span></button>
+    <div class="avatar" title="Профиль"></div>
   </div>
 </header>
 
-<!-- ===================== LIVE-АУКЦИОНЫ (ВЕРХ) ===================== -->
+<!-- ===================== LIVE-АУКЦИОНЫ ===================== -->
 <section class="block">
   <div class="section-head">
     <div class="title-wrap">
       <h2><span class="live-pulse"></span> Живые аукционы</h2>
-      <p>Ставки идут прямо сейчас — не пропусти момент</p>
+      <p>Ставки идут прямо сейчас — не пропустите момент</p>
     </div>
-    <button class="btn-ghost">Все аукционы →</button>
+    <button class="btn-ghost">
+      Все аукционы
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
   </div>
 
   <div class="live-grid">
     <aside class="live-main">
       <div class="live-badge">LIVE</div>
-      <div class="live-art"></div>
+      <div class="live-art">
+        <svg viewBox="0 0 40 40">
+          <path class="owl-body" d="M20 3 C9 3 5 12 5 21 C5 32 12 38 20 38 C28 38 35 32 35 21 C35 12 31 3 20 3 Z"/>
+          <path class="owl-body" d="M7 5 L13 12 L7 15 Z"/>
+          <path class="owl-body" d="M33 5 L27 12 L33 15 Z"/>
+          <circle class="owl-eye" cx="14" cy="19" r="4.5"/>
+          <circle class="owl-eye" cx="26" cy="19" r="4.5"/>
+          <circle class="owl-pupil" cx="14" cy="19" r="1.8"/>
+          <circle class="owl-pupil" cx="26" cy="19" r="1.8"/>
+          <path class="owl-beak" d="M20 24 L23 29 L17 29 Z"/>
+        </svg>
+      </div>
       <div class="live-info">
         <h3>Paimon — Closed Species</h3>
         <p class="author">by <b>@kuro_art</b> · Legendary traits</p>
@@ -726,56 +926,95 @@ footer {
           <span>Текущая ставка</span>
           <strong>240 USDT</strong>
         </div>
-        <div class="timer">⏱ 04 : 12 : 33</div>
+        <div class="timer">04 : 12 : 33</div>
         <button class="btn-primary full"><span>Сделать ставку</span></button>
       </div>
     </aside>
 
     <div class="live-side">
       <div class="mini-auction">
-        <div class="mini-thumb orange">◈</div>
+        <div class="mini-thumb amber">
+          <svg viewBox="0 0 40 40">
+            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+          </svg>
+        </div>
         <div class="mini-info">
           <h4>Dark Fae Adopt</h4>
           <div class="mini-price">120 USDT</div>
-          <div class="mini-time">⏱ 02:18:41</div>
+          <div class="mini-time">02 : 18 : 41</div>
         </div>
       </div>
+
       <div class="mini-auction">
-        <div class="mini-thumb blue">◈</div>
+        <div class="mini-thumb blue">
+          <svg viewBox="0 0 40 40">
+            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+          </svg>
+        </div>
         <div class="mini-info">
           <h4>Wolf Spirit — SB 80</h4>
           <div class="mini-price">95 USDT</div>
-          <div class="mini-time">⏱ 00:46:12</div>
+          <div class="mini-time">00 : 46 : 12</div>
         </div>
       </div>
+
       <div class="mini-auction">
-        <div class="mini-thumb">◈</div>
+        <div class="mini-thumb">
+          <svg viewBox="0 0 40 40">
+            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+          </svg>
+        </div>
         <div class="mini-info">
           <h4>Mermay YCH — 2 slots</h4>
           <div class="mini-price">45 USDT</div>
-          <div class="mini-time">⏱ 11:04:55</div>
+          <div class="mini-time">11 : 04 : 55</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== YCH + ГОРЯЧИЕ ЛОТЫ ===================== -->
+<!-- ===================== ГОРЯЧИЕ ЛОТЫ ===================== -->
 <section class="block" style="padding-top: 0;">
   <div class="section-head">
     <div class="title-wrap">
-      <h2>🔥 Ищут покупателя</h2>
+      <h2>Ищут покупателя</h2>
       <p>YCH, фикс-прайсы и срочные лоты</p>
     </div>
-    <button class="btn-ghost">Все лоты →</button>
+    <button class="btn-ghost">
+      Все лоты
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
   </div>
 
   <div class="hot-row">
 
     <article class="hot-card">
-      <div class="hot-thumb">
-        <div class="art wine">◈</div>
-        <span class="tag ych">YCH · 2 слота</span>
+      <div class="hot-thumb wine">
+        <svg viewBox="0 0 40 40">
+          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+        </svg>
+        <span class="tag plume">YCH · 2 слота</span>
       </div>
       <div class="hot-body">
         <h4>YCH — Cat Slot</h4>
@@ -789,8 +1028,15 @@ footer {
 
     <article class="hot-card">
       <div class="hot-thumb">
-        <div class="art">◈</div>
-        <span class="tag gold">🔥 Горячее</span>
+        <svg viewBox="0 0 40 40">
+          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+        </svg>
+        <span class="tag amber">Горячее</span>
       </div>
       <div class="hot-body">
         <h4>Paimon — Legendary</h4>
@@ -803,8 +1049,15 @@ footer {
     </article>
 
     <article class="hot-card">
-      <div class="hot-thumb">
-        <div class="art blue">◈</div>
+      <div class="hot-thumb blue">
+        <svg viewBox="0 0 40 40">
+          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+        </svg>
         <span class="tag nsfw">18+</span>
       </div>
       <div class="hot-body">
@@ -818,9 +1071,16 @@ footer {
     </article>
 
     <article class="hot-card">
-      <div class="hot-thumb">
-        <div class="art wine">◈</div>
-        <span class="tag gold">New</span>
+      <div class="hot-thumb green">
+        <svg viewBox="0 0 40 40">
+          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
+          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
+          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
+          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
+          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
+          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+        </svg>
+        <span class="tag amber">New</span>
       </div>
       <div class="hot-body">
         <h4>Live2D модель под ключ</h4>
@@ -835,14 +1095,17 @@ footer {
   </div>
 </section>
 
-<!-- ===================== ОТКРЫТЫЕ СЛОТЫ КОММИШЕК ===================== -->
+<!-- ===================== СЛОТЫ КОММИШЕК ===================== -->
 <section class="block" style="padding-top: 0;">
   <div class="section-head">
     <div class="title-wrap">
       <h2>Открытые слоты коммишек</h2>
       <p>Актуальные заказы от художников прямо сейчас</p>
     </div>
-    <button class="btn-ghost">Все слоты →</button>
+    <button class="btn-ghost">
+      Все слоты
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
   </div>
 
   <div class="slots">
@@ -869,7 +1132,7 @@ footer {
     </div>
 
     <div class="slot closed">
-      <span class="slot-num" style="background:rgba(224,83,83,.12);color:var(--danger)">Занято</span>
+      <span class="slot-num" style="background:rgba(199,106,106,.10);color:var(--danger)">Занято</span>
       <h4>YCH — парный слот</h4>
       <ul>
         <li><span>Ожидание</span><b>до 12 дек</b></li>
@@ -880,7 +1143,7 @@ footer {
   </div>
 </section>
 
-<!-- ===================== ДОВЕРИЕ (КОРОТКО) ===================== -->
+<!-- ===================== ДОВЕРИЕ ===================== -->
 <section class="block" style="padding-top: 0;">
   <div class="section-head">
     <div class="title-wrap">
@@ -889,37 +1152,69 @@ footer {
   </div>
 
   <div class="features-grid">
+
     <div class="feature">
-      <div class="feature-icon">🔒</div>
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="11" width="16" height="10" rx="2"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+      </div>
       <h4>Escrow-сделки</h4>
       <p>Деньги заморожены до приёмки финального арта.</p>
     </div>
+
     <div class="feature">
-      <div class="feature-icon">⚔️</div>
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
       <h4>Анти-снайпер</h4>
       <p>Ставка за 5 минут — продление на 10 минут.</p>
     </div>
+
     <div class="feature">
-      <div class="feature-icon">🛡️</div>
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L20 6 V12 c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/>
+          <circle cx="12" cy="11" r="2"/>
+          <path d="M12 13v4"/>
+        </svg>
+      </div>
       <h4>Защита от AI</h4>
-      <p>Glaze, Nightshade, запрет парсинга.</p>
+      <p>Glaze, Nightshade, запрет парсинга роботами.</p>
     </div>
+
     <div class="feature">
-      <div class="feature-icon">⚖️</div>
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v18"/>
+          <path d="M4 7h16"/>
+          <path d="M6 7l-3 6a3 3 0 0 0 6 0z"/>
+          <path d="M18 7l-3 6a3 3 0 0 0 6 0z"/>
+          <path d="M8 21h8"/>
+        </svg>
+      </div>
       <h4>DMCA и логи</h4>
       <p>Готовые претензии и лог загрузок для суда.</p>
     </div>
+
   </div>
 </section>
 
-<!-- ===================== ГАЛЕРЕЯ (САМЫЙ НИЗ) ===================== -->
+<!-- ===================== ГАЛЕРЕЯ ===================== -->
 <section class="gallery">
   <div class="gallery-head">
     <div>
       <h2>Галерея</h2>
-      <p>Портфолио художников · без лотов и продаж</p>
+      <p>Портфолио художников — без лотов и продаж</p>
     </div>
-    <button class="btn-ghost">Загрузить ещё →</button>
+    <button class="btn-ghost">
+      Загрузить ещё
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
   </div>
 
   <div class="gallery-filters">
@@ -936,54 +1231,91 @@ footer {
   </div>
 
   <div class="gallery-grid">
+
     <div class="gallery-item">
-      <div class="art">◈</div>
+      <div class="art deep">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art wine">◈</div>
+      <div class="art wine">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art blue">◈</div>
+      <div class="art blue">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art green">◈</div>
+      <div class="art green">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art wine">◈</div>
+      <div class="art wine">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art blue">◈</div>
+      <div class="art blue">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art green">◈</div>
+      <div class="art green">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art">◈</div>
+      <div class="art deep">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art wine">◈</div>
+      <div class="art wine">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art blue">◈</div>
+      <div class="art blue">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art green">◈</div>
+      <div class="art green">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div>
     </div>
+
     <div class="gallery-item">
-      <div class="art">◈</div>
+      <div class="art deep">
+        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
+      </div>
       <div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div>
     </div>
+
   </div>
 </section>
 
@@ -991,7 +1323,15 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="logo">
-      <div class="logo-mark">◈</div>
+      <div class="logo-mark">
+        <svg viewBox="0 0 40 40">
+          <path class="body" d="M20 4 C10 4 6 12 6 20 C6 30 12 36 20 36 C28 36 34 30 34 20 C34 12 30 4 20 4 Z"/>
+          <circle class="eye" cx="14.5" cy="19" r="4"/>
+          <circle class="eye" cx="25.5" cy="19" r="4"/>
+          <circle class="pupil" cx="14.5" cy="19" r="1.6" fill="#0b0e17"/>
+          <circle class="pupil" cx="25.5" cy="19" r="1.6" fill="#0b0e17"/>
+        </svg>
+      </div>
       <div>Art<span class="logo-text-accent">Haven</span></div>
     </div>
     <div class="footer-links">
