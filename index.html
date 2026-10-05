@@ -12,40 +12,32 @@
 <style>
 /* ============================================================
    ПАЛИТРА «НОЧНАЯ СОВА»
-   Фон — глубокий сине-фиолетовый (перья в темноте)
-   Акценты — тёплый янтарь (глаза совы, свеча)
    ============================================================ */
 :root {
-  /* Фоны — с холодным синим подтоном, чтобы глаза отдыхали */
-  --bg-void:     #0b0e17;   /* самый глубокий — почти чернила */
-  --bg-deep:     #10141f;   /* подложка страницы */
-  --bg-main:     #141926;   /* основной фон */
-  --bg-card:     #1a2032;   /* карточки */
-  --bg-hover:    #232a40;   /* hover */
+  --bg-void:     #0b0e17;
+  --bg-deep:     #10141f;
+  --bg-main:     #141926;
+  --bg-card:     #1a2032;
+  --bg-hover:    #232a40;
 
-  /* Янтарная гамма — «сова» */
-  --amber:       #d9a441;   /* основной янтарь — не слишком яркий */
-  --amber-soft:  #e6b866;   /* мягче, для текста */
-  --amber-glow:  #f2c97a;   /* свечение */
-  --amber-deep:  #a87a2c;   /* тёмный, для границ */
+  --amber:       #d9a441;
+  --amber-soft:  #e6b866;
+  --amber-glow:  #f2c97a;
+  --amber-deep:  #a87a2c;
 
-  /* Перья совы — фиолетово-бордовое */
-  --plume:       #4a2a4a;   /* тёмно-сливовый */
-  --plume-light: #6d3d6b;   /* светлее */
-  --plume-deep:  #2a1a2e;   /* глубже */
+  --plume:       #4a2a4a;
+  --plume-light: #6d3d6b;
+  --plume-deep:  #2a1a2e;
 
-  /* Нейтральные */
-  --ink:         #ece4d4;   /* тёплый белый — не бьёт по глазам */
-  --ink-soft:    #b5a892;   /* приглушённый текст */
-  --ink-mute:    #7a7082;   /* второй план */
-  --ink-faint:   #4a4555;   /* совсем тихий */
+  --ink:         #ece4d4;
+  --ink-soft:    #b5a892;
+  --ink-mute:    #7a7082;
+  --ink-faint:   #4a4555;
 
-  /* Семантика */
-  --danger:      #c76a6a;   /* приглушённый красный */
-  --success:     #7ba87b;   /* приглушённый зелёный */
+  --danger:      #c76a6a;
+  --success:     #7ba87b;
   --nsfw:        #9c4a6a;
 
-  /* Границы и тени — мягкие, не режут */
   --border:      rgba(217,164,65,.10);
   --border-soft: rgba(236,228,212,.06);
   --border-hover: rgba(217,164,65,.30);
@@ -69,14 +61,13 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Фон: медленно дышащие градиенты — не отвлекают, но живые */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
   background:
-    radial-gradient(circle at 12% 8%, rgba(217,164,65,.10), transparent 42%),
-    radial-gradient(circle at 88% 15%, rgba(109,61,107,.22), transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(74,42,74,.20), transparent 55%),
+    radial-gradient(circle at 12% 8%, rgba(217,164,65,.08), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(109,61,107,.18), transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(74,42,74,.16), transparent 55%),
     linear-gradient(180deg, var(--bg-main) 0%, var(--bg-void) 100%);
   animation: breatheBg 24s ease-in-out infinite alternate;
 }
@@ -113,7 +104,6 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--border);
 }
 
-/* Логотип — сова из SVG */
 .logo {
   display: flex; align-items: center; gap: 12px;
   font-family: 'Manrope', sans-serif;
@@ -126,14 +116,8 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(135deg, var(--plume-deep), var(--bg-void));
   border: 1px solid rgba(217,164,65,.30);
   box-shadow: inset 0 1px 0 rgba(242,201,122,.15), 0 4px 16px rgba(0,0,0,.4);
-  position: relative;
 }
-.logo-mark svg { width: 24px; height: 24px; }
-.logo-mark .eye {
-  fill: var(--amber);
-  filter: drop-shadow(0 0 4px var(--amber));
-}
-.logo-mark .body { fill: var(--plume-light); }
+.logo-mark svg { width: 26px; height: 26px; }
 
 .logo-text-accent { color: var(--amber); }
 
@@ -158,11 +142,8 @@ img { display: block; max-width: 100%; }
   box-shadow: inset 0 1px 0 rgba(242,201,122,.15);
 }
 
-.topbar-actions {
-  margin-left: auto; display: flex; align-items: center; gap: 10px;
-}
+.topbar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-/* SVG-иконки вместо эмодзи */
 .icon-btn {
   position: relative;
   height: 40px; min-width: 40px; padding: 0 12px;
@@ -201,20 +182,14 @@ img { display: block; max-width: 100%; }
 .avatar {
   width: 40px; height: 40px; border-radius: 11px;
   background:
-    radial-gradient(circle at 30% 30%, rgba(242,201,122,.4), transparent 60%),
+    radial-gradient(circle at 30% 30%, rgba(242,201,122,.35), transparent 60%),
     linear-gradient(135deg, var(--plume), var(--plume-deep));
   border: 1px solid rgba(217,164,65,.30);
   cursor: pointer;
   transition: all .22s ease;
-  position: relative;
+  display: grid; place-items: center;
 }
-.avatar::after {
-  content: '';
-  position: absolute; inset: 6px;
-  border-radius: 6px;
-  background: radial-gradient(circle at 30% 35%, var(--amber) 0%, var(--amber-deep) 40%, transparent 42%),
-              radial-gradient(circle at 70% 35%, var(--amber) 0%, var(--amber-deep) 40%, transparent 42%);
-}
+.avatar svg { width: 22px; height: 22px; }
 .avatar:hover { transform: scale(1.05); border-color: var(--amber); }
 
 /* ============================================================
@@ -241,7 +216,7 @@ img { display: block; max-width: 100%; }
   opacity: 0;
   transition: opacity .25s ease;
 }
-.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+.btn-primary span { position: relative; z-index: 1; }
 .btn-primary:hover {
   transform: translateY(-1.5px);
   box-shadow: 0 12px 30px rgba(217,164,65,.42), inset 0 1px 0 rgba(255,255,255,.35);
@@ -347,35 +322,32 @@ section.block {
   animation: pulse 1.4s ease-in-out infinite;
 }
 
-/* Картинка лота — «сова в ночи» */
+/* Картинка лота — линейная сова */
 .live-art {
   height: 340px;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 50% 45%, rgba(217,164,65,.30), transparent 55%),
-    radial-gradient(circle at 50% 45%, rgba(109,61,107,.30), transparent 70%),
+    radial-gradient(circle at 50% 45%, rgba(217,164,65,.18), transparent 55%),
+    radial-gradient(circle at 50% 45%, rgba(109,61,107,.22), transparent 70%),
     linear-gradient(160deg, var(--plume-deep) 0%, var(--bg-void) 100%);
   display: grid; place-items: center;
   position: relative;
   overflow: hidden;
 }
-/* Силуэт совы — SVG */
-.live-art svg {
-  width: 180px; height: 180px;
-  filter: drop-shadow(0 0 40px rgba(217,164,65,.55)) drop-shadow(0 0 80px rgba(109,61,107,.4));
-  animation: hover 5s ease-in-out infinite;
+.live-art .owl-line {
+  width: 200px; height: 200px;
+  stroke: var(--amber-glow);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(217,164,65,.55)) drop-shadow(0 0 24px rgba(217,164,65,.25));
+  animation: hover 6s ease-in-out infinite;
 }
 @keyframes hover {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
-.live-art .owl-body { fill: var(--plume); }
-.live-art .owl-eye {
-  fill: var(--amber-glow);
-  filter: drop-shadow(0 0 8px var(--amber)) drop-shadow(0 0 16px rgba(217,164,65,.7));
-}
-.live-art .owl-pupil { fill: var(--bg-void); }
-.live-art .owl-beak { fill: var(--amber); }
 
 .live-info { display: flex; flex-direction: column; justify-content: center; }
 .live-info h3 {
@@ -416,7 +388,7 @@ section.block {
   font-variant-numeric: tabular-nums;
 }
 
-/* Мини-аукционы сбоку */
+/* Мини-аукционы */
 .live-side { display: flex; flex-direction: column; gap: 14px; }
 .mini-auction {
   flex: 1;
@@ -440,14 +412,16 @@ section.block {
   background: linear-gradient(150deg, var(--plume-deep), var(--bg-void));
   display: grid; place-items: center;
   border: 1px solid rgba(217,164,65,.12);
-  position: relative;
-  overflow: hidden;
 }
-.mini-thumb svg { width: 44px; height: 44px; }
-.mini-thumb .owl-body { fill: var(--plume-light); }
-.mini-thumb .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 5px var(--amber)); }
-.mini-thumb .owl-pupil { fill: var(--bg-void); }
-.mini-thumb .owl-beak { fill: var(--amber); }
+.mini-thumb .owl-line {
+  width: 46px; height: 46px;
+  stroke: var(--amber-soft);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(217,164,65,.5));
+}
 .mini-thumb.amber { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
 .mini-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
 
@@ -511,16 +485,17 @@ section.block {
   background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
   display: grid; place-items: center;
 }
-.hot-thumb svg {
+.hot-thumb .owl-line {
   width: 90px; height: 90px;
-  filter: drop-shadow(0 0 20px rgba(217,164,65,.4));
+  stroke: var(--amber-soft);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(217,164,65,.5));
   transition: transform .4s ease;
 }
-.hot-card:hover .hot-thumb svg { transform: scale(1.10); }
-.hot-thumb .owl-body { fill: var(--plume-light); }
-.hot-thumb .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 6px var(--amber)); }
-.hot-thumb .owl-pupil { fill: var(--bg-void); }
-.hot-thumb .owl-beak { fill: var(--amber); }
+.hot-card:hover .hot-thumb .owl-line { transform: scale(1.08); }
 
 .hot-thumb.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
 .hot-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
@@ -570,7 +545,7 @@ section.block {
 }
 
 /* ============================================================
-   СЛОТЫ КОММИШЕК
+   СЛОТЫ
    ============================================================ */
 .slots {
   display: grid;
@@ -751,27 +726,24 @@ section.block {
   background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
   transition: all .3s ease;
   border: 1px solid var(--border-soft);
-}
-.gallery-item .art {
-  width: 100%; height: 100%;
   display: grid; place-items: center;
+}
+.gallery-item .owl-line {
+  width: 90px; height: 90px;
+  stroke: var(--amber-soft);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   transition: transform .45s ease;
+  filter: drop-shadow(0 0 10px rgba(217,164,65,.45));
 }
-.gallery-item .art svg {
-  width: 80px; height: 80px;
-  filter: drop-shadow(0 0 20px rgba(217,164,65,.4));
-}
-.gallery-item .owl-body { fill: var(--plume-light); }
-.gallery-item .owl-eye { fill: var(--amber-glow); filter: drop-shadow(0 0 6px var(--amber)); }
-.gallery-item .owl-pupil { fill: var(--bg-void); }
-.gallery-item .owl-beak { fill: var(--amber); }
+.gallery-item.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
+.gallery-item.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
+.gallery-item.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
+.gallery-item.deep  { background: linear-gradient(150deg, var(--bg-void), var(--plume-deep)); }
 
-.gallery-item .art.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
-.gallery-item .art.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
-.gallery-item .art.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
-.gallery-item .art.deep  { background: linear-gradient(150deg, var(--bg-void), var(--plume-deep)); }
-
-.gallery-item:hover .art { transform: scale(1.09); }
+.gallery-item:hover .owl-line { transform: scale(1.10); }
 .gallery-item::after {
   content: '';
   position: absolute; inset: 0;
@@ -837,26 +809,43 @@ footer {
   .section-head h2, .gallery-head h2 { font-size: 26px; }
   .topbar-actions .icon-btn:not(.wallet) { display: none; }
   .gallery { padding-top: 50px; }
-  .section-head h2 { font-size: 24px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     SVG-СПРАЙТ: ЛИНЕЙНАЯ СОВА (одна на весь сайт)
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="owl" viewBox="0 0 64 64">
+      <!-- Ушки: два треугольника -->
+      <path d="M16 14 L20 4 L26 14" />
+      <path d="M38 14 L44 4 L48 14" />
+      <!-- Голова: скруглённая трапеция -->
+      <path d="M14 20 Q14 12 22 12 L42 12 Q50 12 50 20 L50 38 Q50 52 32 56 Q14 52 14 38 Z" />
+      <!-- Большие глаза-круги -->
+      <circle cx="23" cy="30" r="6" />
+      <circle cx="41" cy="30" r="6" />
+      <!-- Зрачки-точки -->
+      <circle cx="23" cy="30" r="1.6" fill="currentColor" stroke="none" />
+      <circle cx="41" cy="30" r="1.6" fill="currentColor" stroke="none" />
+      <!-- Клюв: маленький ромб -->
+      <path d="M32 36 L35 40 L32 43 L29 40 Z" />
+      <!-- Лапки -->
+      <path d="M26 56 L26 60 M22 60 L30 60" />
+      <path d="M38 56 L38 60 M34 60 L42 60" />
+    </symbol>
+  </defs>
+</svg>
+
 <!-- ===================== ХЕДЕР ===================== -->
 <header class="topbar">
   <div class="logo">
     <div class="logo-mark">
-      <!-- Сова -->
-      <svg viewBox="0 0 40 40">
-        <path class="body" d="M20 4 C10 4 6 12 6 20 C6 30 12 36 20 36 C28 36 34 30 34 20 C34 12 30 4 20 4 Z"/>
-        <path class="body" d="M8 6 L13 12 L8 14 Z"/>
-        <path class="body" d="M32 6 L27 12 L32 14 Z"/>
-        <circle class="eye" cx="14.5" cy="19" r="4"/>
-        <circle class="eye" cx="25.5" cy="19" r="4"/>
-        <circle class="pupil" cx="14.5" cy="19" r="1.6"/>
-        <circle class="pupil" cx="25.5" cy="19" r="1.6"/>
-        <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
+      <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round;">
+        <use href="#owl"/>
       </svg>
     </div>
     <div>Art<span class="logo-text-accent">Haven</span></div>
@@ -887,7 +876,11 @@ footer {
       1 240
     </button>
     <button class="btn-primary"><span>Открыть слот</span></button>
-    <div class="avatar" title="Профиль"></div>
+    <div class="avatar" title="Профиль">
+      <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round;">
+        <use href="#owl"/>
+      </svg>
+    </div>
   </div>
 </header>
 
@@ -908,15 +901,8 @@ footer {
     <aside class="live-main">
       <div class="live-badge">LIVE</div>
       <div class="live-art">
-        <svg viewBox="0 0 40 40">
-          <path class="owl-body" d="M20 3 C9 3 5 12 5 21 C5 32 12 38 20 38 C28 38 35 32 35 21 C35 12 31 3 20 3 Z"/>
-          <path class="owl-body" d="M7 5 L13 12 L7 15 Z"/>
-          <path class="owl-body" d="M33 5 L27 12 L33 15 Z"/>
-          <circle class="owl-eye" cx="14" cy="19" r="4.5"/>
-          <circle class="owl-eye" cx="26" cy="19" r="4.5"/>
-          <circle class="owl-pupil" cx="14" cy="19" r="1.8"/>
-          <circle class="owl-pupil" cx="26" cy="19" r="1.8"/>
-          <path class="owl-beak" d="M20 24 L23 29 L17 29 Z"/>
+        <svg class="owl-line" viewBox="0 0 64 64">
+          <use href="#owl"/>
         </svg>
       </div>
       <div class="live-info">
@@ -934,14 +920,7 @@ footer {
     <div class="live-side">
       <div class="mini-auction">
         <div class="mini-thumb amber">
-          <svg viewBox="0 0 40 40">
-            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-          </svg>
+          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         </div>
         <div class="mini-info">
           <h4>Dark Fae Adopt</h4>
@@ -952,14 +931,7 @@ footer {
 
       <div class="mini-auction">
         <div class="mini-thumb blue">
-          <svg viewBox="0 0 40 40">
-            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-          </svg>
+          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         </div>
         <div class="mini-info">
           <h4>Wolf Spirit — SB 80</h4>
@@ -970,14 +942,7 @@ footer {
 
       <div class="mini-auction">
         <div class="mini-thumb">
-          <svg viewBox="0 0 40 40">
-            <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-            <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-            <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-            <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-            <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-            <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-          </svg>
+          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         </div>
         <div class="mini-info">
           <h4>Mermay YCH — 2 slots</h4>
@@ -1006,14 +971,7 @@ footer {
 
     <article class="hot-card">
       <div class="hot-thumb wine">
-        <svg viewBox="0 0 40 40">
-          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-        </svg>
+        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         <span class="tag plume">YCH · 2 слота</span>
       </div>
       <div class="hot-body">
@@ -1028,14 +986,7 @@ footer {
 
     <article class="hot-card">
       <div class="hot-thumb">
-        <svg viewBox="0 0 40 40">
-          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-        </svg>
+        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         <span class="tag amber">Горячее</span>
       </div>
       <div class="hot-body">
@@ -1050,14 +1001,7 @@ footer {
 
     <article class="hot-card">
       <div class="hot-thumb blue">
-        <svg viewBox="0 0 40 40">
-          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-        </svg>
+        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         <span class="tag nsfw">18+</span>
       </div>
       <div class="hot-body">
@@ -1072,14 +1016,7 @@ footer {
 
     <article class="hot-card">
       <div class="hot-thumb green">
-        <svg viewBox="0 0 40 40">
-          <path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/>
-          <circle class="owl-eye" cx="14.5" cy="19" r="4"/>
-          <circle class="owl-eye" cx="25.5" cy="19" r="4"/>
-          <circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/>
-          <circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/>
-          <path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/>
-        </svg>
+        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
         <span class="tag amber">New</span>
       </div>
       <div class="hot-body">
@@ -1232,89 +1169,18 @@ footer {
 
   <div class="gallery-grid">
 
-    <div class="gallery-item">
-      <div class="art deep">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art wine">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art blue">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art green">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art wine">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art blue">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art green">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art deep">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art wine">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art blue">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art green">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="art deep">
-        <svg viewBox="0 0 40 40"><path class="owl-body" d="M20 4 C10 4 6 12 6 21 C6 31 12 36 20 36 C28 36 34 31 34 21 C34 12 30 4 20 4 Z"/><circle class="owl-eye" cx="14.5" cy="19" r="4"/><circle class="owl-eye" cx="25.5" cy="19" r="4"/><circle class="owl-pupil" cx="14.5" cy="19" r="1.6"/><circle class="owl-pupil" cx="25.5" cy="19" r="1.6"/><path class="owl-beak" d="M20 23 L22.5 27 L17.5 27 Z"/></svg>
-      </div>
-      <div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div>
-    </div>
+    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div></div>
+    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div></div>
+    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div></div>
+    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div></div>
+    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div></div>
+    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div></div>
+    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div></div>
+    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div></div>
+    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div></div>
+    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div></div>
+    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div></div>
+    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div></div>
 
   </div>
 </section>
@@ -1324,12 +1190,8 @@ footer {
   <div class="footer-inner">
     <div class="logo">
       <div class="logo-mark">
-        <svg viewBox="0 0 40 40">
-          <path class="body" d="M20 4 C10 4 6 12 6 20 C6 30 12 36 20 36 C28 36 34 30 34 20 C34 12 30 4 20 4 Z"/>
-          <circle class="eye" cx="14.5" cy="19" r="4"/>
-          <circle class="eye" cx="25.5" cy="19" r="4"/>
-          <circle class="pupil" cx="14.5" cy="19" r="1.6" fill="#0b0e17"/>
-          <circle class="pupil" cx="25.5" cy="19" r="1.6" fill="#0b0e17"/>
+        <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round;">
+          <use href="#owl"/>
         </svg>
       </div>
       <div>Art<span class="logo-text-accent">Haven</span></div>
