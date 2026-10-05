@@ -7,44 +7,46 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
-   ПАЛИТРА «НОЧНАЯ СОВА»
+   ПАЛИТРА «ТАРО» — ночь, золото, мистика
    ============================================================ */
 :root {
-  --bg-void:     #0b0e17;
-  --bg-deep:     #10141f;
-  --bg-main:     #141926;
-  --bg-card:     #1a2032;
-  --bg-hover:    #232a40;
+  --bg-void:     #0a0812;
+  --bg-deep:     #0f0c1a;
+  --bg-main:     #14101f;
+  --bg-card:     #1a1528;
+  --bg-hover:    #221b35;
 
-  --amber:       #d9a441;
-  --amber-soft:  #e6b866;
-  --amber-glow:  #f2c97a;
-  --amber-deep:  #a87a2c;
+  --gold:        #c9a961;
+  --gold-soft:   #ddc088;
+  --gold-glow:   #f0d89a;
+  --gold-deep:   #8f7440;
 
-  --plume:       #4a2a4a;
-  --plume-light: #6d3d6b;
-  --plume-deep:  #2a1a2e;
+  --violet:      #4a2a6a;
+  --violet-lite: #6d3d9b;
+  --violet-deep: #2a1840;
+
+  --crimson:     #7a1f3a;
+  --crimson-lite:#a82e50;
 
   --ink:         #ece4d4;
   --ink-soft:    #b5a892;
   --ink-mute:    #7a7082;
-  --ink-faint:   #4a4555;
+  --ink-faint:   #453f52;
 
   --danger:      #c76a6a;
   --success:     #7ba87b;
   --nsfw:        #9c4a6a;
 
-  --border:      rgba(217,164,65,.10);
+  --border:      rgba(201,169,97,.10);
   --border-soft: rgba(236,228,212,.06);
-  --border-hover: rgba(217,164,65,.30);
+  --border-hover: rgba(201,169,97,.35);
 
-  --shadow-sm:   0 4px 14px rgba(0,0,0,.30);
-  --shadow-md:   0 14px 40px rgba(0,0,0,.45);
-  --shadow-glow: 0 8px 32px rgba(217,164,65,.18);
+  --shadow-md:   0 14px 40px rgba(0,0,0,.5);
+  --shadow-glow: 0 8px 32px rgba(201,169,97,.18);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,34 +60,38 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
+/* Звёздное небо */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
   background:
-    radial-gradient(circle at 12% 8%, rgba(217,164,65,.08), transparent 42%),
-    radial-gradient(circle at 88% 15%, rgba(109,61,107,.18), transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(74,42,74,.16), transparent 55%),
+    radial-gradient(1px 1px at 20% 30%, rgba(240,216,154,.5), transparent 50%),
+    radial-gradient(1px 1px at 60% 70%, rgba(240,216,154,.4), transparent 50%),
+    radial-gradient(2px 2px at 80% 20%, rgba(240,216,154,.6), transparent 50%),
+    radial-gradient(1px 1px at 35% 80%, rgba(240,216,154,.35), transparent 50%),
+    radial-gradient(1px 1px at 90% 60%, rgba(240,216,154,.4), transparent 50%),
+    radial-gradient(circle at 12% 8%, rgba(201,169,97,.08), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(109,61,155,.18), transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(122,31,58,.14), transparent 55%),
     linear-gradient(180deg, var(--bg-main) 0%, var(--bg-void) 100%);
   animation: breatheBg 24s ease-in-out infinite alternate;
 }
 @keyframes breatheBg {
   0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-20px, 15px) scale(1.04); }
+  100% { transform: translate(-20px, 15px) scale(1.03); }
 }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-void); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--plume), var(--amber-deep));
+  background: linear-gradient(var(--violet), var(--gold-deep));
   border-radius: 10px;
   border: 2px solid var(--bg-void);
 }
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(var(--plume-light), var(--amber)); }
 
-::selection { background: rgba(217,164,65,.30); color: var(--ink); }
+::selection { background: rgba(201,169,97,.30); color: var(--ink); }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
@@ -98,7 +104,7 @@ img { display: block; max-width: 100%; }
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; gap: 32px;
   padding: 16px 40px;
-  background: rgba(11, 14, 23, .78);
+  background: rgba(10, 8, 18, .80);
   backdrop-filter: blur(22px) saturate(130%);
   -webkit-backdrop-filter: blur(22px) saturate(130%);
   border-bottom: 1px solid var(--border);
@@ -109,17 +115,41 @@ img { display: block; max-width: 100%; }
   font-family: 'Manrope', sans-serif;
   font-size: 21px; font-weight: 800; letter-spacing: -.3px;
 }
+/* Логотип-карта Таро */
 .logo-mark {
-  width: 38px; height: 38px;
+  width: 38px; height: 50px;
   display: grid; place-items: center;
-  border-radius: 11px;
-  background: linear-gradient(135deg, var(--plume-deep), var(--bg-void));
-  border: 1px solid rgba(217,164,65,.30);
-  box-shadow: inset 0 1px 0 rgba(242,201,122,.15), 0 4px 16px rgba(0,0,0,.4);
+  border-radius: 5px;
+  background:
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border: 1px solid rgba(201,169,97,.45);
+  box-shadow:
+    inset 0 0 0 1px rgba(201,169,97,.15),
+    inset 0 0 0 4px rgba(10,8,18,.6),
+    inset 0 0 0 5px rgba(201,169,97,.25),
+    0 4px 16px rgba(0,0,0,.5);
+  position: relative;
 }
-.logo-mark svg { width: 26px; height: 26px; }
+.logo-mark::before {
+  content: 'XXI';
+  position: absolute;
+  top: 4px; left: 0; right: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7px; font-weight: 700;
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.logo-mark::after {
+  content: '★';
+  font-size: 14px;
+  color: var(--gold-glow);
+  text-shadow: 0 0 8px rgba(240,216,154,.7);
+  position: relative;
+  top: 2px;
+}
 
-.logo-text-accent { color: var(--amber); }
+.logo-text-accent { color: var(--gold); }
 
 .main-nav {
   display: flex; gap: 4px;
@@ -135,11 +165,11 @@ img { display: block; max-width: 100%; }
   border-radius: 8px;
   transition: all .22s ease;
 }
-.main-nav a:hover { color: var(--amber-soft); background: rgba(217,164,65,.06); }
+.main-nav a:hover { color: var(--gold-soft); background: rgba(201,169,97,.06); }
 .main-nav a.active {
   color: var(--ink);
-  background: linear-gradient(135deg, rgba(217,164,65,.18), rgba(109,61,107,.18));
-  box-shadow: inset 0 1px 0 rgba(242,201,122,.15);
+  background: linear-gradient(135deg, rgba(201,169,97,.18), rgba(109,61,155,.18));
+  box-shadow: inset 0 1px 0 rgba(240,216,154,.15);
 }
 
 .topbar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
@@ -155,23 +185,23 @@ img { display: block; max-width: 100%; }
   color: var(--ink-soft);
   transition: all .22s ease;
 }
-.icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
 .icon-btn:hover {
-  background: rgba(217,164,65,.08);
+  background: rgba(201,169,97,.08);
   border-color: var(--border-hover);
-  color: var(--amber-soft);
+  color: var(--gold-soft);
 }
 .icon-btn.wallet {
-  color: var(--amber);
+  color: var(--gold);
   font-weight: 700;
-  background: linear-gradient(135deg, rgba(217,164,65,.12), rgba(109,61,107,.10));
-  border-color: rgba(217,164,65,.25);
+  background: linear-gradient(135deg, rgba(201,169,97,.12), rgba(109,61,155,.10));
+  border-color: rgba(201,169,97,.25);
   font-family: 'Manrope', sans-serif;
 }
 
 .badge {
   position: absolute; top: -4px; right: -4px;
-  background: var(--danger);
+  background: var(--crimson-lite);
   color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 2px 5px; border-radius: 20px;
@@ -180,17 +210,20 @@ img { display: block; max-width: 100%; }
 }
 
 .avatar {
-  width: 40px; height: 40px; border-radius: 11px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(242,201,122,.35), transparent 60%),
-    linear-gradient(135deg, var(--plume), var(--plume-deep));
-  border: 1px solid rgba(217,164,65,.30);
+  width: 40px; height: 52px;
+  border-radius: 5px;
+  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border: 1px solid rgba(201,169,97,.45);
   cursor: pointer;
   transition: all .22s ease;
   display: grid; place-items: center;
+  box-shadow: inset 0 0 0 3px rgba(10,8,18,.6), inset 0 0 0 4px rgba(201,169,97,.20);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold-glow);
 }
-.avatar svg { width: 22px; height: 22px; }
-.avatar:hover { transform: scale(1.05); border-color: var(--amber); }
+.avatar:hover { transform: scale(1.05); border-color: var(--gold); }
 
 /* ============================================================
    КНОПКИ
@@ -198,12 +231,12 @@ img { display: block; max-width: 100%; }
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 12px 22px;
-  background: linear-gradient(135deg, var(--amber) 0%, var(--amber-deep) 100%);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
   color: #1a1206;
   font-weight: 700; font-size: 14px; letter-spacing: .1px;
   border-radius: 12px;
   box-shadow:
-    0 6px 22px rgba(217,164,65,.28),
+    0 6px 22px rgba(201,169,97,.28),
     inset 0 1px 0 rgba(255,255,255,.25);
   transition: all .25s ease;
   position: relative;
@@ -212,34 +245,33 @@ img { display: block; max-width: 100%; }
 .btn-primary::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold));
   opacity: 0;
   transition: opacity .25s ease;
 }
 .btn-primary span { position: relative; z-index: 1; }
 .btn-primary:hover {
   transform: translateY(-1.5px);
-  box-shadow: 0 12px 30px rgba(217,164,65,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  box-shadow: 0 12px 30px rgba(201,169,97,.42), inset 0 1px 0 rgba(255,255,255,.35);
 }
 .btn-primary:hover::after { opacity: 1; }
-.btn-primary:active { transform: translateY(0); }
 .btn-primary.sm { padding: 9px 16px; font-size: 13px; border-radius: 10px; }
 .btn-primary.full { width: 100%; padding: 14px; }
 
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 22px;
-  background: rgba(217,164,65,.05);
-  border: 1px solid rgba(217,164,65,.22);
-  color: var(--amber-soft);
+  background: rgba(201,169,97,.05);
+  border: 1px solid rgba(201,169,97,.22);
+  color: var(--gold-soft);
   font-weight: 600; font-size: 14px;
   border-radius: 12px;
   transition: all .22s ease;
 }
 .btn-ghost:hover {
-  background: rgba(217,164,65,.10);
-  border-color: rgba(217,164,65,.50);
-  color: var(--amber-glow);
+  background: rgba(201,169,97,.10);
+  border-color: rgba(201,169,97,.50);
+  color: var(--gold-glow);
 }
 .btn-ghost svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
 
@@ -258,15 +290,15 @@ section.block {
 }
 .section-head .title-wrap { display: flex; flex-direction: column; gap: 6px; }
 .section-head h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 34px; font-weight: 800;
-  letter-spacing: -.9px;
+  font-family: 'Cormorant Garamond', 'Manrope', serif;
+  font-size: 40px; font-weight: 700;
+  letter-spacing: -.5px;
   display: flex; align-items: center; gap: 14px;
 }
 .section-head h2 .live-pulse {
   width: 10px; height: 10px; border-radius: 50%;
-  background: var(--amber);
-  box-shadow: 0 0 12px var(--amber), 0 0 24px rgba(217,164,65,.5);
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold), 0 0 24px rgba(201,169,97,.5);
   animation: pulse 1.6s ease-in-out infinite;
 }
 @keyframes pulse {
@@ -287,20 +319,20 @@ section.block {
 .live-main {
   position: relative;
   background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
-  border: 1px solid rgba(217,164,65,.20);
+  border: 1px solid rgba(201,169,97,.22);
   border-radius: 22px;
   padding: 20px;
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   gap: 24px;
-  box-shadow: var(--shadow-md), 0 0 90px rgba(217,164,65,.08);
+  box-shadow: var(--shadow-md), 0 0 90px rgba(201,169,97,.08);
   overflow: hidden;
 }
 .live-main::before {
   content: '';
   position: absolute; inset: -1px;
   border-radius: 22px;
-  background: linear-gradient(135deg, rgba(217,164,65,.35), transparent 45%, rgba(109,61,107,.35));
+  background: linear-gradient(135deg, rgba(201,169,97,.35), transparent 45%, rgba(109,61,155,.35));
   z-index: -1;
   opacity: .45;
   filter: blur(18px);
@@ -309,12 +341,12 @@ section.block {
 .live-badge {
   position: absolute; top: 32px; left: 32px; z-index: 3;
   display: flex; align-items: center; gap: 7px;
-  background: rgba(199,106,106,.92);
+  background: rgba(168,46,80,.92);
   color: #fff;
   padding: 6px 12px; border-radius: 20px;
   font-size: 10.5px; font-weight: 800;
   letter-spacing: 1.4px;
-  box-shadow: 0 4px 16px rgba(199,106,106,.45);
+  box-shadow: 0 4px 16px rgba(168,46,80,.45);
 }
 .live-badge::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
@@ -322,42 +354,82 @@ section.block {
   animation: pulse 1.4s ease-in-out infinite;
 }
 
-/* Картинка лота — линейная сова */
+/* Карта Таро главного лота */
 .live-art {
   height: 340px;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 50% 45%, rgba(217,164,65,.18), transparent 55%),
-    radial-gradient(circle at 50% 45%, rgba(109,61,107,.22), transparent 70%),
-    linear-gradient(160deg, var(--plume-deep) 0%, var(--bg-void) 100%);
+    radial-gradient(circle at 50% 45%, rgba(201,169,97,.16), transparent 55%),
+    radial-gradient(circle at 50% 45%, rgba(109,61,155,.22), transparent 70%),
+    linear-gradient(160deg, var(--violet-deep) 0%, var(--bg-void) 100%);
   display: grid; place-items: center;
   position: relative;
   overflow: hidden;
 }
-.live-art .owl-line {
-  width: 200px; height: 200px;
-  stroke: var(--amber-glow);
-  stroke-width: 1.5;
+
+/* Карта Таро с золотой рамкой */
+.tarot {
+  width: 170px; height: 250px;
+  position: relative;
+  border-radius: 8px;
+  background:
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border: 1px solid rgba(201,169,97,.50);
+  box-shadow:
+    inset 0 0 0 1px rgba(201,169,97,.20),
+    inset 0 0 0 6px rgba(10,8,18,.70),
+    inset 0 0 0 7px rgba(201,169,97,.30),
+    0 12px 40px rgba(0,0,0,.6),
+    0 0 60px rgba(201,169,97,.15);
+  display: grid; place-items: center;
+  animation: floatCard 6s ease-in-out infinite;
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.tarot::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 10px; left: 0; right: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 700;
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.tarot::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 10px; left: 0; right: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; font-weight: 700;
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tarot-symbol {
+  width: 78px; height: 78px;
+  stroke: var(--gold-glow);
+  stroke-width: 1.4;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 8px rgba(217,164,65,.55)) drop-shadow(0 0 24px rgba(217,164,65,.25));
-  animation: hover 6s ease-in-out infinite;
-}
-@keyframes hover {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  filter: drop-shadow(0 0 8px rgba(240,216,154,.6)) drop-shadow(0 0 20px rgba(201,169,97,.3));
 }
 
 .live-info { display: flex; flex-direction: column; justify-content: center; }
 .live-info h3 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 26px; font-weight: 800;
-  letter-spacing: -.5px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 700;
+  letter-spacing: -.3px;
   margin-bottom: 6px;
 }
 .live-info .author { color: var(--ink-mute); font-size: 14px; margin-bottom: 20px; }
-.live-info .author b { color: var(--amber-soft); font-weight: 600; }
+.live-info .author b { color: var(--gold-soft); font-weight: 600; }
 
 .bid-row {
   display: flex; justify-content: space-between; align-items: center;
@@ -370,18 +442,18 @@ section.block {
 .bid-row strong {
   font-family: 'Manrope', sans-serif;
   font-size: 24px; font-weight: 800;
-  color: var(--amber-soft);
-  text-shadow: 0 0 20px rgba(217,164,65,.35);
+  color: var(--gold-soft);
+  text-shadow: 0 0 20px rgba(201,169,97,.35);
 }
 
 .timer {
   text-align: center;
   font-family: 'Manrope', monospace;
   font-size: 16px; font-weight: 700;
-  color: var(--amber-soft);
+  color: var(--gold-soft);
   padding: 12px;
-  background: rgba(217,164,65,.05);
-  border: 1px solid rgba(217,164,65,.15);
+  background: rgba(201,169,97,.05);
+  border: 1px solid rgba(201,169,97,.15);
   border-radius: 10px;
   margin-bottom: 14px;
   letter-spacing: 3px;
@@ -403,27 +475,26 @@ section.block {
 .mini-auction:hover {
   border-color: var(--border-hover);
   transform: translateX(-3px);
-  box-shadow: 0 8px 26px rgba(0,0,0,.35);
+  box-shadow: 0 8px 26px rgba(0,0,0,.4);
 }
+/* Мини-карта Таро */
 .mini-thumb {
-  width: 78px; height: 78px;
-  border-radius: 12px;
+  width: 58px; height: 84px;
+  border-radius: 5px;
   flex-shrink: 0;
-  background: linear-gradient(150deg, var(--plume-deep), var(--bg-void));
+  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
   display: grid; place-items: center;
-  border: 1px solid rgba(217,164,65,.12);
+  border: 1px solid rgba(201,169,97,.45);
+  box-shadow:
+    inset 0 0 0 3px rgba(10,8,18,.6),
+    inset 0 0 0 4px rgba(201,169,97,.20);
 }
-.mini-thumb .owl-line {
-  width: 46px; height: 46px;
-  stroke: var(--amber-soft);
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 6px rgba(217,164,65,.5));
+.mini-thumb .tarot-symbol {
+  width: 32px; height: 32px;
+  stroke-width: 1.8;
 }
-.mini-thumb.amber { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
-.mini-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
+.mini-thumb.violet { background: linear-gradient(160deg, var(--violet), var(--violet-deep)); }
+.mini-thumb.crimson { background: linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
 
 .mini-info { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
 .mini-info h4 {
@@ -431,7 +502,7 @@ section.block {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .mini-info .mini-price {
-  color: var(--amber-soft); font-weight: 700;
+  color: var(--gold-soft); font-weight: 700;
   font-family: 'Manrope', sans-serif;
   font-size: 15px;
 }
@@ -464,7 +535,7 @@ section.block {
   position: absolute; inset: 0;
   border-radius: 16px;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(217,164,65,.55), transparent);
+  background: linear-gradient(135deg, transparent, rgba(201,169,97,.55), transparent);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -474,7 +545,7 @@ section.block {
 }
 .hot-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 55px rgba(0,0,0,.5), 0 0 40px rgba(217,164,65,.12);
+  box-shadow: 0 20px 55px rgba(0,0,0,.5), 0 0 40px rgba(201,169,97,.12);
 }
 .hot-card:hover::before { opacity: 1; }
 
@@ -482,24 +553,42 @@ section.block {
   position: relative;
   aspect-ratio: 1.15;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
+  background:
+    radial-gradient(circle at 50% 50%, rgba(109,61,155,.20), transparent 60%),
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
   display: grid; place-items: center;
 }
-.hot-thumb .owl-line {
-  width: 90px; height: 90px;
-  stroke: var(--amber-soft);
-  stroke-width: 1.8;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 10px rgba(217,164,65,.5));
+.hot-thumb .tarot-mini {
+  width: 120px; height: 180px;
+  border-radius: 6px;
+  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border: 1px solid rgba(201,169,97,.45);
+  box-shadow:
+    inset 0 0 0 3px rgba(10,8,18,.6),
+    inset 0 0 0 4px rgba(201,169,97,.25),
+    0 8px 24px rgba(0,0,0,.5);
+  display: grid; place-items: center;
   transition: transform .4s ease;
 }
-.hot-card:hover .hot-thumb .owl-line { transform: scale(1.08); }
+.hot-card:hover .tarot-mini { transform: scale(1.06) rotate(-2deg); }
 
-.hot-thumb.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
-.hot-thumb.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
-.hot-thumb.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
+.tarot-mini .tarot-symbol {
+  width: 60px; height: 60px;
+  stroke-width: 1.4;
+}
+
+.hot-thumb.violet {
+  background: radial-gradient(circle at 50% 50%, rgba(109,61,155,.35), transparent 65%),
+              linear-gradient(160deg, var(--violet), var(--violet-deep));
+}
+.hot-thumb.crimson {
+  background: radial-gradient(circle at 50% 50%, rgba(168,46,80,.35), transparent 65%),
+              linear-gradient(160deg, var(--crimson), var(--violet-deep));
+}
+.hot-thumb.gold {
+  background: radial-gradient(circle at 50% 50%, rgba(201,169,97,.35), transparent 65%),
+              linear-gradient(160deg, var(--gold-deep), var(--violet-deep));
+}
 
 .tag {
   position: absolute; z-index: 2;
@@ -510,24 +599,28 @@ section.block {
   text-transform: uppercase;
   backdrop-filter: blur(8px);
 }
-.tag.amber {
+.tag.gold {
   top: 12px; left: 12px;
-  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold));
   color: #1a1206;
-  box-shadow: 0 4px 14px rgba(217,164,65,.4);
+  box-shadow: 0 4px 14px rgba(201,169,97,.4);
 }
 .tag.nsfw { top: 12px; right: 12px; background: rgba(156,74,106,.9); color: #fff; }
-.tag.plume {
+.tag.violet {
   top: 12px; left: 12px;
-  background: rgba(74,42,74,.92);
-  color: var(--amber-soft);
-  border: 1px solid rgba(217,164,65,.30);
+  background: rgba(74,42,106,.92);
+  color: var(--gold-soft);
+  border: 1px solid rgba(201,169,97,.30);
 }
 
 .hot-body { padding: 15px; }
-.hot-body h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; letter-spacing: -.2px; }
+.hot-body h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-weight: 700;
+  margin-bottom: 3px; letter-spacing: -.2px;
+}
 .hot-body .author { color: var(--ink-mute); font-size: 12px; margin-bottom: 12px; }
-.hot-body .author b { color: var(--amber-soft); font-weight: 500; }
+.hot-body .author b { color: var(--gold-soft); font-weight: 500; }
 
 .hot-footer {
   display: flex; justify-content: space-between; align-items: center;
@@ -541,7 +634,7 @@ section.block {
 }
 .hot-footer .price strong {
   font-family: 'Manrope', sans-serif;
-  color: var(--amber-soft); font-size: 16px; font-weight: 800;
+  color: var(--gold-soft); font-size: 16px; font-weight: 800;
 }
 
 /* ============================================================
@@ -555,7 +648,7 @@ section.block {
 .slot {
   position: relative;
   background: linear-gradient(170deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid rgba(217,164,65,.14);
+  border: 1px solid rgba(201,169,97,.14);
   border-radius: 16px;
   padding: 26px;
   transition: all .3s ease;
@@ -564,7 +657,7 @@ section.block {
 .slot::after {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--amber), var(--plume-light), var(--amber-deep));
+  background: linear-gradient(90deg, var(--gold), var(--violet-lite), var(--gold-deep));
   transform: scaleX(0); transform-origin: left;
   transition: transform .4s ease;
 }
@@ -590,7 +683,11 @@ section.block {
   background: var(--success); border-radius: 50%;
   box-shadow: 0 0 8px var(--success);
 }
-.slot h4 { font-size: 19px; font-weight: 700; margin-bottom: 14px; letter-spacing: -.3px; }
+.slot h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 700;
+  margin-bottom: 14px; letter-spacing: -.3px;
+}
 .slot ul { list-style: none; margin-bottom: 20px; }
 .slot ul li {
   padding: 9px 0;
@@ -599,7 +696,7 @@ section.block {
   display: flex; justify-content: space-between;
 }
 .slot ul li:last-child { border-bottom: none; }
-.slot ul b { color: var(--amber-soft); font-weight: 700; }
+.slot ul b { color: var(--gold-soft); font-weight: 700; }
 
 /* ============================================================
    ДОВЕРИЕ
@@ -619,23 +716,28 @@ section.block {
 .feature:hover {
   border-color: var(--border-hover);
   transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(0,0,0,.35);
+  box-shadow: 0 12px 36px rgba(0,0,0,.4);
 }
 .feature-icon {
   width: 48px; height: 48px;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, rgba(217,164,65,.12), rgba(74,42,74,.22));
-  border: 1px solid rgba(217,164,65,.22);
+  background: linear-gradient(135deg, rgba(201,169,97,.12), rgba(74,42,106,.22));
+  border: 1px solid rgba(201,169,97,.22);
   border-radius: 13px;
   margin-bottom: 16px;
-  color: var(--amber-soft);
+  color: var(--gold-soft);
 }
 .feature-icon svg {
   width: 22px; height: 22px;
-  stroke: currentColor; fill: none; stroke-width: 1.8;
-  filter: drop-shadow(0 0 8px rgba(217,164,65,.4));
+  stroke: currentColor; fill: none; stroke-width: 1.6;
+  filter: drop-shadow(0 0 8px rgba(201,169,97,.4));
 }
-.feature h4 { font-size: 16px; font-weight: 700; color: var(--amber-soft); margin-bottom: 6px; }
+.feature h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-weight: 700;
+  color: var(--gold-soft);
+  margin-bottom: 6px;
+}
 .feature p { color: var(--ink-mute); font-size: 13.5px; line-height: 1.55; }
 
 /* ============================================================
@@ -651,9 +753,9 @@ section.block {
   margin-bottom: 30px; gap: 20px; flex-wrap: wrap;
 }
 .gallery-head h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 38px; font-weight: 800;
-  letter-spacing: -1.3px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 700;
+  letter-spacing: -.5px;
 }
 .gallery-head p { color: var(--ink-mute); font-size: 15px; margin-top: 6px; }
 
@@ -670,13 +772,13 @@ section.block {
   font-size: 13.5px; font-weight: 500;
   transition: all .22s ease;
 }
-.chip:hover { color: var(--amber-soft); border-color: rgba(217,164,65,.35); }
+.chip:hover { color: var(--gold-soft); border-color: rgba(201,169,97,.35); }
 .chip.active {
   color: #1a1206;
-  background: linear-gradient(135deg, var(--amber-glow), var(--amber));
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold));
   border-color: transparent;
   font-weight: 700;
-  box-shadow: 0 4px 16px rgba(217,164,65,.30);
+  box-shadow: 0 4px 16px rgba(201,169,97,.30);
 }
 
 .toggle {
@@ -691,7 +793,7 @@ section.block {
   user-select: none;
   transition: border-color .22s ease;
 }
-.toggle:hover { border-color: rgba(217,164,65,.30); }
+.toggle:hover { border-color: rgba(201,169,97,.30); }
 .toggle input {
   appearance: none;
   width: 34px; height: 18px;
@@ -709,8 +811,8 @@ section.block {
   border-radius: 50%;
   transition: .25s ease;
 }
-.toggle input:checked { background: var(--amber-deep); }
-.toggle input:checked::after { left: 18px; background: var(--amber-glow); }
+.toggle input:checked { background: var(--gold-deep); }
+.toggle input:checked::after { left: 18px; background: var(--gold-glow); }
 
 .gallery-grid {
   display: grid;
@@ -723,31 +825,36 @@ section.block {
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  background: linear-gradient(160deg, var(--plume-deep), var(--bg-void));
+  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
   transition: all .3s ease;
   border: 1px solid var(--border-soft);
   display: grid; place-items: center;
 }
-.gallery-item .owl-line {
-  width: 90px; height: 90px;
-  stroke: var(--amber-soft);
-  stroke-width: 1.6;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.gallery-item .tarot-mini {
+  width: 110px; height: 165px;
+  border-radius: 6px;
+  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border: 1px solid rgba(201,169,97,.40);
+  box-shadow:
+    inset 0 0 0 3px rgba(10,8,18,.6),
+    inset 0 0 0 4px rgba(201,169,97,.22),
+    0 6px 20px rgba(0,0,0,.5);
+  display: grid; place-items: center;
   transition: transform .45s ease;
-  filter: drop-shadow(0 0 10px rgba(217,164,65,.45));
 }
-.gallery-item.wine  { background: linear-gradient(150deg, var(--plume), var(--amber-deep)); }
-.gallery-item.blue  { background: linear-gradient(150deg, #1a2444, #2a1a3e); }
-.gallery-item.green { background: linear-gradient(150deg, #1a3328, #2a3a24); }
-.gallery-item.deep  { background: linear-gradient(150deg, var(--bg-void), var(--plume-deep)); }
+.gallery-item .tarot-mini .tarot-symbol {
+  width: 52px; height: 52px;
+}
+.gallery-item.violet  { background: radial-gradient(circle at 50% 50%, rgba(109,61,155,.28), transparent 65%), linear-gradient(150deg, var(--violet), var(--violet-deep)); }
+.gallery-item.crimson { background: radial-gradient(circle at 50% 50%, rgba(168,46,80,.28), transparent 65%), linear-gradient(150deg, var(--crimson), var(--violet-deep)); }
+.gallery-item.gold    { background: radial-gradient(circle at 50% 50%, rgba(201,169,97,.28), transparent 65%), linear-gradient(150deg, var(--gold-deep), var(--violet-deep)); }
+.gallery-item.deep    { background: linear-gradient(150deg, var(--bg-void), var(--violet-deep)); }
 
-.gallery-item:hover .owl-line { transform: scale(1.10); }
+.gallery-item:hover .tarot-mini { transform: scale(1.10) rotate(2deg); }
 .gallery-item::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(11,14,23,.9));
+  background: linear-gradient(180deg, transparent 45%, rgba(10,8,18,.9));
   opacity: 0; transition: opacity .3s ease;
   pointer-events: none;
 }
@@ -763,11 +870,12 @@ section.block {
 }
 .gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
 .gallery-item .overlay h5 {
-  font-size: 14px; font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 700;
   margin-bottom: 2px;
 }
 .gallery-item .overlay p {
-  font-size: 12px; color: var(--amber-soft);
+  font-size: 12px; color: var(--gold-soft);
   font-weight: 600;
 }
 
@@ -777,7 +885,7 @@ section.block {
 footer {
   border-top: 1px solid var(--border);
   padding: 40px 40px 24px;
-  background: rgba(11,14,23,.6);
+  background: rgba(10,8,18,.6);
 }
 .footer-inner {
   max-width: 1360px; margin: 0 auto;
@@ -785,12 +893,15 @@ footer {
   gap: 30px; flex-wrap: wrap;
 }
 .footer-inner .logo { font-size: 17px; }
+.footer-inner .logo-mark { width: 30px; height: 40px; }
+.footer-inner .logo-mark::before { font-size: 6px; }
+.footer-inner .logo-mark::after { font-size: 11px; }
 .footer-links { display: flex; gap: 26px; flex-wrap: wrap; }
 .footer-links a {
   color: var(--ink-mute); font-size: 13px;
   transition: color .2s ease;
 }
-.footer-links a:hover { color: var(--amber-soft); }
+.footer-links a:hover { color: var(--gold-soft); }
 .copyright { color: var(--ink-faint); font-size: 12px; }
 
 /* ============================================================
@@ -802,52 +913,98 @@ footer {
   section.block, .gallery { padding-left: 24px; padding-right: 24px; }
   .live-grid { grid-template-columns: 1fr; }
   .live-main { grid-template-columns: 1fr; }
-  .live-art { height: 240px; }
+  .live-art { height: 280px; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
 @media (max-width: 600px) {
-  .section-head h2, .gallery-head h2 { font-size: 26px; }
+  .section-head h2 { font-size: 30px; }
+  .gallery-head h2 { font-size: 34px; }
   .topbar-actions .icon-btn:not(.wallet) { display: none; }
-  .gallery { padding-top: 50px; }
 }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     SVG-СПРАЙТ: ЛИНЕЙНАЯ СОВА (одна на весь сайт)
+     SVG-СПРАЙТ: СИМВОЛЫ ТАРО
      ============================================================ -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
-    <symbol id="owl" viewBox="0 0 64 64">
-      <!-- Ушки: два треугольника -->
-      <path d="M16 14 L20 4 L26 14" />
-      <path d="M38 14 L44 4 L48 14" />
-      <!-- Голова: скруглённая трапеция -->
-      <path d="M14 20 Q14 12 22 12 L42 12 Q50 12 50 20 L50 38 Q50 52 32 56 Q14 52 14 38 Z" />
-      <!-- Большие глаза-круги -->
-      <circle cx="23" cy="30" r="6" />
-      <circle cx="41" cy="30" r="6" />
-      <!-- Зрачки-точки -->
-      <circle cx="23" cy="30" r="1.6" fill="currentColor" stroke="none" />
-      <circle cx="41" cy="30" r="1.6" fill="currentColor" stroke="none" />
-      <!-- Клюв: маленький ромб -->
-      <path d="M32 36 L35 40 L32 43 L29 40 Z" />
-      <!-- Лапки -->
-      <path d="M26 56 L26 60 M22 60 L30 60" />
-      <path d="M38 56 L38 60 M34 60 L42 60" />
+
+    <!-- ЗВЕЗДА (Star) -->
+    <symbol id="t-star" viewBox="0 0 64 64">
+      <path d="M32 6 L36 26 L56 30 L36 34 L32 54 L28 34 L8 30 L28 26 Z"/>
+      <circle cx="32" cy="30" r="3" fill="currentColor" stroke="none"/>
+      <path d="M10 12 L14 16 M54 12 L50 16 M10 50 L14 46 M54 50 L50 46"/>
     </symbol>
+
+    <!-- ЛУНА (Moon) -->
+    <symbol id="t-moon" viewBox="0 0 64 64">
+      <path d="M44 12 A22 22 0 1 0 44 52 A18 18 0 0 1 44 12 Z"/>
+      <circle cx="48" cy="22" r="1.5" fill="currentColor" stroke="none"/>
+      <circle cx="52" cy="30" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="50" cy="40" r="1.5" fill="currentColor" stroke="none"/>
+    </symbol>
+
+    <!-- СОЛНЦЕ (Sun) -->
+    <symbol id="t-sun" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="10"/>
+      <path d="M32 6 V14 M32 50 V58 M6 32 H14 M50 32 H58 M13 13 L19 19 M45 45 L51 51 M13 51 L19 45 M45 19 L51 13"/>
+    </symbol>
+
+    <!-- КОЛЕСО (Wheel of Fortune) -->
+    <symbol id="t-wheel" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="20"/>
+      <circle cx="32" cy="32" r="8"/>
+      <path d="M32 12 V24 M32 40 V52 M12 32 H24 M40 32 H52 M18 18 L26 26 M38 38 L46 46 M46 18 L38 26 M26 38 L18 46"/>
+    </symbol>
+
+    <!-- БАШНЯ (Tower) -->
+    <symbol id="t-tower" viewBox="0 0 64 64">
+      <path d="M20 56 L20 18 L28 14 L32 20 L36 14 L44 18 L44 56 Z"/>
+      <path d="M18 56 H46"/>
+      <path d="M24 24 L28 28 L24 32 L28 36 L24 40 L28 44"/>
+      <path d="M40 24 L36 28 L40 32 L36 36 L40 40 L36 44"/>
+      <circle cx="32" cy="10" r="2" fill="currentColor" stroke="none"/>
+    </symbol>
+
+    <!-- МЕЧ (Sword) -->
+    <symbol id="t-sword" viewBox="0 0 64 64">
+      <path d="M32 6 L36 12 V38 H28 V12 Z"/>
+      <path d="M22 40 H42"/>
+      <path d="M30 40 V50 M34 40 V50"/>
+      <path d="M28 50 H36"/>
+    </symbol>
+
+    <!-- КУБОК (Cup) -->
+    <symbol id="t-cup" viewBox="0 0 64 64">
+      <path d="M20 10 H44 V24 A12 12 0 0 1 32 36 A12 12 0 0 1 20 24 Z"/>
+      <path d="M20 14 H14 A6 6 0 0 0 20 26"/>
+      <path d="M44 14 H50 A6 6 0 0 1 44 26"/>
+      <path d="M32 36 V48 M24 52 H40 M28 48 H36"/>
+    </symbol>
+
+    <!-- ПЕНТАКЛЬ (Pentacle) -->
+    <symbol id="t-pentacle" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="22"/>
+      <path d="M32 14 L37 30 L54 30 L41 40 L46 56 L32 46 L18 56 L23 40 L10 30 L27 30 Z"/>
+    </symbol>
+
+    <!-- ВЛЮБЛЁННЫЕ (Lovers) -->
+    <symbol id="t-lovers" viewBox="0 0 64 64">
+      <circle cx="22" cy="20" r="6"/>
+      <circle cx="42" cy="20" r="6"/>
+      <path d="M12 52 C12 42 16 32 22 32 C26 32 28 36 28 40 M52 52 C52 42 48 32 42 32 C38 32 36 36 36 40"/>
+      <path d="M28 40 C28 48 32 52 32 52 C32 52 36 48 36 40"/>
+    </symbol>
+
   </defs>
 </svg>
 
 <!-- ===================== ХЕДЕР ===================== -->
 <header class="topbar">
   <div class="logo">
-    <div class="logo-mark">
-      <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round;">
-        <use href="#owl"/>
-      </svg>
-    </div>
+    <div class="logo-mark"></div>
     <div>Art<span class="logo-text-accent">Haven</span></div>
   </div>
 
@@ -876,11 +1033,7 @@ footer {
       1 240
     </button>
     <button class="btn-primary"><span>Открыть слот</span></button>
-    <div class="avatar" title="Профиль">
-      <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round;">
-        <use href="#owl"/>
-      </svg>
-    </div>
+    <div class="avatar" title="Профиль">XVII</div>
   </div>
 </header>
 
@@ -901,9 +1054,9 @@ footer {
     <aside class="live-main">
       <div class="live-badge">LIVE</div>
       <div class="live-art">
-        <svg class="owl-line" viewBox="0 0 64 64">
-          <use href="#owl"/>
-        </svg>
+        <div class="tarot" data-num="XVII" data-label="The Star">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-star"/></svg>
+        </div>
       </div>
       <div class="live-info">
         <h3>Paimon — Closed Species</h3>
@@ -919,8 +1072,8 @@ footer {
 
     <div class="live-side">
       <div class="mini-auction">
-        <div class="mini-thumb amber">
-          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
+        <div class="mini-thumb violet">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg>
         </div>
         <div class="mini-info">
           <h4>Dark Fae Adopt</h4>
@@ -930,8 +1083,8 @@ footer {
       </div>
 
       <div class="mini-auction">
-        <div class="mini-thumb blue">
-          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
+        <div class="mini-thumb crimson">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-tower"/></svg>
         </div>
         <div class="mini-info">
           <h4>Wolf Spirit — SB 80</h4>
@@ -942,7 +1095,7 @@ footer {
 
       <div class="mini-auction">
         <div class="mini-thumb">
-          <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-wheel"/></svg>
         </div>
         <div class="mini-info">
           <h4>Mermay YCH — 2 slots</h4>
@@ -970,9 +1123,11 @@ footer {
   <div class="hot-row">
 
     <article class="hot-card">
-      <div class="hot-thumb wine">
-        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
-        <span class="tag plume">YCH · 2 слота</span>
+      <div class="hot-thumb violet">
+        <div class="tarot-mini">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-cup"/></svg>
+        </div>
+        <span class="tag violet">YCH · 2 слота</span>
       </div>
       <div class="hot-body">
         <h4>YCH — Cat Slot</h4>
@@ -985,9 +1140,11 @@ footer {
     </article>
 
     <article class="hot-card">
-      <div class="hot-thumb">
-        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
-        <span class="tag amber">Горячее</span>
+      <div class="hot-thumb gold">
+        <div class="tarot-mini">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg>
+        </div>
+        <span class="tag gold">Горячее</span>
       </div>
       <div class="hot-body">
         <h4>Paimon — Legendary</h4>
@@ -1000,8 +1157,10 @@ footer {
     </article>
 
     <article class="hot-card">
-      <div class="hot-thumb blue">
-        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
+      <div class="hot-thumb crimson">
+        <div class="tarot-mini">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sword"/></svg>
+        </div>
         <span class="tag nsfw">18+</span>
       </div>
       <div class="hot-body">
@@ -1015,9 +1174,11 @@ footer {
     </article>
 
     <article class="hot-card">
-      <div class="hot-thumb green">
-        <svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg>
-        <span class="tag amber">New</span>
+      <div class="hot-thumb">
+        <div class="tarot-mini">
+          <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-pentacle"/></svg>
+        </div>
+        <span class="tag gold">New</span>
       </div>
       <div class="hot-body">
         <h4>Live2D модель под ключ</h4>
@@ -1169,18 +1330,65 @@ footer {
 
   <div class="gallery-grid">
 
-    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div></div>
-    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div></div>
-    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div></div>
-    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div></div>
-    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div></div>
-    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div></div>
-    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div></div>
-    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div></div>
-    <div class="gallery-item wine"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div></div>
-    <div class="gallery-item blue"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div></div>
-    <div class="gallery-item green"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div></div>
-    <div class="gallery-item deep"><svg class="owl-line" viewBox="0 0 64 64"><use href="#owl"/></svg><div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div></div>
+    <div class="gallery-item deep">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-star"/></svg></div>
+      <div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div>
+    </div>
+
+    <div class="gallery-item violet">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div>
+      <div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div>
+    </div>
+
+    <div class="gallery-item crimson">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-tower"/></svg></div>
+      <div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div>
+    </div>
+
+    <div class="gallery-item gold">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div>
+      <div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div>
+    </div>
+
+    <div class="gallery-item violet">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-wheel"/></svg></div>
+      <div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div>
+    </div>
+
+    <div class="gallery-item deep">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sword"/></svg></div>
+      <div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div>
+    </div>
+
+    <div class="gallery-item crimson">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-cup"/></svg></div>
+      <div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div>
+    </div>
+
+    <div class="gallery-item gold">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-pentacle"/></svg></div>
+      <div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div>
+    </div>
+
+    <div class="gallery-item violet">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-lovers"/></svg></div>
+      <div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div>
+    </div>
+
+    <div class="gallery-item deep">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-star"/></svg></div>
+      <div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div>
+    </div>
+
+    <div class="gallery-item crimson">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div>
+      <div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div>
+    </div>
+
+    <div class="gallery-item gold">
+      <div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div>
+      <div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div>
+    </div>
 
   </div>
 </section>
@@ -1189,11 +1397,7 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="logo">
-      <div class="logo-mark">
-        <svg class="owl-line" style="stroke: var(--amber-glow); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round;">
-          <use href="#owl"/>
-        </svg>
-      </div>
+      <div class="logo-mark"></div>
       <div>Art<span class="logo-text-accent">Haven</span></div>
     </div>
     <div class="footer-links">
