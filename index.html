@@ -19,7 +19,6 @@
   --bg-main:     #0f0b1b;
   --bg-card:     #16112a;
   --bg-hover:    #1e1836;
-  --bg-elev:     #241c42;
 
   --gold:        #c9a961;
   --gold-soft:   #ddc088;
@@ -340,21 +339,19 @@ img { display: block; max-width: 100%; }
 .btn-ghost:hover svg { transform: translateX(3px); }
 
 /* ============================================================
-   СЕКЦИИ — плотно, без дыр
+   СЕКЦИИ
    ============================================================ */
 .full-section {
   position: relative;
   padding: 44px 0;
 }
 
-/* Внутренняя сетка БЕЗ боковых рельсов */
 .layout {
   max-width: 1760px;
   margin: 0 auto;
   padding: 0 48px;
 }
 
-/* Тонкий разделитель между секциями */
 .divider {
   max-width: 1760px;
   margin: 0 auto;
@@ -702,154 +699,217 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   ГОРЯЧИЕ ЛОТЫ
+   ГОРЯЧИЕ ЛОТЫ — сами карточки как карты Таро
    ============================================================ */
 .hot-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
-.hot-card {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(109,61,155,.14), transparent 60%),
-    linear-gradient(170deg, var(--bg-card), var(--bg-deep));
-  border: 1px solid var(--border-soft);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: all .35s cubic-bezier(.2,.8,.2,1);
-  cursor: pointer;
-  position: relative;
-}
-.hot-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  border-radius: 18px;
-  padding: 1px;
-  background: linear-gradient(135deg, transparent 20%, rgba(201,169,97,.75), transparent 80%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity .35s ease;
-  pointer-events: none;
-}
-.hot-card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 24px 60px rgba(0,0,0,.65),
-    0 0 60px rgba(201,169,97,.20),
-    inset 0 1px 0 rgba(244,224,168,.12);
-}
-.hot-card:hover::before { opacity: 1; }
 
-.hot-thumb {
+/* Карточка = Карта Таро */
+.card-tarot {
   position: relative;
-  aspect-ratio: 1.25;
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 20px 20px 18px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(109,61,155,.28), transparent 60%),
-    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
-  display: grid; place-items: center;
-}
-.hot-thumb::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(6,5,13,.7) 100%);
-  pointer-events: none;
-}
-.hot-thumb .tarot-mini {
-  width: 128px; height: 190px;
-  border-radius: 9px;
-  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+    radial-gradient(circle at 50% 0%, rgba(109,61,155,.18), transparent 60%),
+    linear-gradient(165deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  /* Золотой внешний бордер */
   border: 1px solid rgba(201,169,97,.60);
+  /* Внутренняя рамка через box-shadow */
   box-shadow:
-    inset 0 0 0 3px rgba(6,5,13,.75),
-    inset 0 0 0 4px rgba(201,169,97,.35),
-    0 12px 32px rgba(0,0,0,.65),
-    0 0 50px rgba(201,169,97,.18);
-  display: grid; place-items: center;
-  transition: transform .5s ease, box-shadow .5s ease;
-  position: relative;
+    inset 0 0 0 1px rgba(201,169,97,.20),
+    inset 0 0 0 7px rgba(6,5,13,.65),
+    inset 0 0 0 8px rgba(201,169,97,.28),
+    var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all .4s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer;
   overflow: hidden;
+  isolation: isolate;
 }
-.hot-thumb .tarot-mini::before {
+
+/* Верхняя и нижняя гравировка */
+.card-tarot::before,
+.card-tarot::after {
   content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(120deg, transparent 30%, rgba(244,224,168,.25) 50%, transparent 70%);
+  position: absolute;
+  left: 20px; right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.5), transparent);
+  z-index: 2;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity .35s ease;
+  transition: opacity .4s ease;
 }
-.hot-card:hover .tarot-mini {
-  transform: scale(1.09) rotate(-2deg);
+.card-tarot::before { top: 12px; }
+.card-tarot::after { bottom: 12px; }
+
+.card-tarot:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201,169,97,.85);
   box-shadow:
-    inset 0 0 0 3px rgba(6,5,13,.75),
-    inset 0 0 0 4px rgba(201,169,97,.6),
-    0 18px 44px rgba(0,0,0,.75),
-    0 0 80px rgba(201,169,97,.4);
+    inset 0 0 0 1px rgba(201,169,97,.4),
+    inset 0 0 0 7px rgba(6,5,13,.7),
+    inset 0 0 0 8px rgba(201,169,97,.6),
+    var(--shadow-lg),
+    0 0 80px rgba(201,169,97,.30);
 }
-.hot-card:hover .tarot-mini::before { opacity: 1; }
+.card-tarot:hover::before,
+.card-tarot:hover::after { opacity: 1; }
 
-.tarot-mini .tarot-symbol {
-  width: 66px; height: 66px;
-  stroke-width: 1.4;
+/* Золотой блик по карте */
+.card-tarot .shine {
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(244,224,168,.15) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity .4s ease, transform 1s ease;
+  pointer-events: none;
+  z-index: 1;
 }
+.card-tarot:hover .shine { opacity: 1; }
 
-.hot-thumb.violet { background: radial-gradient(circle at 50% 50%, rgba(109,61,155,.5), transparent 65%), linear-gradient(160deg, var(--violet), var(--violet-deep)); }
-.hot-thumb.crimson { background: radial-gradient(circle at 50% 50%, rgba(168,46,80,.5), transparent 65%), linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
-.hot-thumb.gold { background: radial-gradient(circle at 50% 50%, rgba(201,169,97,.45), transparent 65%), linear-gradient(160deg, var(--gold-deep), var(--violet-deep)); }
-
-.tag {
-  position: absolute; z-index: 2;
-  padding: 6px 13px;
+/* Верхняя часть: номер + метка */
+.card-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201,169,97,.18);
+  position: relative;
+  z-index: 2;
+}
+.card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--gold-glow);
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(244,224,168,.6);
+}
+.card-tag {
+  padding: 4px 10px;
   border-radius: 20px;
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: .9px;
+  font-size: 9.5px; font-weight: 800;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(201,169,97,.45);
+  border: 1px solid rgba(201,169,97,.4);
+  backdrop-filter: blur(10px);
 }
-.tag.gold {
-  top: 14px; left: 14px;
+.card-tag.gold {
   background: linear-gradient(160deg, var(--gold-glow), var(--gold));
   color: #1a1206;
-  box-shadow: 0 4px 18px rgba(201,169,97,.6);
   border-color: rgba(244,224,168,.8);
+  box-shadow: 0 3px 14px rgba(201,169,97,.55);
 }
-.tag.nsfw {
-  top: 14px; right: 14px;
+.card-tag.nsfw {
   background: linear-gradient(160deg, var(--crimson-lite), var(--crimson));
   color: #fff;
   border-color: rgba(168,46,80,.8);
-  box-shadow: 0 4px 18px rgba(168,46,80,.6);
+  box-shadow: 0 3px 14px rgba(168,46,80,.55);
 }
-.tag.violet {
-  top: 14px; left: 14px;
+.card-tag.violet {
   background: rgba(74,42,106,.95);
   color: var(--gold-soft);
-  border: 1px solid rgba(201,169,97,.5);
-  box-shadow: 0 4px 18px rgba(74,42,106,.7);
+  border-color: rgba(201,169,97,.5);
+  box-shadow: 0 3px 14px rgba(74,42,106,.7);
 }
 
-.hot-body { padding: 18px; }
-.hot-body h4 {
+/* Изображение — центральная часть карты.
+   aspect-ratio гибкий, чтобы подстраиваться под разное */
+.card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(109,61,155,.4), transparent 65%),
+    linear-gradient(160deg, var(--violet-deep) 0%, var(--bg-void) 100%);
+  display: grid; place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,97,.20);
+  box-shadow:
+    inset 0 0 0 1px rgba(201,169,97,.10),
+    inset 0 0 60px rgba(0,0,0,.5);
+  z-index: 2;
+}
+/* Ассет-плашка: тут будет реальное изображение арта (в будущем) */
+.card-image .art-placeholder {
+  width: 70%; height: 70%;
+  display: grid; place-items: center;
+}
+.card-image .tarot-symbol {
+  width: 100%; height: 100%;
+  max-width: 110px; max-height: 110px;
+  stroke: var(--gold-glow);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter:
+    drop-shadow(0 0 8px rgba(244,224,168,.8))
+    drop-shadow(0 0 24px rgba(201,169,97,.5));
+  transition: transform .5s ease;
+}
+.card-tarot:hover .card-image .tarot-symbol {
+  transform: scale(1.08);
+}
+
+/* Цвета фона изображений (разные карты — разные фоны) */
+.card-tarot.v-violet .card-image {
+  background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.6), transparent 65%), linear-gradient(160deg, var(--violet), var(--violet-deep));
+}
+.card-tarot.v-crimson .card-image {
+  background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.6), transparent 65%), linear-gradient(160deg, var(--crimson), var(--violet-deep));
+}
+.card-tarot.v-gold .card-image {
+  background: radial-gradient(circle at 50% 45%, rgba(201,169,97,.5), transparent 65%), linear-gradient(160deg, var(--gold-deep), var(--violet-deep));
+}
+.card-tarot.v-deep .card-image {
+  background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.3), transparent 65%), linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+}
+
+/* Описание — текстовая зона */
+.card-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-text h4 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 21px; font-weight: 700;
-  margin-bottom: 4px; letter-spacing: -.2px;
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -.2px;
+  line-height: 1.2;
+  color: var(--ink);
 }
-.hot-body .author { color: var(--ink-mute); font-size: 12.5px; margin-bottom: 16px; }
-.hot-body .author b { color: var(--gold-soft); font-weight: 500; }
+.card-text .author {
+  color: var(--ink-mute);
+  font-size: 12.5px;
+}
+.card-text .author b {
+  color: var(--gold-soft);
+  font-weight: 500;
+}
 
-.hot-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-soft);
+/* Футер карты: цена + кнопка */
+.card-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  margin-top: auto;
+  border-top: 1px solid rgba(201,169,97,.20);
 }
-.hot-footer .price { display: flex; flex-direction: column; }
-.hot-footer .price span {
+.card-footer .price { display: flex; flex-direction: column; gap: 2px; }
+.card-footer .price span {
   font-size: 10px; color: var(--ink-mute);
   text-transform: uppercase; letter-spacing: 1.4px;
 }
-.hot-footer .price strong {
+.card-footer .price strong {
   font-family: 'Manrope', sans-serif;
   background: linear-gradient(180deg, #f4e0a8, #c9a961 60%, #8f7440);
   -webkit-background-clip: text;
@@ -857,6 +917,11 @@ img { display: block; max-width: 100%; }
   -webkit-text-fill-color: transparent;
   font-size: 18px; font-weight: 800;
 }
+
+/* Разные «размеры» карт, чтобы они подстраивались под изображение.
+   Тут можно задавать aspect-ratio изображения — карта автоматически вырастет. */
+.card-tarot.size-tall .card-image { aspect-ratio: 3 / 5; }
+.card-tarot.size-wide .card-image { aspect-ratio: 5 / 4; }
 
 /* ============================================================
    СЛОТЫ
@@ -982,7 +1047,7 @@ img { display: block; max-width: 100%; }
 .feature p { color: var(--ink-mute); font-size: 14px; line-height: 1.6; }
 
 /* ============================================================
-   ГАЛЕРЕЯ
+   ГАЛЕРЕЯ — тоже карты Таро
    ============================================================ */
 .gallery-head {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -1065,82 +1130,88 @@ img { display: block; max-width: 100%; }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
 }
-.gallery-item {
+
+/* Карточка галереи — тоже карта Таро */
+.gallery-card {
   position: relative;
-  aspect-ratio: 1;
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
-  transition: all .35s ease;
-  border: 1px solid var(--border-soft);
-  display: grid; place-items: center;
-}
-.gallery-item .tarot-mini {
-  width: 122px; height: 180px;
-  border-radius: 8px;
-  background: linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  border-radius: 12px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(109,61,155,.15), transparent 60%),
+    linear-gradient(165deg, var(--bg-card), var(--bg-deep));
   border: 1px solid rgba(201,169,97,.50);
   box-shadow:
-    inset 0 0 0 3px rgba(6,5,13,.75),
-    inset 0 0 0 4px rgba(201,169,97,.28),
-    0 10px 26px rgba(0,0,0,.6);
-  display: grid; place-items: center;
-  transition: transform .5s ease, box-shadow .5s ease;
+    inset 0 0 0 1px rgba(201,169,97,.18),
+    inset 0 0 0 5px rgba(6,5,13,.6),
+    inset 0 0 0 6px rgba(201,169,97,.25),
+    var(--shadow-sm);
+  transition: all .4s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
 }
-.gallery-item .tarot-mini .tarot-symbol {
-  width: 58px; height: 58px;
-}
-.gallery-item.violet  { background: radial-gradient(circle at 50% 50%, rgba(109,61,155,.4), transparent 65%), linear-gradient(150deg, var(--violet), var(--violet-deep)); }
-.gallery-item.crimson { background: radial-gradient(circle at 50% 50%, rgba(168,46,80,.4), transparent 65%), linear-gradient(150deg, var(--crimson), var(--violet-deep)); }
-.gallery-item.gold    { background: radial-gradient(circle at 50% 50%, rgba(201,169,97,.4), transparent 65%), linear-gradient(150deg, var(--gold-deep), var(--violet-deep)); }
-.gallery-item.deep    { background: linear-gradient(150deg, var(--bg-void), var(--violet-deep)); }
-
-.gallery-item:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 24px 60px rgba(0,0,0,.6), 0 0 50px rgba(201,169,97,.18);
-}
-.gallery-item:hover .tarot-mini {
-  transform: scale(1.11) rotate(2deg);
+.gallery-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201,169,97,.85);
   box-shadow:
-    inset 0 0 0 3px rgba(6,5,13,.75),
-    inset 0 0 0 4px rgba(201,169,97,.6),
-    0 16px 40px rgba(0,0,0,.75),
-    0 0 60px rgba(201,169,97,.35);
+    inset 0 0 0 1px rgba(201,169,97,.4),
+    inset 0 0 0 5px rgba(6,5,13,.7),
+    inset 0 0 0 6px rgba(201,169,97,.6),
+    var(--shadow-md),
+    0 0 60px rgba(201,169,97,.25);
 }
 
-.gallery-item::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(6,5,13,.95));
-  opacity: 0; transition: opacity .35s ease;
-  pointer-events: none;
+.gallery-card .art {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(109,61,155,.4), transparent 65%),
+    linear-gradient(160deg, var(--violet-deep), var(--bg-void));
+  display: grid; place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,97,.15);
+  box-shadow: inset 0 0 40px rgba(0,0,0,.5);
+  position: relative;
 }
-.gallery-item:hover::after { opacity: 1; }
+.gallery-card.violet .art { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.55), transparent 65%), linear-gradient(160deg, var(--violet), var(--violet-deep)); }
+.gallery-card.crimson .art { background: radial-gradient(circle at 50% 45%, rgba(168,46,80,.55), transparent 65%), linear-gradient(160deg, var(--crimson), var(--violet-deep)); }
+.gallery-card.gold .art { background: radial-gradient(circle at 50% 45%, rgba(201,169,97,.5), transparent 65%), linear-gradient(160deg, var(--gold-deep), var(--violet-deep)); }
+.gallery-card.deep .art { background: radial-gradient(circle at 50% 45%, rgba(109,61,155,.3), transparent 65%), linear-gradient(160deg, var(--violet-deep), var(--bg-void)); }
 
-.gallery-item .overlay {
-  position: absolute; left: 18px; right: 18px; bottom: 18px;
-  z-index: 2;
-  transform: translateY(14px);
-  opacity: 0;
-  transition: all .35s ease;
-  pointer-events: none;
+.gallery-card .art .tarot-symbol {
+  width: 64px; height: 64px;
+  stroke: var(--gold-glow);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(244,224,168,.8)) drop-shadow(0 0 22px rgba(201,169,97,.5));
+  transition: transform .5s ease;
 }
-.gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
-.gallery-item .overlay h5 {
+.gallery-card:hover .art .tarot-symbol { transform: scale(1.1); }
+
+.gallery-card .text {
+  text-align: center;
+  padding: 0 4px 4px;
+}
+.gallery-card .text h5 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 700;
-  margin-bottom: 3px;
+  font-size: 19px; font-weight: 700;
   color: var(--gold-glow);
-  text-shadow: 0 0 14px rgba(244,224,168,.7);
+  text-shadow: 0 0 12px rgba(244,224,168,.5);
+  margin-bottom: 2px;
+  line-height: 1.2;
 }
-.gallery-item .overlay p {
-  font-size: 12.5px; color: var(--gold-soft);
+.gallery-card .text p {
+  font-size: 12px; color: var(--gold-soft);
   font-weight: 600;
-  letter-spacing: .4px;
+  letter-spacing: .5px;
 }
 
 /* ============================================================
@@ -1410,7 +1481,7 @@ footer::before {
 
 <div class="divider"></div>
 
-<!-- ===================== ГОРЯЧИЕ ЛОТЫ ===================== -->
+<!-- ===================== ГОРЯЧИЕ ЛОТЫ — КАРТЫ ТАРО ===================== -->
 <section class="full-section">
   <div class="layout">
     <div class="section-head">
@@ -1425,73 +1496,95 @@ footer::before {
     </div>
 
     <div class="hot-row">
-      <article class="hot-card">
-        <div class="hot-thumb violet">
-          <div class="tarot-mini">
+
+      <!-- Карта Таро №1 -->
+      <article class="card-tarot v-violet size-tall">
+        <div class="shine"></div>
+        <div class="card-head">
+          <span class="card-num">II</span>
+          <span class="card-tag violet">YCH · 2 слота</span>
+        </div>
+        <div class="card-image">
+          <div class="art-placeholder">
             <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-cup"/></svg>
           </div>
-          <span class="tag violet">YCH · 2 слота</span>
         </div>
-        <div class="hot-body">
+        <div class="card-text">
           <h4>YCH — Cat Slot</h4>
           <p class="author">by <b>@sunny_art</b></p>
-          <div class="hot-footer">
-            <div class="price"><span>Фикс</span><strong>45 USDT</strong></div>
-            <button class="btn-primary sm"><span>Купить</span></button>
-          </div>
+        </div>
+        <div class="card-footer">
+          <div class="price"><span>Фикс</span><strong>45 USDT</strong></div>
+          <button class="btn-primary sm"><span>Купить</span></button>
         </div>
       </article>
 
-      <article class="hot-card">
-        <div class="hot-thumb gold">
-          <div class="tarot-mini">
+      <!-- Карта Таро №2 -->
+      <article class="card-tarot v-gold">
+        <div class="shine"></div>
+        <div class="card-head">
+          <span class="card-num">XIX</span>
+          <span class="card-tag gold">Горячее</span>
+        </div>
+        <div class="card-image">
+          <div class="art-placeholder">
             <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg>
           </div>
-          <span class="tag gold">Горячее</span>
         </div>
-        <div class="hot-body">
+        <div class="card-text">
           <h4>Paimon — Legendary</h4>
           <p class="author">by <b>@kuro_art</b></p>
-          <div class="hot-footer">
-            <div class="price"><span>SB</span><strong>150 USDT</strong></div>
-            <button class="btn-primary sm"><span>Ставка</span></button>
-          </div>
+        </div>
+        <div class="card-footer">
+          <div class="price"><span>SB</span><strong>150 USDT</strong></div>
+          <button class="btn-primary sm"><span>Ставка</span></button>
         </div>
       </article>
 
-      <article class="hot-card">
-        <div class="hot-thumb crimson">
-          <div class="tarot-mini">
+      <!-- Карта Таро №3 -->
+      <article class="card-tarot v-crimson">
+        <div class="shine"></div>
+        <div class="card-head">
+          <span class="card-num">XVI</span>
+          <span class="card-tag nsfw">18+</span>
+        </div>
+        <div class="card-image">
+          <div class="art-placeholder">
             <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sword"/></svg>
           </div>
-          <span class="tag nsfw">18+</span>
         </div>
-        <div class="hot-body">
+        <div class="card-text">
           <h4>Dark Fae Adopt</h4>
           <p class="author">by <b>@mira_draws</b></p>
-          <div class="hot-footer">
-            <div class="price"><span>SB</span><strong>80 USDT</strong></div>
-            <button class="btn-primary sm"><span>Ставка</span></button>
-          </div>
+        </div>
+        <div class="card-footer">
+          <div class="price"><span>SB</span><strong>80 USDT</strong></div>
+          <button class="btn-primary sm"><span>Ставка</span></button>
         </div>
       </article>
 
-      <article class="hot-card">
-        <div class="hot-thumb">
-          <div class="tarot-mini">
+      <!-- Карта Таро №4 -->
+      <article class="card-tarot v-deep size-wide">
+        <div class="shine"></div>
+        <div class="card-head">
+          <span class="card-num">XXI</span>
+          <span class="card-tag gold">New</span>
+        </div>
+        <div class="card-image">
+          <div class="art-placeholder">
             <svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-pentacle"/></svg>
           </div>
-          <span class="tag gold">New</span>
         </div>
-        <div class="hot-body">
+        <div class="card-text">
           <h4>Live2D модель под ключ</h4>
           <p class="author">by <b>@vtuber_lab</b></p>
-          <div class="hot-footer">
-            <div class="price"><span>от</span><strong>600 USDT</strong></div>
-            <button class="btn-primary sm"><span>Заказать</span></button>
-          </div>
+        </div>
+        <div class="card-footer">
+          <div class="price"><span>от</span><strong>600 USDT</strong></div>
+          <button class="btn-primary sm"><span>Заказать</span></button>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -1642,18 +1735,65 @@ footer::before {
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-item deep"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-star"/></svg></div><div class="overlay"><h5>Paimon Study</h5><p>@kuro_art</p></div></div>
-      <div class="gallery-item violet"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div><div class="overlay"><h5>Fae Queen</h5><p>@mira_draws</p></div></div>
-      <div class="gallery-item crimson"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-tower"/></svg></div><div class="overlay"><h5>Wolf Spirit</h5><p>@noir_fox</p></div></div>
-      <div class="gallery-item gold"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div><div class="overlay"><h5>Forest Guardian</h5><p>@sunny_art</p></div></div>
-      <div class="gallery-item violet"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-wheel"/></svg></div><div class="overlay"><h5>Flame Dancer</h5><p>@kuro_art</p></div></div>
-      <div class="gallery-item deep"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sword"/></svg></div><div class="overlay"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div></div>
-      <div class="gallery-item crimson"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-cup"/></svg></div><div class="overlay"><h5>Druid Concept</h5><p>@brush_lab</p></div></div>
-      <div class="gallery-item gold"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-pentacle"/></svg></div><div class="overlay"><h5>Ethereal Wings</h5><p>@noir_fox</p></div></div>
-      <div class="gallery-item violet"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-lovers"/></svg></div><div class="overlay"><h5>Blood Moon</h5><p>@mira_draws</p></div></div>
-      <div class="gallery-item deep"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-eye"/></svg></div><div class="overlay"><h5>Star Whisper</h5><p>@sunny_art</p></div></div>
-      <div class="gallery-item crimson"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div><div class="overlay"><h5>Moss Spirit</h5><p>@brush_lab</p></div></div>
-      <div class="gallery-item gold"><div class="tarot-mini"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div><div class="overlay"><h5>Crown of Stars</h5><p>@kuro_art</p></div></div>
+      <div class="gallery-card deep">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-star"/></svg></div>
+        <div class="text"><h5>Paimon Study</h5><p>@kuro_art</p></div>
+      </div>
+
+      <div class="gallery-card violet">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div>
+        <div class="text"><h5>Fae Queen</h5><p>@mira_draws</p></div>
+      </div>
+
+      <div class="gallery-card crimson">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-tower"/></svg></div>
+        <div class="text"><h5>Wolf Spirit</h5><p>@noir_fox</p></div>
+      </div>
+
+      <div class="gallery-card gold">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div>
+        <div class="text"><h5>Forest Guardian</h5><p>@sunny_art</p></div>
+      </div>
+
+      <div class="gallery-card violet">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-wheel"/></svg></div>
+        <div class="text"><h5>Flame Dancer</h5><p>@kuro_art</p></div>
+      </div>
+
+      <div class="gallery-card deep">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sword"/></svg></div>
+        <div class="text"><h5>Cyber Samurai</h5><p>@vtuber_lab</p></div>
+      </div>
+
+      <div class="gallery-card crimson">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-cup"/></svg></div>
+        <div class="text"><h5>Druid Concept</h5><p>@brush_lab</p></div>
+      </div>
+
+      <div class="gallery-card gold">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-pentacle"/></svg></div>
+        <div class="text"><h5>Ethereal Wings</h5><p>@noir_fox</p></div>
+      </div>
+
+      <div class="gallery-card violet">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-lovers"/></svg></div>
+        <div class="text"><h5>Blood Moon</h5><p>@mira_draws</p></div>
+      </div>
+
+      <div class="gallery-card deep">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-eye"/></svg></div>
+        <div class="text"><h5>Star Whisper</h5><p>@sunny_art</p></div>
+      </div>
+
+      <div class="gallery-card crimson">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-moon"/></svg></div>
+        <div class="text"><h5>Moss Spirit</h5><p>@brush_lab</p></div>
+      </div>
+
+      <div class="gallery-card gold">
+        <div class="art"><svg class="tarot-symbol" viewBox="0 0 64 64"><use href="#t-sun"/></svg></div>
+        <div class="text"><h5>Crown of Stars</h5><p>@kuro_art</p></div>
+      </div>
     </div>
   </div>
 </section>
